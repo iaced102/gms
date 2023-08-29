@@ -1,0 +1,17 @@
+{
+    "sidebar": {
+        "tag": "Thẻ",
+        "subSystem": "Hệ thống phụ",
+        "service": "Dịch vụ",
+        "rescues": "Cứu hộ",
+        "insurances": "Bảo hiểm",
+        "garageOwner": "Chủ garage"
+    },
+    "header": {
+        "createGarage": "Tạo mới garage"
+    },
+    "functionSidebar": {
+        "cancel": "Thoát",
+        "createGarage": "Tạo garage"
+    }
+}
