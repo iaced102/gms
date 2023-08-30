@@ -1,97 +1,204 @@
 <template>
-    <div class="loginwrapper">
-        <div class="lg-inner-column">
-            <div class="left-column relative z-[1]">
-                <div
-                    class="h-full w-full z-[-1] flex justify-center align-center"
-                >
-                    <img :src="sideImg" alt="" class="w-1/3 object-contain" />
-                </div>
-            </div>
-            <div class="right-column relative">
-                <div
-                    class="inner-content h-full flex flex-col bg-white dark:bg-slate-800"
-                >
-                    <div class="auth-box h-full flex flex-col justify-center">
-                        <div
-                            class="mobile-logo text-center mb-6 lg:hidden block"
+    <div
+        class="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8"
+    >
+        <div class="sm:mx-auto sm:w-full sm:max-w-md">
+            <img class="mx-auto h-28 w-auto" :src="logo" alt="Your Company" />
+            <h2
+                class="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"
+            >
+                Sign in to your account
+            </h2>
+        </div>
+
+        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
+            <div class="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
+                <form class="space-y-6" action="#" @submit.prevent="onSubmit">
+                    <div>
+                        <label
+                            for="email"
+                            class="block text-sm font-medium leading-6 text-gray-900"
+                            >Email address</label
                         >
-                            <router-link to="/">
-                                <img
-                                    :src="logo"
-                                    alt=""
-                                    class="mx-auto"
-                                    v-if="
-                                        !this.$store.themeSettingsStore.isDark
-                                    "
-                                />
-                                <img
-                                    :src="logoWhite"
-                                    alt=""
-                                    class="mx-auto"
-                                    v-else
-                                />
-                            </router-link>
-                        </div>
-                        <div class="text-center 2xl:mb-10 mb-4">
-                            <h4 class="font-medium">Sign in</h4>
-                            <div class="text-slate-500 text-base">
-                                Sign in to your account to start using Dashcode
-                            </div>
-                        </div>
-                        <Signin />
-                        <div
-                            class="relative border-b-[#9AA2AF] border-opacity-[16%] border-b pt-6"
-                        >
-                            <div
-                                class="absolute inline-block bg-white dark:bg-slate-800 dark:text-slate-400 left-1/2 top-1/2 transform -translate-x-1/2 px-4 min-w-max text-sm text-slate-500 font-normal"
-                            >
-                                Or continue with
-                            </div>
-                        </div>
-                        <div class="max-w-[242px] mx-auto mt-8 w-full">
-                            <Social />
-                        </div>
-                        <div
-                            class="md:max-w-[345px] mx-auto font-normal text-slate-500 dark:text-slate-400 mt-12 uppercase text-sm"
-                        >
-                            Don’t have an account? Sign up
-                            <router-link
-                                to="/register"
-                                class="text-slate-900 dark:text-white font-medium hover:underline"
-                            >
-                                Sign up
-                            </router-link>
+                        <div class="mt-2">
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                v-model="formValues.email"
+                                autocomplete="email"
+                                required=""
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
                         </div>
                     </div>
-                    <div class="auth-footer text-center">
-                        Copyright 2021, Dashcode All Rights Reserved.
+
+                    <div>
+                        <label
+                            for="password"
+                            class="block text-sm font-medium leading-6 text-gray-900"
+                            >Password</label
+                        >
+                        <div class="mt-2">
+                            <input
+                                id="password"
+                                name="password"
+                                type="password"
+                                v-model="formValues.password"
+                                autocomplete="current-password"
+                                required=""
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input
+                                id="remember-me"
+                                name="remember-me"
+                                type="checkbox"
+                                v-model="formValues.email"
+                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                            />
+                            <label
+                                for="remember-me"
+                                class="ml-3 block text-sm leading-6 text-gray-900"
+                                >Remember me</label
+                            >
+                        </div>
+
+                        <div class="text-sm leading-6">
+                            <a
+                                href="#"
+                                class="font-semibold text-indigo-600 hover:text-indigo-500"
+                                >Forgot password?</a
+                            >
+                        </div>
+                    </div>
+
+                    <div>
+                        <button
+                            type="submit"
+                            class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                            Sign in
+                        </button>
+                    </div>
+                </form>
+
+                <div>
+                    <div class="relative mt-10">
+                        <div
+                            class="absolute inset-0 flex items-center"
+                            aria-hidden="true"
+                        >
+                            <div class="w-full border-t border-gray-200" />
+                        </div>
+                        <div
+                            class="relative flex justify-center text-sm font-medium leading-6"
+                        >
+                            <span class="bg-white px-6 text-gray-900"
+                                >Or continue with</span
+                            >
+                        </div>
+                    </div>
+
+                    <div class="mt-6 grid grid-cols-2 gap-4">
+                        <a
+                            href="#"
+                            class="flex w-full items-center justify-center gap-3 rounded-md bg-[#1D9BF0] px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D9BF0]"
+                        >
+                            <svg
+                                class="h-5 w-5"
+                                aria-hidden="true"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                            >
+                                <path
+                                    d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84"
+                                />
+                            </svg>
+                            <span class="text-sm font-semibold leading-6"
+                                >Twitter</span
+                            >
+                        </a>
+
+                        <a
+                            href="#"
+                            class="flex w-full items-center justify-center gap-3 rounded-md bg-[#24292F] px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#24292F]"
+                        >
+                            <svg
+                                class="h-5 w-5"
+                                aria-hidden="true"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
+                                    clip-rule="evenodd"
+                                />
+                            </svg>
+                            <span class="text-sm font-semibold leading-6"
+                                >GitHub</span
+                            >
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
 <script>
-import Signin from "@/views/auth/common/Signin";
-import Social from "@/views/auth/common/Social";
-// Image Import
 import logoWhite from "@/assets/images/logo/logo-white.svg";
 import logo from "@/assets/images/carDoctor/logo.svg";
 import sideImg from "@/assets/images/carDoctor/logo.svg";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
+    created() {
+        console.log(this);
+        this.formValues = {
+            email: "dashcode@gmail.com",
+            password: "dashcode",
+        };
+    },
     data() {
         return {
             logoWhite,
             logo,
             sideImg,
+            formValues: {},
         };
     },
-    components: {
-        Social,
-        Signin,
+    methods: {
+        onSubmit() {
+            let values = this.formValues;
+            let isUser = localStorage.users;
+            isUser = JSON.parse(isUser);
+
+            let userIndex = isUser.findIndex(
+                (user) => user.email === values.email,
+            );
+
+            if (userIndex > -1) {
+                let activeUser = isUser.find(
+                    (user) => user.email === values.email,
+                );
+
+                if (isUser[userIndex].password === values.password) {
+                    this.$router.push("/app/garage/list");
+                    this.$toast(" Login  successfully", true);
+                } else {
+                    this.$toast(" Password not match ", false);
+                }
+            } else {
+                this.$toast(" User not found", false);
+            }
+        },
     },
-};
+});
 </script>
 <style lang="scss"></style>

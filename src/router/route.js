@@ -57,15 +57,12 @@ const routes = [
     },
     children: [
       {
+        name: "listGarage",
         path: "garage/list",
-        name: "home",
-        component: () =>
-          import("@/modules/garage/pages/ListGarage.vue"),
-        meta: {
-          hide: true,
-        },
-      },
-    ],
+        component: () => import("@/modules/garage/pages/ListGarage.vue")
+      }
+    ]
+
   },
   {
     path: "/:catchAll(.*)",
@@ -82,11 +79,11 @@ const routes = [
     name: "under-construction",
     component: () => import("@/views/utility/under-construction"),
   },
-  {
-    path: "/error",
-    name: "error",
-    component: () => import("@/views/error.vue"),
-  },
+  // {
+  //   path: "/error",
+  //   name: "error",
+  //   component: () => import("@/views/error.vue"),
+  // },
 ];
 
 export default routes;

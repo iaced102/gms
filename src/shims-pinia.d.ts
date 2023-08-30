@@ -1,6 +1,5 @@
 import { ComponentCustomProperties } from "vue";
 import { Store } from "vuex";
-import type { ThemeSettings } from "./store/themeSettings";
 import type { Emitter } from "mitt";
 
 declare module "@vue/runtime-core" {

@@ -1,4 +1,3 @@
-// import { themeSettings } from './themeSettings';
 export type AppS = {
     currentModule: string;
     headerActions: any;
