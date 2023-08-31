@@ -10,25 +10,33 @@ import i18n from "@/locales/index.js";
 import { setupStore } from '@/store/index.js'
 import mitt from "mitt";
 import "@/assets/scss/index"
-
+import * as MyComponents from '@cardoctor/design-system'
+const a = import.meta.glob("@mrksbnc/dss")
+import '@cardoctor/design-system/dist/design-system.css'
+console.log(a)
 
 const emitter = mitt();
 
 
 const pinia = createPinia()
 
-// import BlokInk from '@cardoctor/vue-design-system'
-// import '@cardoctor/vue-design-system/dist/storyblok-design-system.css'
+console.log(MyComponents.Module)
+console.log(MyComponents)
 
 const app = createApp(App)
     .use(pinia)
-    // .use(BlokInk)
+    .use(MyComponents)
     .use(Toast, {
         toastClassName: "dashcode-toast",
         bodyClassName: "dashcode-toast-body",
     })
     .use(router)
 
+console.log(MyComponents)
+Object.keys(MyComponents).forEach(componentName => {
+    console.log(componentName)
+    app.component(componentName, MyComponents[componentName]);
+});
 
 
 if (localStorage.users === undefined) {

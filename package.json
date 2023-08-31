@@ -13,7 +13,7 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src"
   },
   "dependencies": {
-    "@cardoctor/vue-design-system": "^1.0.0",
+    "@cardoctor/design-system": "file:cardoctor-design-system-0.0.0.tgz",
     "@fortawesome/fontawesome-free": "^6.4.2",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
@@ -23,6 +23,7 @@
     "@headlessui/vue": "^1.7.16",
     "@heroicons/vue": "^2.0.18",
     "@mdi/font": "^7.2.96",
+    "@mrksbnc/dss": "file:mrksbnc-dss-0.0.0.tgz",
     "@vitejs/plugin-vue": "^4.0.0",
     "element-plus": "^2.3.12",
     "mitt": "^3.0.1",
