@@ -5,23 +5,17 @@ import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
 import App from "./App.vue";
 import router from "./router";
-import { createPinia } from 'pinia'
+import { createPinia } from "pinia";
 import i18n from "@/locales/index.js";
-import { setupStore } from '@/store/index.js'
+import { setupStore } from "@/store/index.js";
 import mitt from "mitt";
-import "@/assets/scss/index"
-import * as MyComponents from '@cardoctor/design-system'
-const a = import.meta.glob("@mrksbnc/dss")
-import '@cardoctor/design-system/dist/design-system.css'
-console.log(a)
+import * as MyComponents from "@cardoctor/design-system";
+import "@/assets/scss/index.scss";
+import "@cardoctor/design-system/dist/design-system.css";
 
 const emitter = mitt();
 
-
-const pinia = createPinia()
-
-console.log(MyComponents.Module)
-console.log(MyComponents)
+const pinia = createPinia();
 
 const app = createApp(App)
     .use(pinia)
@@ -30,14 +24,13 @@ const app = createApp(App)
         toastClassName: "dashcode-toast",
         bodyClassName: "dashcode-toast-body",
     })
-    .use(router)
+    .use(router);
 
-console.log(MyComponents)
-Object.keys(MyComponents).forEach(componentName => {
-    console.log(componentName)
+console.log(MyComponents);
+Object.keys(MyComponents).forEach((componentName) => {
+    console.log(componentName);
     app.component(componentName, MyComponents[componentName]);
 });
-
 
 if (localStorage.users === undefined) {
     let users = [
@@ -60,20 +53,12 @@ app.config.globalProperties.$toast = function (message, isSuccess) {
         autoClose: 3000,
     });
 };
-let currentLang = "vn"//app.config.globalProperties.$langStore.$state.lang
+let currentLang = "vn"; //app.config.globalProperties.$langStore.$state.lang
 
-export const instanceI18n = i18n(currentLang)
+export const instanceI18n = i18n(currentLang) as any;
 
 app.config.globalProperties.$t = instanceI18n.global.t;
-setupStore(app)
+setupStore(app);
 app.config.globalProperties.$store = {};
 app.config.globalProperties.$evtBus = emitter;
 app.mount("#app");
-
-
-
-
-
-
-
-

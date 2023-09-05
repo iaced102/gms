@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 
-import { sleep } from "@/utils/request";
 import {
     getAllGarage,
     getGarageInforById,
@@ -15,8 +14,6 @@ import {
     acceptGarages,
     rejectGarage,
 } from "@/modules/garage/api/index";
-
-
 export const useGarageStore = defineStore("Result", {
     state: () => {
         return {
@@ -32,70 +29,66 @@ export const useGarageStore = defineStore("Result", {
     },
     actions: {
         async getAllGarage(query) {
-            const res = await getAllGarage(query)
+            const res = await getAllGarage(query);
 
-            return this.filterResponse(
-                res,
-                ({ data }) => {
-                    this.overviewData = data;
-                },
-                () => { },
-            )
+            return this.filterResponse(res, null, ({ data }) => {
+                this.overviewData = data;
+            });
         },
-        async getAddressInfo(query) {
-            const res = await getAddressInfo(query)
+        async getAddressInfo(query: any): Promise<any> {
+            const res = await getAddressInfo(query);
 
             return this.filterResponse(
                 res,
-                ({ data }) => {
+                (data: any) => {
                     this.overviewData = data;
                 },
-                () => { },
-            )
+                () => {},
+            );
         },
-        async getAddressDetail(query) {
-            const res = await getAddressDetail(query)
+        async getAddressDetail(query: any) {
+            const res = await getAddressDetail(query);
 
             return this.filterResponse(
                 res,
-                ({ data }) => {
+                (data: any) => {
                     this.overviewData = data;
                 },
-                () => { },
-            )
+                () => {},
+            );
         },
         async getAllRescues(query) {
-            const res = await getAllRescues(query)
+            const res = await getAllRescues(query);
 
             return this.filterResponse(
                 res,
                 ({ data }) => {
                     this.overviewData = data;
                 },
-                () => { },
-            )
+                () => {},
+            );
         },
         async getListSubSystem(query) {
-            const res = await getAllRescues(query)
+            const res = await getAllRescues(query);
 
             return this.filterResponse(
                 res,
                 ({ data }) => {
                     this.overviewData = data;
                 },
-                () => { },
-            )
+                () => {},
+            );
         },
         async createGarage(query) {
-            const res = await createGarage(query)
+            const res = await createGarage(query);
 
             return this.filterResponse(
                 res,
                 ({ data }) => {
                     this.overviewData = data;
                 },
-                () => { },
-            )
+                () => {},
+            );
         },
     },
 });
