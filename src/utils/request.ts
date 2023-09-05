@@ -63,7 +63,7 @@ export const service = (baseURL: string) => {
     });
 };
 export const garageService = service(import.meta.env.VITE_GARAGE_SERVICE);
-export const provincesService = service(import.meta.env.VITE_PROVINCES_API);
+export const contentService = service(import.meta.env.VITE_CONTENT_API);
 //  axios.create({
 //   baseURL: import.meta.env.GARAGE_SERVICE,
 //   timeout: 15000
@@ -118,7 +118,7 @@ garageService.interceptors.response.use(
                 const reader = new FileReader() as any;
                 reader.onload = () => {
                     response.data = JSON.parse(reader.result);
-                    resolve(camelizeKeys(response.data));
+                    resolve(camelizeKeys(response.data, null));
                 };
 
                 reader.readAsText(response.data);
@@ -131,7 +131,7 @@ garageService.interceptors.response.use(
             };
         }
 
-        return camelizeKeys(data);
+        return camelizeKeys(data, null);
     },
     (error: any) => {
         /**

@@ -1,7 +1,5 @@
 import { garageService } from "@/utils/request";
-import { provincesService } from "@/utils/request";
-// const api = new Api(appConfigs.apiDomain.garageService);
-// const provinceAPI = new Api(appConfigs.apiDomain.provincesAPI);
+import { contentService } from "@/utils/request";
 
 export function getAllGarage(data: any) {
     return garageService({
@@ -29,14 +27,14 @@ export async function getAddressInfo(data: any) {
     const districtId = data.districtId;
     let res: any;
     if (provinceId == 0) {
-        res = await provincesService({
-            url: "?type=PROVINCE",
+        res = await contentService({
+            url: "commons/areas/?type=PROVINCE",
             method: "get",
         });
         dataRes.province = res.data.data;
     } else {
-        res = await provincesService({
-            url: "?type=DISTRICT&parentId=" + provinceId,
+        res = await contentService({
+            url: "commons/areas/?type=DISTRICT&parentId=" + provinceId,
             method: "get",
         });
         // res = await api.get(
@@ -44,8 +42,8 @@ export async function getAddressInfo(data: any) {
         // );
         dataRes.district = res.data.data;
         if (districtId != 0) {
-            res = await provincesService({
-                url: "?type=WARD&parentId=" + districtId,
+            res = await contentService({
+                url: "commons/areas/?type=WARD&parentId=" + districtId,
                 method: "get",
             });
             // res = await api.get(
@@ -67,8 +65,8 @@ export async function getAddressDetail(data: any) {
     };
     let res: any;
     if (provinceId != "") {
-        res = await provincesService({
-            url: provinceId + "?type=PROVINCE",
+        res = await contentService({
+            url: provinceId + "commons/areas/?type=PROVINCE",
             method: "get",
         });
         if (res.status == 200) {
@@ -76,8 +74,8 @@ export async function getAddressDetail(data: any) {
         }
     }
     if (districtId != "") {
-        res = await provincesService({
-            url: districtId + "?type=DISTRICT",
+        res = await contentService({
+            url: districtId + "commons/areas/?type=DISTRICT",
             method: "get",
         });
 
@@ -86,8 +84,8 @@ export async function getAddressDetail(data: any) {
         }
     }
     if (wardId != "") {
-        res = await provincesService({
-            url: wardId + "?type=WARD",
+        res = await contentService({
+            url: wardId + "commons/areas/?type=WARD",
             method: "get",
         });
 
