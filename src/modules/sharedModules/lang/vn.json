@@ -5,7 +5,24 @@
         "service": "Dịch vụ",
         "rescues": "Cứu hộ",
         "insurances": "Bảo hiểm",
-        "garageOwner": "Chủ garage"
+        "garageOwner": "Chủ garage",
+        "generalInformationManagement": "Quản lý thông tin chung",
+        "listParentGarage": "Danh sách garage tổng",
+        "listGarage": "Danh sách garage",
+        "listContract": "Danh sách hợp đồng",
+        "functionManagement": "Quản lý chức năng",
+        "listFunction": "Danh mục chức năng",
+        "listGarageService": "Danh sách chức năng, dịch vụ của Garage",
+        "vacationSchedule": "Lịch nghỉ",
+        "servicePriceManagement": "Quản lý giá dịch vụ",
+        "bookingManagerment": "Quản trị đặt lịch hẹn",
+        "campaignManagement": "Quản lý chiến dịch",
+        "garagePromotions": "Các chương trình khuyến mại của garage",
+        "carDoctorPromotions": "Chiến dịch Cardoctor - Garage",
+        "discountsForDrivers": "Ưu đãi với tài xế",
+        "consignmentInventory": "Tồn kho hàng ký gửi",
+        "performanceManagement": "Quản trị hiệu suất",
+        "manageSupplyPlanning": "Quản tri kế hoạch cung ứng"
     },
     "header": {
         "createGarage": "Tạo mới garage"

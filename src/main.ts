@@ -26,9 +26,7 @@ const app = createApp(App)
     })
     .use(router);
 
-console.log(MyComponents);
 Object.keys(MyComponents).forEach((componentName) => {
-    console.log(componentName);
     app.component(componentName, MyComponents[componentName]);
 });
 

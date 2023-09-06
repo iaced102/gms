@@ -68,11 +68,11 @@
                                         :src="logo"
                                         alt="Your Company"
                                     />
-                                    <img
+                                    <!-- <img
                                         class="h-8 w-auto"
                                         :src="headerLogo"
                                         alt="Your Company"
-                                    />
+                                    /> -->
                                 </div>
                                 <nav class="flex flex-1 flex-col">
                                     <ul
@@ -185,18 +185,22 @@
             >
                 <div class="flex h-42 shrink-0 items-center flex-col">
                     <img class="h-32 w-auto" :src="logo" alt="Your Company" />
-                    <img
+                    <!-- <img
                         class="h-auto w-48"
                         :src="headerLogo"
                         alt="Your Company"
-                    />
+                    /> -->
                 </div>
                 <nav class="flex flex-1 flex-col">
                     <ul role="list" class="flex flex-1 flex-col gap-y-7">
                         <li>
                             <ul role="list" class="-mx-2 space-y-1">
-                                <li v-for="item in navigation" :key="item.name">
+                                <li
+                                    v-for="(item, i) in navigation"
+                                    :key="item.name"
+                                >
                                     <a
+                                        v-if="!item.hasOwnProperty('child')"
                                         :href="item.href"
                                         :class="[
                                             item.current
@@ -217,6 +221,72 @@
                                         />
                                         {{ item.name }}
                                     </a>
+                                    <div
+                                        v-else
+                                        :href="item.href"
+                                        @click="toggleSubmenu(i)"
+                                        class="cursor-pointer"
+                                        :class="[
+                                            item.current
+                                                ? 'bg-gray-50 text-indigo-600'
+                                                : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
+                                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
+                                        ]"
+                                    >
+                                        <component
+                                            :is="item.icon"
+                                            :class="[
+                                                item.current
+                                                    ? 'text-indigo-600'
+                                                    : 'text-gray-400 group-hover:text-indigo-600',
+                                                'h-6 w-6 shrink-0',
+                                            ]"
+                                            aria-hidden="true"
+                                        />
+                                        {{ item.name }}
+                                    </div>
+                                    <Transition
+                                        enter-active-class="submenu_enter-active"
+                                        leave-active-class="submenu_leave-active"
+                                        @before-enter="beforeEnter"
+                                        @enter="enter"
+                                        @after-enter="afterEnter"
+                                        @before-leave="beforeLeave"
+                                        @leave="leave"
+                                        @after-leave="afterLeave"
+                                    >
+                                        <!-- !! SubMenu !! -->
+                                        <ul
+                                            class="list-none pl-8"
+                                            v-if="i === activeSubmenu"
+                                        >
+                                            <li
+                                                v-for="(
+                                                    ci, index
+                                                ) in item.child"
+                                                :key="index"
+                                                class="p-2"
+                                            >
+                                                <span
+                                                    class="flex-1 flex"
+                                                    style="text-align: left"
+                                                >
+                                                    <component
+                                                        :is="ci.icon"
+                                                        class="mr-2"
+                                                        :class="[
+                                                            item.current
+                                                                ? 'text-indigo-600'
+                                                                : 'text-gray-400 group-hover:text-indigo-600',
+                                                            'h-6 w-6 shrink-0',
+                                                        ]"
+                                                        aria-hidden="true"
+                                                    />
+                                                    {{ ci.name }}
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </Transition>
                                 </li>
                             </ul>
                         </li>
@@ -393,10 +463,8 @@
     </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
-import logo from "@/assets/images/carDoctor/logo.svg";
-import headerLogo from "@/assets/images/carDoctor/logo_header.png";
+<script lang="ts">
+import logo from "@/assets/images/carDoctor/jpg_logo.jpg";
 import {
     Dialog,
     DialogPanel,
@@ -418,31 +486,216 @@ import {
     HomeIcon,
     UsersIcon,
     XMarkIcon,
+    AdjustmentsVerticalIcon,
 } from "@heroicons/vue/24/outline";
 import { ChevronDownIcon, MagnifyingGlassIcon } from "@heroicons/vue/20/solid";
-
-const navigation = [
-    { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
-    { name: "Team", href: "#", icon: UsersIcon, current: false },
-    { name: "Projects", href: "#", icon: FolderIcon, current: false },
-    { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
-    {
-        name: "Documents",
-        href: "#",
-        icon: DocumentDuplicateIcon,
-        current: false,
+import { defineComponent } from "vue";
+export default defineComponent({
+    components: {
+        Bars3Icon,
+        BellIcon,
+        CalendarIcon,
+        ChartPieIcon,
+        Cog6ToothIcon,
+        DocumentDuplicateIcon,
+        FolderIcon,
+        HomeIcon,
+        UsersIcon,
+        XMarkIcon,
+        Dialog,
+        DialogPanel,
+        Menu,
+        MenuButton,
+        MenuItem,
+        MenuItems,
+        TransitionChild,
+        TransitionRoot,
+        AdjustmentsVerticalIcon,
     },
-    { name: "Reports", href: "#", icon: ChartPieIcon, current: false },
-];
-const teams = [
-    { id: 1, name: "Heroicons", href: "#", initial: "H", current: false },
-    { id: 2, name: "Tailwind Labs", href: "#", initial: "T", current: false },
-    { id: 3, name: "Workcation", href: "#", initial: "W", current: false },
-];
-const userNavigation = [
-    { name: "Your profile", href: "#" },
-    { name: "Sign out", href: "#" },
-];
+    data() {
+        return {
+            activeSubmenu: NaN as number,
+            logo: logo,
+            navigation: [
+                {
+                    name: this.$t(
+                        "module.sharedModules.sidebar.generalInformationManagement",
+                    ),
+                    href: "#",
+                    icon: AdjustmentsVerticalIcon,
+                    child: [
+                        {
+                            name: this.$t(
+                                "module.sharedModules.sidebar.listParentGarage",
+                            ),
+                            icon: DocumentDuplicateIcon,
+                        },
+                        {
+                            name: this.$t(
+                                "module.sharedModules.sidebar.listGarage",
+                            ),
+                            icon: DocumentDuplicateIcon,
+                        },
+                        {
+                            name: this.$t(
+                                "module.sharedModules.sidebar.listContract",
+                            ),
+                            icon: DocumentDuplicateIcon,
+                        },
+                    ],
+                },
+                {
+                    name: this.$t(
+                        "module.sharedModules.sidebar.functionManagement",
+                    ),
+                    href: "#",
+                    icon: HomeIcon,
+                    child: [
+                        {
+                            name: this.$t(
+                                "module.sharedModules.sidebar.listFunction",
+                            ),
+                            icon: DocumentDuplicateIcon,
+                        },
+                        {
+                            name: this.$t(
+                                "module.sharedModules.sidebar.listGarageService",
+                            ),
+                            icon: DocumentDuplicateIcon,
+                        },
+                        {
+                            name: this.$t(
+                                "module.sharedModules.sidebar.vacationSchedule",
+                            ),
+                            icon: DocumentDuplicateIcon,
+                        },
+                    ],
+                },
+                {
+                    name: this.$t(
+                        "module.sharedModules.sidebar.servicePriceManagement",
+                    ),
+                    href: "#",
+                    icon: UsersIcon,
+                    current: false,
+                },
+                {
+                    name: this.$t(
+                        "module.sharedModules.sidebar.bookingManagerment",
+                    ),
+                    href: "#",
+                    icon: UsersIcon,
+                    current: false,
+                },
+                {
+                    name: this.$t(
+                        "module.sharedModules.sidebar.campaignManagement",
+                    ),
+                    href: "#",
+                    icon: HomeIcon,
+                    child: [
+                        {
+                            name: this.$t(
+                                "module.sharedModules.sidebar.garagePromotions",
+                            ),
+                            icon: DocumentDuplicateIcon,
+                        },
+                        {
+                            name: this.$t(
+                                "module.sharedModules.sidebar.carDoctorPromotions",
+                            ),
+                            icon: DocumentDuplicateIcon,
+                        },
+                        {
+                            name: this.$t(
+                                "module.sharedModules.sidebar.discountsForDrivers",
+                            ),
+                            icon: DocumentDuplicateIcon,
+                        },
+                        {
+                            name: this.$t(
+                                "module.sharedModules.sidebar.discountsForDrivers",
+                            ),
+                            icon: DocumentDuplicateIcon,
+                        },
+                    ],
+                },
+                {
+                    name: this.$t(
+                        "module.sharedModules.sidebar.performanceManagement",
+                    ),
+                    href: "#",
+                    icon: UsersIcon,
+                    current: false,
+                },
+                {
+                    name: this.$t(
+                        "module.sharedModules.sidebar.manageSupplyPlanning",
+                    ),
+                    href: "#",
+                    icon: UsersIcon,
+                    current: false,
+                },
+            ] as any[],
+            userNavigation: [
+                { name: "Your profile", href: "#" },
+                { name: "Sign out", href: "#" },
+            ],
+            sidebarOpen: false,
+            teams: [] as any[],
+        };
+    },
+    methods: {
+        beforeEnter(element: any) {
+            requestAnimationFrame(() => {
+                if (!element.style.height) {
+                    element.style.height = "0px";
+                }
 
-const sidebarOpen = ref(false);
+                element.style.display = null;
+            });
+        },
+        enter(element: any) {
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    element.style.height = `${element.scrollHeight}px`;
+                });
+            });
+        },
+        afterEnter(element: any) {
+            element.style.height = null;
+        },
+        beforeLeave(element: any) {
+            requestAnimationFrame(() => {
+                if (!element.style.height) {
+                    element.style.height = `${element.offsetHeight}px`;
+                }
+            });
+        },
+        leave(element: any) {
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    element.style.height = "0px";
+                });
+            });
+        },
+        afterLeave(element: any) {
+            element.style.height = null;
+        },
+        toggleSubmenu(index: any) {
+            if (this.activeSubmenu === index) {
+                this.activeSubmenu = NaN;
+            } else {
+                this.activeSubmenu = index;
+            }
+        },
+    },
+});
 </script>
+<style lang="scss">
+.submenu_enter-active,
+.submenu_leave-active {
+    overflow: hidden;
+    transition: all 0.34s linear;
+}
+</style>
