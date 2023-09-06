@@ -1,24 +1,14 @@
 <template>
-    <router-view />
+    <div style="height: 100vh; width: 100vw">
+        <router-view />
+    </div>
 </template>
 
 <script>
-import { useThemeSettingsStore } from "@/store/themeSettings";
-
 export default {
-    mounted() {
-        this.$store.themeSettingsStore = useThemeSettingsStore();
-    },
-    watch: {
-        // $route
-        // $route: {
-        //     handler(newVal) {
-        //         let data = {};
-        //         data.moduleName = newVal.name;
-        //         this.$store.app.changeCurrentModule(data);
-        //     },
-        // },
-    },
+    components: {},
+    watch: {},
+    created() {},
 };
 </script>
 

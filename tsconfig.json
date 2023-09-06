@@ -17,6 +17,7 @@
     "resolveJsonModule": true,
     "baseUrl": "./",
     "types": [
+      "vite/client",
       "vue3-toastify/global",
       "webpack-env"
     ],
@@ -34,8 +35,6 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.tsx"
   ],
   "exclude": [
     "node_modules"
