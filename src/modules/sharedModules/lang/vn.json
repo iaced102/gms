@@ -1,34 +1,25 @@
 {
     "sidebar": {
-        "tag": "Thẻ",
-        "subSystem": "Hệ thống phụ",
-        "service": "Dịch vụ",
-        "rescues": "Cứu hộ",
-        "insurances": "Bảo hiểm",
-        "garageOwner": "Chủ garage",
-        "generalInformationManagement": "Quản lý thông tin chung",
-        "listParentGarage": "Danh sách garage tổng",
-        "listGarage": "Danh sách garage",
-        "listContract": "Danh sách hợp đồng",
-        "functionManagement": "Quản lý chức năng",
-        "listFunction": "Danh mục chức năng",
-        "listGarageService": "Danh sách chức năng, dịch vụ của Garage",
-        "vacationSchedule": "Lịch nghỉ",
-        "servicePriceManagement": "Quản lý giá dịch vụ",
-        "bookingManagerment": "Quản trị đặt lịch hẹn",
-        "campaignManagement": "Quản lý chiến dịch",
-        "garagePromotions": "Các chương trình khuyến mại của garage",
-        "carDoctorPromotions": "Chiến dịch Cardoctor - Garage",
-        "discountsForDrivers": "Ưu đãi với tài xế",
-        "consignmentInventory": "Tồn kho hàng ký gửi",
-        "performanceManagement": "Quản trị hiệu suất",
-        "manageSupplyPlanning": "Quản tri kế hoạch cung ứng"
+        "home": "Trang chủ",
+        "webManagerment": "Quản lý website",
+        "contentManagerment": "Quản lý nội dung",
+        "detailReport": "Báo cáo chi tiết",
+        "debtControl": "Quản lý công nợ",
+        "listOrder": "Danh sách đơn đặt hàng",
+        "listServiceOrder": "Danh sách đơn bán hàng hóa dịch vụ",
+        "inventoryManagement": "Quản lý tồn kho",
+        "listDistributor": "Danh sách nhà phân phối",
+        "listParts": "Danh sách phụ tùng",
+        "sparePartsInventory": "Tồn kho phụ tùng",
+        "sparePartsInventoryHistory": "Lịch sử kiểm kê phụ tùng",
+        "saleManagerment": "Quản lý bán hàng",
+        "listCustomer": "Danh sách khách hàng",
+        "priceManage": "Quản lý giá bán",
+        "listSaleServiceOrder": "Danh sách đơn bán hàng hóa dịch vụ",
+        "internalManagement": "Quản trị nội bộ",
+        "personnelList": "Danh sách nhân sự",
+        "serviceHistory": "Lịch sử làm dịch vụ"
     },
-    "header": {
-        "createGarage": "Tạo mới garage"
-    },
-    "functionSidebar": {
-        "cancel": "Thoát",
-        "createGarage": "Tạo garage"
-    }
+    "header": {},
+    "functionSidebar": {}
 }

@@ -214,12 +214,16 @@
     "to-fast-properties" "^2.0.0"
 
 "@cardoctor/design-system@file:cardoctor-design-system-0.0.0.tgz":
-  "integrity" "sha512-k8qPYx0FOSF0s1Bcky2wQu8c0PpXhtMg1p7IKEGeluApGL1voQp5t9agPW+RHJ71i9gR05nqGSUBLuHPU5dUmg=="
+  "integrity" "sha512-e3tCKv7aBcc7VCuEMEy5x8QeqDM3wmR+sVfXUdy05lZ+aUrKqKQK2LIvUZVvqoYaPmRv6Pe9G//Ctg8K1A/DHw=="
   "resolved" "file:cardoctor-design-system-0.0.0.tgz"
   "version" "0.0.0"
   dependencies:
     "@headlessui/vue" "^1.7.16"
+    "@iconify/vue" "^4.1.1"
+    "@mdi/font" "^7.2.96"
     "vue" "^3.3.4"
+    "vue-cleave-component" "^3.0.2"
+    "vuetify" "^3.3.15"
 
 "@ctrl/tinycolor@^3.4.1":
   "integrity" "sha512-SITSV6aIXsuVNV3f3O0f2n/cgyEDWoSqtZMYiAmcsYHydcKrOz3gUxB/iXd/Qf08+IZX4KpgNbvUdMBmWz+kcA=="
@@ -355,10 +359,22 @@
   "resolved" "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   "version" "1.2.1"
 
+"@iconify/types@^2.0.0":
+  "integrity" "sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg=="
+  "resolved" "https://registry.npmjs.org/@iconify/types/-/types-2.0.0.tgz"
+  "version" "2.0.0"
+
 "@iconify/vue@^3.2.1":
   "integrity" "sha512-c4R6ZgFo1JrJ8aPMMgOPgfU7lBswihMGR+yWe/P4ZukC3kTkeT4+lkt9Pc/itVFMkwva/S/7u9YofmYv57fnNQ=="
   "resolved" "https://registry.npmjs.org/@iconify/vue/-/vue-3.2.1.tgz"
   "version" "3.2.1"
+
+"@iconify/vue@^4.1.1":
+  "integrity" "sha512-RL85Bm/DAe8y6rT6pux7D2FJSiUEM/TPfyK7GrbAOfTSwrhvwJW+S5yijdGcmtXouA8MtuH9C7l4hiSE4mLMjg=="
+  "resolved" "https://registry.npmjs.org/@iconify/vue/-/vue-4.1.1.tgz"
+  "version" "4.1.1"
+  dependencies:
+    "@iconify/types" "^2.0.0"
 
 "@intlify/core-base@9.2.2":
   "integrity" "sha512-JjUpQtNfn+joMbrXvpR4hTF8iJQ2sEFzzK3KIESOx+f+uwIjgw20igOyaIdhfsVVBCds8ZM64MoeNSx+PHQMkA=="
@@ -1608,6 +1624,11 @@
   "version" "5.3.2"
   dependencies:
     "source-map" "~0.6.0"
+
+"cleave.js@^1.6.0":
+  "integrity" "sha512-ivqesy3j5hQVG3gywPfwKPbi/7ZSftY/UNp5uphnqjr25yI2CP8FS2ODQPzuLXXnNLi29e2+PgPkkiKUXLs/Nw=="
+  "resolved" "https://registry.npmjs.org/cleave.js/-/cleave.js-1.6.0.tgz"
+  "version" "1.6.0"
 
 "cli-cursor@^2.0.0":
   "integrity" "sha512-8lgKz8LmCRYZZQDpRyT2m5rKJ08TnU4tR9FFFW2rxpxR1FzWi4PQ/NfyODchAatHaUgnSPVcx/R5w6NuTBzFiw=="
@@ -5313,7 +5334,7 @@
     "media-typer" "0.3.0"
     "mime-types" "~2.1.24"
 
-"typescript@*", "typescript@^4.5.5", "typescript@>= 2.7", "typescript@>=2", "typescript@>=4.4.4":
+"typescript@*", "typescript@^4.5.5", "typescript@>= 2.7", "typescript@>=2", "typescript@>=4.4.4", "typescript@>=4.7":
   "integrity" "sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g=="
   "resolved" "https://registry.npmjs.org/typescript/-/typescript-4.9.5.tgz"
   "version" "4.9.5"
@@ -5400,6 +5421,13 @@
   optionalDependencies:
     "fsevents" "~2.3.2"
 
+"vue-cleave-component@^3.0.2":
+  "integrity" "sha512-brQGSDQF1e2gfpd4J3eojz5kWc267DL+20TIHY6Pla2IahcMZEd56zoyaKjkxB+F9gsXSoPnqVIh2sb6pbuTjQ=="
+  "resolved" "https://registry.npmjs.org/vue-cleave-component/-/vue-cleave-component-3.0.2.tgz"
+  "version" "3.0.2"
+  dependencies:
+    "cleave.js" "^1.6.0"
+
 "vue-cli-plugin-tailwind@~3.0.0":
   "integrity" "sha512-bUWjfwGtJCeBU7pL4lD86RC+HsJAmAlYqr8e65NGC3q/ZBzC9KQs1Iy/vTyfDTnB7ZJm3huB+1a/m+17fdMZ8A=="
   "resolved" "https://registry.npmjs.org/vue-cli-plugin-tailwind/-/vue-cli-plugin-tailwind-3.0.0.tgz"
@@ -5433,7 +5461,7 @@
   "resolved" "https://registry.npmjs.org/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz"
   "version" "2.3.4"
 
-"vue-i18n@^9.2.2":
+"vue-i18n@^9.0.0", "vue-i18n@^9.2.2":
   "integrity" "sha512-yswpwtj89rTBhegUAv9Mu37LNznyu3NpyLQmozF3i1hYOhwpG8RjcjIFIIfnu+2MDZJGSZPXaKWvnQA71Yv9TQ=="
   "resolved" "https://registry.npmjs.org/vue-i18n/-/vue-i18n-9.2.2.tgz"
   "version" "9.2.2"
@@ -5477,7 +5505,7 @@
   "resolved" "https://registry.npmjs.org/vue-toastification/-/vue-toastification-2.0.0-rc.5.tgz"
   "version" "2.0.0-rc.5"
 
-"vue@^2 || ^3.2.13", "vue@^2.6.14 || ^3.3.0", "vue@^3.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.0.2", "vue@^3.2.0", "vue@^3.2.13", "vue@^3.2.25", "vue@^3.3.4", "vue@>= 3", "vue@>= 3.0.0 < 4", "vue@>=3.2.0", "vue@3.3.4", "vue@3.x":
+"vue@^2 || ^3.2.13", "vue@^2.6.14 || ^3.3.0", "vue@^3.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.0.2", "vue@^3.2.0", "vue@^3.2.13", "vue@^3.2.25", "vue@^3.3.4", "vue@>= 3", "vue@>= 3.0.0 < 4", "vue@>=3", "vue@>=3.2.0", "vue@3.3.4", "vue@3.x":
   "integrity" "sha512-VTyEYn3yvIeY1Py0WaYGZsXnz3y5UnGi62GjVEqvEGPl6nxbOrCXbVOTQWBEJUqAyTUk2uJ5JLVnYJ6ZzGbrSw=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.3.4.tgz"
   "version" "3.3.4"
@@ -5492,6 +5520,11 @@
   "integrity" "sha512-OQJPMt6dIpn+1vG+EZMO+QE5STAxoc0+Owo7sRjUyVw22Uxs6daVHq/sek75s4JMxbzePHtUqVfTZRgqLHmikw=="
   "resolved" "https://registry.npmjs.org/vue3-toastify/-/vue3-toastify-0.1.12.tgz"
   "version" "0.1.12"
+
+"vuetify@^3.3.15":
+  "integrity" "sha512-n7GYBO31k8vA9UfvRwLNyBlkq1WoN3IJ9wNnIBFeV4axleSjFAzzR4WUw7rgj6Ba3q6N2hxXoyxJM21tseQTfQ=="
+  "resolved" "https://registry.npmjs.org/vuetify/-/vuetify-3.3.15.tgz"
+  "version" "3.3.15"
 
 "watchpack@^2.4.0":
   "integrity" "sha512-Lcvm7MGST/4fup+ifyKi2hjyIAwcdI4HRgtvTpIUxBRhB+RFtUh8XtDOxUfctVCnhVi+QQj49i91OyvzkJl6cg=="

@@ -243,7 +243,22 @@
                                             ]"
                                             aria-hidden="true"
                                         />
-                                        {{ item.name }}
+                                        <span
+                                            class="flex min-w-[calc(100%-60px)] items-center justify-between"
+                                        >
+                                            {{ item.name }}
+                                            <div
+                                                :class="
+                                                    activeSubmenu === i
+                                                        ? 'rotate-90'
+                                                        : ''
+                                                "
+                                            >
+                                                <ChevronRightIcon
+                                                    class="h-3 w-3"
+                                                />
+                                            </div>
+                                        </span>
                                     </div>
                                     <Transition
                                         enter-active-class="submenu_enter-active"
@@ -290,7 +305,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
+                        <li v-if="teams.length > 0">
                             <div
                                 class="text-xs font-semibold leading-6 text-gray-400"
                             >
@@ -487,6 +502,7 @@ import {
     UsersIcon,
     XMarkIcon,
     AdjustmentsVerticalIcon,
+    ChevronRightIcon,
 } from "@heroicons/vue/24/outline";
 import { ChevronDownIcon, MagnifyingGlassIcon } from "@heroicons/vue/20/solid";
 import { defineComponent } from "vue";
@@ -511,6 +527,7 @@ export default defineComponent({
         TransitionChild,
         TransitionRoot,
         AdjustmentsVerticalIcon,
+        ChevronRightIcon,
     },
     data() {
         return {
@@ -518,54 +535,45 @@ export default defineComponent({
             logo: logo,
             navigation: [
                 {
-                    name: this.$t(
-                        "module.sharedModules.sidebar.generalInformationManagement",
-                    ),
+                    name: this.$t("module.sharedModules.sidebar.home"),
                     href: "#",
                     icon: AdjustmentsVerticalIcon,
-                    child: [
-                        {
-                            name: this.$t(
-                                "module.sharedModules.sidebar.listParentGarage",
-                            ),
-                            icon: DocumentDuplicateIcon,
-                        },
-                        {
-                            name: this.$t(
-                                "module.sharedModules.sidebar.listGarage",
-                            ),
-                            icon: DocumentDuplicateIcon,
-                        },
-                        {
-                            name: this.$t(
-                                "module.sharedModules.sidebar.listContract",
-                            ),
-                            icon: DocumentDuplicateIcon,
-                        },
-                    ],
                 },
                 {
                     name: this.$t(
-                        "module.sharedModules.sidebar.functionManagement",
+                        "module.sharedModules.sidebar.webManagerment",
                     ),
                     href: "#",
                     icon: HomeIcon,
                     child: [
                         {
                             name: this.$t(
-                                "module.sharedModules.sidebar.listFunction",
+                                "module.sharedModules.sidebar.contentManagerment",
                             ),
                             icon: DocumentDuplicateIcon,
                         },
                         {
                             name: this.$t(
-                                "module.sharedModules.sidebar.listGarageService",
+                                "module.sharedModules.sidebar.detailReport",
+                            ),
+                            icon: DocumentDuplicateIcon,
+                        },
+                    ],
+                },
+                {
+                    name: this.$t("module.sharedModules.sidebar.debtControl"),
+                    href: "#",
+                    icon: HomeIcon,
+                    child: [
+                        {
+                            name: this.$t(
+                                "module.sharedModules.sidebar.listOrder",
                             ),
                             icon: DocumentDuplicateIcon,
                         },
                         {
                             name: this.$t(
-                                "module.sharedModules.sidebar.vacationSchedule",
+                                "module.sharedModules.sidebar.listServiceOrder",
                             ),
                             icon: DocumentDuplicateIcon,
                         },
@@ -573,48 +581,32 @@ export default defineComponent({
                 },
                 {
                     name: this.$t(
-                        "module.sharedModules.sidebar.servicePriceManagement",
-                    ),
-                    href: "#",
-                    icon: UsersIcon,
-                    current: false,
-                },
-                {
-                    name: this.$t(
-                        "module.sharedModules.sidebar.bookingManagerment",
-                    ),
-                    href: "#",
-                    icon: UsersIcon,
-                    current: false,
-                },
-                {
-                    name: this.$t(
-                        "module.sharedModules.sidebar.campaignManagement",
+                        "module.sharedModules.sidebar.inventoryManagement",
                     ),
                     href: "#",
                     icon: HomeIcon,
                     child: [
                         {
                             name: this.$t(
-                                "module.sharedModules.sidebar.garagePromotions",
+                                "module.sharedModules.sidebar.listDistributor",
                             ),
                             icon: DocumentDuplicateIcon,
                         },
                         {
                             name: this.$t(
-                                "module.sharedModules.sidebar.carDoctorPromotions",
+                                "module.sharedModules.sidebar.listParts",
                             ),
                             icon: DocumentDuplicateIcon,
                         },
                         {
                             name: this.$t(
-                                "module.sharedModules.sidebar.discountsForDrivers",
+                                "module.sharedModules.sidebar.sparePartsInventoryHistory",
                             ),
                             icon: DocumentDuplicateIcon,
                         },
                         {
                             name: this.$t(
-                                "module.sharedModules.sidebar.discountsForDrivers",
+                                "module.sharedModules.sidebar.listOrder",
                             ),
                             icon: DocumentDuplicateIcon,
                         },
@@ -622,19 +614,51 @@ export default defineComponent({
                 },
                 {
                     name: this.$t(
-                        "module.sharedModules.sidebar.performanceManagement",
+                        "module.sharedModules.sidebar.saleManagerment",
                     ),
                     href: "#",
-                    icon: UsersIcon,
-                    current: false,
+                    icon: HomeIcon,
+                    child: [
+                        {
+                            name: this.$t(
+                                "module.sharedModules.sidebar.listCustomer",
+                            ),
+                            icon: DocumentDuplicateIcon,
+                        },
+                        {
+                            name: this.$t(
+                                "module.sharedModules.sidebar.priceManage",
+                            ),
+                            icon: DocumentDuplicateIcon,
+                        },
+                        {
+                            name: this.$t(
+                                "module.sharedModules.sidebar.listSaleServiceOrder",
+                            ),
+                            icon: DocumentDuplicateIcon,
+                        },
+                    ],
                 },
                 {
                     name: this.$t(
-                        "module.sharedModules.sidebar.manageSupplyPlanning",
+                        "module.sharedModules.sidebar.internalManagement",
                     ),
                     href: "#",
-                    icon: UsersIcon,
-                    current: false,
+                    icon: HomeIcon,
+                    child: [
+                        {
+                            name: this.$t(
+                                "module.sharedModules.sidebar.personnelList",
+                            ),
+                            icon: DocumentDuplicateIcon,
+                        },
+                        {
+                            name: this.$t(
+                                "module.sharedModules.sidebar.serviceHistory",
+                            ),
+                            icon: DocumentDuplicateIcon,
+                        },
+                    ],
                 },
             ] as any[],
             userNavigation: [

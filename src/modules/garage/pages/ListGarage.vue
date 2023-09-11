@@ -1,6 +1,6 @@
 <template>
     <div>
-        <DsButton label="button" />
+        <TDTable></TDTable>
     </div>
 </template>
 
