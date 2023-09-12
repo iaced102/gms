@@ -12,6 +12,7 @@ import mitt from "mitt";
 import * as MyComponents from "@cardoctor/design-system";
 import "@/assets/scss/index.scss";
 import "@cardoctor/design-system/dist/design-system.css";
+// import { useGarageStore } from "@/modules/garage/store";
 
 const emitter = mitt();
 

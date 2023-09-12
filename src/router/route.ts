@@ -11,18 +11,33 @@ const routes = [
     {
         path: "/app",
         name: "Layout",
-        redirect: "/app/garage/list",
         component: () =>
             import("@/modules/SharedModules/pages/Layout/index.vue"),
         meta: {
             middleware: [auth],
         },
         children: [
+            // {
+            //     name: "listGarage",
+            //     path: "garage/list",
+            //     component: () =>
+            //         import("@/modules/garage/pages/ListGarage.vue"),
+            // },
+            {
+                name: "listParentGarage",
+                path: "parentGarage/list",
+                component: () =>
+                    import(
+                        "@/modules/generalManagerment/pages/parentGarage/ListParentGarage.vue"
+                    ),
+            },
             {
                 name: "listGarage",
                 path: "garage/list",
                 component: () =>
-                    import("@/modules/garage/pages/ListGarage.vue"),
+                    import(
+                        "@/modules/generalManagerment/pages/garage/ListGarage.vue"
+                    ),
             },
         ],
     },

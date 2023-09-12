@@ -14,7 +14,7 @@ import {
     acceptGarages,
     rejectGarage,
 } from "@/modules/garage/api/index";
-export const useGarageStore = defineStore("Result", {
+export default defineStore("Result", {
     state: () => {
         return {
             demoList: {},

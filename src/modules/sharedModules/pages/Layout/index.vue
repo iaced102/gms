@@ -68,11 +68,6 @@
                                         :src="logo"
                                         alt="Your Company"
                                     />
-                                    <!-- <img
-                                        class="h-8 w-auto"
-                                        :src="headerLogo"
-                                        alt="Your Company"
-                                    /> -->
                                 </div>
                                 <nav class="flex flex-1 flex-col">
                                     <ul
@@ -177,9 +172,7 @@
             </Dialog>
         </TransitionRoot>
 
-        <div
-            class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col"
-        >
+        <div class="lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
             <div
                 class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4"
             >
@@ -280,7 +273,27 @@
                                                     ci, index
                                                 ) in item.child"
                                                 :key="index"
-                                                class="p-2"
+                                                class="p-2 cursor-pointer"
+                                                @click="
+                                                    {
+                                                        if (
+                                                            ci.hasOwnProperty(
+                                                                'href',
+                                                            )
+                                                        ) {
+                                                            $router.push(
+                                                                ci.href,
+                                                            );
+                                                        }
+                                                        if (
+                                                            ci.hasOwnProperty(
+                                                                'action',
+                                                            )
+                                                        ) {
+                                                            ci.action();
+                                                        }
+                                                    }
+                                                "
                                             >
                                                 <span
                                                     class="flex-1 flex"
@@ -536,44 +549,32 @@ export default defineComponent({
             navigation: [
                 {
                     name: this.$t("module.sharedModules.sidebar.home"),
-                    href: "#",
+                    href: "/app",
                     icon: AdjustmentsVerticalIcon,
                 },
                 {
                     name: this.$t(
-                        "module.sharedModules.sidebar.webManagerment",
+                        "module.sharedModules.sidebar.generalManagerment",
                     ),
-                    href: "#",
                     icon: HomeIcon,
                     child: [
                         {
+                            href: "/app/parentGarage/list",
                             name: this.$t(
-                                "module.sharedModules.sidebar.contentManagerment",
+                                "module.sharedModules.sidebar.listParentGarage",
                             ),
                             icon: DocumentDuplicateIcon,
                         },
                         {
                             name: this.$t(
-                                "module.sharedModules.sidebar.detailReport",
+                                "module.sharedModules.sidebar.listGarage",
                             ),
-                            icon: DocumentDuplicateIcon,
-                        },
-                    ],
-                },
-                {
-                    name: this.$t("module.sharedModules.sidebar.debtControl"),
-                    href: "#",
-                    icon: HomeIcon,
-                    child: [
-                        {
-                            name: this.$t(
-                                "module.sharedModules.sidebar.listOrder",
-                            ),
+                            href: "/app/garage/list",
                             icon: DocumentDuplicateIcon,
                         },
                         {
                             name: this.$t(
-                                "module.sharedModules.sidebar.listServiceOrder",
+                                "module.sharedModules.sidebar.listContract",
                             ),
                             icon: DocumentDuplicateIcon,
                         },
@@ -581,80 +582,26 @@ export default defineComponent({
                 },
                 {
                     name: this.$t(
-                        "module.sharedModules.sidebar.inventoryManagement",
+                        "module.sharedModules.sidebar.functionManagerment",
                     ),
                     href: "#",
                     icon: HomeIcon,
                     child: [
                         {
                             name: this.$t(
-                                "module.sharedModules.sidebar.listDistributor",
+                                "module.sharedModules.sidebar.listFunction",
                             ),
                             icon: DocumentDuplicateIcon,
                         },
                         {
                             name: this.$t(
-                                "module.sharedModules.sidebar.listParts",
+                                "module.sharedModules.sidebar.listGarageFunctionAcion",
                             ),
                             icon: DocumentDuplicateIcon,
                         },
                         {
                             name: this.$t(
-                                "module.sharedModules.sidebar.sparePartsInventoryHistory",
-                            ),
-                            icon: DocumentDuplicateIcon,
-                        },
-                        {
-                            name: this.$t(
-                                "module.sharedModules.sidebar.listOrder",
-                            ),
-                            icon: DocumentDuplicateIcon,
-                        },
-                    ],
-                },
-                {
-                    name: this.$t(
-                        "module.sharedModules.sidebar.saleManagerment",
-                    ),
-                    href: "#",
-                    icon: HomeIcon,
-                    child: [
-                        {
-                            name: this.$t(
-                                "module.sharedModules.sidebar.listCustomer",
-                            ),
-                            icon: DocumentDuplicateIcon,
-                        },
-                        {
-                            name: this.$t(
-                                "module.sharedModules.sidebar.priceManage",
-                            ),
-                            icon: DocumentDuplicateIcon,
-                        },
-                        {
-                            name: this.$t(
-                                "module.sharedModules.sidebar.listSaleServiceOrder",
-                            ),
-                            icon: DocumentDuplicateIcon,
-                        },
-                    ],
-                },
-                {
-                    name: this.$t(
-                        "module.sharedModules.sidebar.internalManagement",
-                    ),
-                    href: "#",
-                    icon: HomeIcon,
-                    child: [
-                        {
-                            name: this.$t(
-                                "module.sharedModules.sidebar.personnelList",
-                            ),
-                            icon: DocumentDuplicateIcon,
-                        },
-                        {
-                            name: this.$t(
-                                "module.sharedModules.sidebar.serviceHistory",
+                                "module.sharedModules.sidebar.vacationSchedule",
                             ),
                             icon: DocumentDuplicateIcon,
                         },

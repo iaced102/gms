@@ -1,24 +1,14 @@
 {
     "sidebar": {
         "home": "Trang chủ",
-        "webManagerment": "Quản lý website",
-        "contentManagerment": "Quản lý nội dung",
-        "detailReport": "Báo cáo chi tiết",
-        "debtControl": "Quản lý công nợ",
-        "listOrder": "Danh sách đơn đặt hàng",
-        "listServiceOrder": "Danh sách đơn bán hàng hóa dịch vụ",
-        "inventoryManagement": "Quản lý tồn kho",
-        "listDistributor": "Danh sách nhà phân phối",
-        "listParts": "Danh sách phụ tùng",
-        "sparePartsInventory": "Tồn kho phụ tùng",
-        "sparePartsInventoryHistory": "Lịch sử kiểm kê phụ tùng",
-        "saleManagerment": "Quản lý bán hàng",
-        "listCustomer": "Danh sách khách hàng",
-        "priceManage": "Quản lý giá bán",
-        "listSaleServiceOrder": "Danh sách đơn bán hàng hóa dịch vụ",
-        "internalManagement": "Quản trị nội bộ",
-        "personnelList": "Danh sách nhân sự",
-        "serviceHistory": "Lịch sử làm dịch vụ"
+        "generalManagerment": "Quản lý thông tin chung",
+        "listParentGarage": "Danh sách garage tổng",
+        "listGarage": "Danh sách garage",
+        "listContract": "Danh sách hợp đồng",
+        "functionManagerment": "Quản trị chức năng",
+        "listFunction": "Danh sách chức năng",
+        "listGarageFunctionAcion": "Danh sách chức năng, hoạt động của garage",
+        "vacationSchedule": "Lịch nghỉ"
     },
     "header": {},
     "functionSidebar": {}

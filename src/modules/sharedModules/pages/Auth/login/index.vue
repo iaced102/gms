@@ -187,9 +187,10 @@ export default defineComponent({
                 let activeUser = isUser.find(
                     (user) => user.email === values.email,
                 );
+                localStorage.activeUser = activeUser;
 
                 if (isUser[userIndex].password === values.password) {
-                    this.$router.push("/app/garage/list");
+                    this.$router.push("/app");
                     this.$toast(" Login  successfully", true);
                 } else {
                     this.$toast(" Password not match ", false);
