@@ -30,7 +30,13 @@
             "districtId": "Quận/Huyện",
             "wardId": "Phường/Xã",
             "contractFromDate": "Ngày hợp đồng",
-            "rescue": "Hỗ trợ cứu hộ"
+            "rescue": "Hỗ trợ cứu hộ",
+            "isSupportAllTime": "Phục vụ 24/7",
+            "isVerified": "Xác thực gara",
+            "openTime": "Giờ mở cửa",
+            "closeTime": "Giờ đóng cửa",
+            "description": "Mô tả gara",
+            "contractStatus": "Trạng thái hợp đồng"
         },
         "contractStatus": {
             "1": "Hiệu lưc",
@@ -59,11 +65,13 @@
             "rejectFailse": "Hủy duyệt garage thất bại"
         },
         "dialog": {
+            "parentInfor": "Thông tin gara tổng",
             "deleteGarageTitle": "Xóa garage?",
             "deleteGarageContent": "Xác nhận xóa garage",
             "deleteConfirm": "Xác nhận xóa",
             "cancel": "Hủy",
             "save": "Lưu",
+            "garaInfor": "Thông tin gara",
             "detailGarageTitle": "Chi tiết gara"
         }
     }

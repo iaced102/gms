@@ -32,9 +32,41 @@
                 "
                 #content
             >
-                <CDMultipleRenderDynamicComponent
-                    :configs="dialogConfig.dynamicComponent"
-                />
+                <div v-if="dialogConfig.dynamicComponent[0].props.modelValue">
+                    <h1>
+                        {{
+                            $t(
+                                "module.generalManagerment.garage.dialog.parentInfor",
+                            )
+                        }}
+                    </h1>
+                    <CDMultipleRenderDynamicComponent
+                        :configs="
+                            dialogConfig.dynamicComponent.filter(
+                                (a) =>
+                                    a.group == 'parentInfor' && a.showForDetail,
+                            )
+                        "
+                    />
+                </div>
+
+                <div class="mt-7">
+                    <h1>
+                        {{
+                            $t(
+                                "module.generalManagerment.garage.dialog.garaInfor",
+                            )
+                        }}
+                    </h1>
+                    <CDMultipleRenderDynamicComponent
+                        :configs="
+                            dialogConfig.dynamicComponent.filter(
+                                (a) =>
+                                    a.group == 'garageInfor' && a.showForDetail,
+                            )
+                        "
+                    />
+                </div>
             </template>
             <template #action class="mt-4 flex justify-around">
                 <div class="mt-4 flex justify-around">
@@ -150,6 +182,10 @@ export default defineComponent({
                                     garageDataConfigDetailClone.status.props.modelValue =
                                         params.status.content;
                                 }
+                                garageDataConfigDetailClone[a].props.disabled =
+                                    false;
+                                garageDataConfigDetailClone[a].props.readonly =
+                                    false;
                             }
                         });
                         let dynamicComponent = [] as any[];
@@ -174,9 +210,23 @@ export default defineComponent({
                                     name: self.$t(
                                         "module.generalManagerment.garage.dialog.save",
                                     ),
-                                    action: () => {
+                                    action: async (params: any) => {
+                                        console.log(
+                                            self.dialogConfig.dynamicComponent,
+                                        );
                                         //save when edit garage, nhưng mà đang chưa biết cho phép những gì, cái này fake tính năng
-                                        self.dialogConfig = false;
+                                        let config = {} as any;
+                                        self.dialogConfig.dynamicComponent.map(
+                                            (a: any) => {
+                                                config[a.field] =
+                                                    a.props.modelValue;
+                                            },
+                                        );
+                                        let res = await store.updateGarage(
+                                            config,
+                                            config.id,
+                                        );
+                                        // self.dialogConfig = false;
                                     },
                                 },
                                 {

@@ -7,7 +7,7 @@ import {
     getAddressDetail,
     getAllRescues,
     // getListSubSystem,
-    // updateGarage,
+    updateGarage,
     createGarage,
     // getRescues,
     // createGarageOwner,
@@ -69,49 +69,16 @@ export const generalManagermentStore = defineStore("g", {
                 () => {},
             );
         },
-        // async getAddressDetail(query: any) {
-        //     const res = await getAddressDetail(query);
+        async updateGarage(query: any, id: string): Promise<any> {
+            const res = await updateGarage(id, query);
 
-        //     return this.filterResponse(
-        //         res,
-        //         (data: any) => {
-        //             this.overviewData = data;
-        //         },
-        //         () => {},
-        //     );
-        // },
-        // async getAllRescues(query) {
-        //     const res = await getAllRescues(query);
-
-        //     return this.filterResponse(
-        //         res,
-        //         ({ data }) => {
-        //             this.overviewData = data;
-        //         },
-        //         () => {},
-        //     );
-        // },
-        // async getListSubSystem(query) {
-        //     const res = await getAllRescues(query);
-
-        //     return this.filterResponse(
-        //         res,
-        //         ({ data }) => {
-        //             this.overviewData = data;
-        //         },
-        //         () => {},
-        //     );
-        // },
-        // async createGarage(query) {
-        //     const res = await createGarage(query);
-
-        //     return this.filterResponse(
-        //         res,
-        //         ({ data }) => {
-        //             this.overviewData = data;
-        //         },
-        //         () => {},
-        //     );
-        // },
+            return this.filterResponse(
+                res,
+                (data: any) => {
+                    this.overviewData = data;
+                },
+                () => {},
+            );
+        },
     },
 });
