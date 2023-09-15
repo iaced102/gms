@@ -27,9 +27,7 @@ const routes = [
                 name: "listParentGarage",
                 path: "parentGarage/list",
                 component: () =>
-                    import(
-                        "@/modules/generalManagerment/pages/parentGarage/ListParentGarage.vue"
-                    ),
+                    import("@/modules/groupGarage/pages/ListGarageGroup.vue"),
             },
             {
                 name: "listGarage",
@@ -38,6 +36,12 @@ const routes = [
                     import(
                         "@/modules/generalManagerment/pages/garage/ListGarage.vue"
                     ),
+            },
+            {
+                name: "listContract",
+                path: "contract/list",
+                component: () =>
+                    import("@/modules/contracts/pages/ListContract.vue"),
             },
         ],
     },

@@ -1,20 +1,12 @@
 import { defineStore } from "pinia";
 
 import {
-    getAllGarage,
-    getGarageInforById,
-    getAddressInfo,
-    getAddressDetail,
-    getAllRescues,
-    // getListSubSystem,
-    updateGarage,
-    createGarage,
-    // getRescues,
-    // createGarageOwner,
+    getAllGroupGarage,
     acceptGarages,
     rejectGarage,
-} from "@/modules/generalManagerment/api/index";
-export const generalManagermentStore = defineStore("g", {
+    deleteGarage,
+} from "@/modules/groupGarage/api/index";
+export const groupGarage = defineStore("groupGarage", {
     state: () => {
         return {
             demoList: {},
@@ -28,27 +20,8 @@ export const generalManagermentStore = defineStore("g", {
         // demoList: state => state.demoList
     },
     actions: {
-        async getGarageInforById(id: string): Promise<any> {
-            const res = await getGarageInforById(id);
-
-            return this.filterResponse(
-                res,
-                (data: any) => {
-                    this.overviewData = data;
-                },
-                () => {},
-            );
-        },
-        async getAllGarage(query: any): Promise<any> {
-            let res = await getAllGarage(query);
-            res = await this.filterResponse(res, null, ({ data }: any) => {
-                this.overviewData = data;
-            });
-
-            return res as any;
-        },
-        async getAddressInfo(query: any): Promise<any> {
-            const res = await getAddressInfo(query);
+        async getAllGroupGarage(query: any): Promise<any> {
+            const res = await getAllGroupGarage(query);
 
             return this.filterResponse(
                 res,
@@ -80,8 +53,8 @@ export const generalManagermentStore = defineStore("g", {
                 () => {},
             );
         },
-        async updateGarage(query: any, id: string): Promise<any> {
-            const res = await updateGarage(id, query);
+        async deleteGarage(id: string): Promise<any> {
+            const res = await deleteGarage(id);
 
             return this.filterResponse(
                 res,

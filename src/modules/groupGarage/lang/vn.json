@@ -1,9 +1,5 @@
 {
-    "parentGarage": {
-        "tableName": "Danh sách garage tổng",
-        "addNew": "Thêm mới"
-    },
-    "garage": {
+    "groupGarage": {
         "tableName": "Danh sách garage",
         "addNew": "Thêm mới",
         "columnTable": {
@@ -36,7 +32,8 @@
             "openTime": "Giờ mở cửa",
             "closeTime": "Giờ đóng cửa",
             "description": "Mô tả gara",
-            "contractStatus": "Trạng thái hợp đồng"
+            "contractStatus": "Trạng thái hợp đồng",
+            "garageOwnerName": "Chủ gara"
         },
         "contractStatus": {
             "1": "Hiệu lưc",

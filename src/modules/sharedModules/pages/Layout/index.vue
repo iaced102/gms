@@ -576,6 +576,7 @@ export default defineComponent({
                             name: this.$t(
                                 "module.sharedModules.sidebar.listContract",
                             ),
+                            href: "/app/contract/list",
                             icon: DocumentDuplicateIcon,
                         },
                     ],
