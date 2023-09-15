@@ -1,0 +1,82 @@
+{
+    "parentGarage": {
+        "tableName": "Danh sách garage tổng",
+        "addNew": "Thêm mới"
+    },
+    "garage": {
+        "tableName": "Danh sách garage",
+        "addNew": "Thêm mới",
+        "columnTable": {
+            "parentGarageId": "Mã garage tổng",
+            "parentGarageName": "Tên garage tổng",
+            "id": "Mã gara",
+            "code": "Mã gara",
+            "garageId": "Mã gara",
+            "name": "Tên gara",
+            "address": "Địa chỉ",
+            "contactPointPhone": "Số điện thoại người liên hệ",
+            "isReceiveWebsite": "Trang web",
+            "status": "Trạng thái",
+            "action": "Hành động",
+            "taxCode": "Mã số thuế",
+            "phone": "Số điện thoại",
+            "website": "Trang web",
+            "mail": "Mail",
+            "images": "Hình ảnh gara",
+            "contactPointName": "Tên người đại diện",
+            "latitude": "Vĩ độ",
+            "longitude": "Kinh độ",
+            "provinceId": "Tỉnh/TP",
+            "districtId": "Quận/Huyện",
+            "wardId": "Phường/Xã",
+            "contractFromDate": "Ngày hợp đồng",
+            "rescue": "Hỗ trợ cứu hộ",
+            "isSupportAllTime": "Phục vụ 24/7",
+            "isVerified": "Xác thực gara",
+            "openTime": "Giờ mở cửa",
+            "closeTime": "Giờ đóng cửa",
+            "description": "Mô tả gara",
+            "contractStatus": "Trạng thái hợp đồng"
+        },
+        "contractStatus": {
+            "1": "Hiệu lưc",
+            "0": "Không còn hiệu lực"
+        },
+        "recueStatus": {
+            "1": "Có hỗ trợ",
+            "0": "Không hỗ trợ"
+        },
+        "status": {
+            "1": "Đã duyệt",
+            "2": "Đã từ chối",
+            "3": "Chờ duyệt"
+        },
+        "contextActions": {
+            "update": "Cập nhật",
+            "detail": "xem chi tiết",
+            "delete": "xóa",
+            "accept": "Duyệt",
+            "reject": "Từ chối phê duyệt"
+        },
+        "toast": {
+            "acceptSuccess": "Duyệt garage thành công",
+            "acceptFailse": "Duyệt garage thất bại",
+            "rejectSuccess": "Hủy duyệt garage thành công",
+            "rejectFailse": "Hủy duyệt garage thất bại",
+            "updateGarageSuccess": "Cập nhật thông tin garage thành công",
+            "updateGarageFailse": "Cập nhật thông tin garage thất bại"
+        },
+        "dialog": {
+            "parentInfor": "Thông tin gara tổng",
+            "deleteGarageTitle": "Xóa garage?",
+            "deleteGarageContent": "Xác nhận xóa garage",
+            "deleteConfirm": "Xác nhận xóa",
+            "cancel": "Hủy",
+            "accept": "Duyệt",
+            "reject": "Hủy duyệt",
+            "save": "Lưu",
+            "garaInfor": "Thông tin gara",
+            "detailGarageTitle": "Chi tiết gara"
+        }
+    }
+}

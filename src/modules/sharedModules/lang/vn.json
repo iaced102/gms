@@ -1,0 +1,15 @@
+{
+    "sidebar": {
+        "home": "Trang chủ",
+        "generalManagerment": "Quản lý thông tin chung",
+        "listParentGarage": "Danh sách garage tổng",
+        "listGarage": "Danh sách garage",
+        "listContract": "Danh sách hợp đồng",
+        "functionManagerment": "Quản trị chức năng",
+        "listFunction": "Danh sách chức năng",
+        "listGarageFunctionAcion": "Danh sách chức năng, hoạt động của garage",
+        "vacationSchedule": "Lịch nghỉ"
+    },
+    "header": {},
+    "functionSidebar": {}
+}
