@@ -69,6 +69,17 @@ export const generalManagermentStore = defineStore("g", {
                 () => {},
             );
         },
+        async createGarage(query: any): Promise<any> {
+            const res = await createGarage(query);
+
+            return this.filterResponse(
+                res,
+                (data: any) => {
+                    this.overviewData = data;
+                },
+                () => {},
+            );
+        },
         async rejectGarage(query: any): Promise<any> {
             const res = await rejectGarage(query);
 

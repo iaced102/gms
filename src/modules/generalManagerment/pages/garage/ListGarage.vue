@@ -52,7 +52,6 @@
                                 (a) => a.group == 'parentInfor',
                             )
                         "
-                        @updateValue="updateValueDynamicComponent"
                     />
                 </div>
 
@@ -71,7 +70,6 @@
                                     a.group == 'garageInfor' && a.showForDetail,
                             )
                         "
-                        @updateValue="updateValueDynamicComponent"
                     />
                 </div>
             </template>
@@ -101,7 +99,11 @@ const displayCol = [
     "isReceiveWebsite",
     "status",
 ];
-import { garageDataConfigDetail, garageConfigEdit } from "../../data/index";
+import {
+    garageDataConfigDetail,
+    garageConfigEdit,
+    garageConfigCreate,
+} from "../../data/index";
 export default defineComponent({
     async created() {
         this.getDataForTable();
@@ -235,11 +237,12 @@ export default defineComponent({
                 let oldProvinceId = this.locationConfig.provinceId.value;
                 if (
                     newProvinceId &&
-                    newProvinceId.props.modelValue.id != oldProvinceId
+                    newProvinceId.props.modelValue &&
+                    newProvinceId.props.modelValue != oldProvinceId
                 ) {
                     console.log("asdjlfkjalskdjf");
                     this.locationConfig.provinceId.value =
-                        newProvinceId.props.modelValue.id;
+                        newProvinceId.props.modelValue;
                     this.calculateAdressOption();
                 }
                 let newDistrcitId = newVal.find(
@@ -248,10 +251,11 @@ export default defineComponent({
                 let oldDistrcitId = this.locationConfig.districtId.value;
                 if (
                     newDistrcitId &&
-                    newDistrcitId.props.modelValue.id != oldDistrcitId
+                    newDistrcitId.props.modelValue &&
+                    newDistrcitId.props.modelValue != oldDistrcitId
                 ) {
                     this.locationConfig.districtId.value =
-                        newDistrcitId.props.modelValue.id;
+                        newDistrcitId.props.modelValue;
                     this.calculateAdressOption();
                 }
             },
@@ -289,7 +293,74 @@ export default defineComponent({
             },
             tableActions: {
                 action: () => {
-                    self.dialogConfig.show = true;
+                    let garageDataConfigCreateClone = garageConfigCreate as any;
+                    let dynamicComponent = [] as any[];
+                    Object.keys(garageDataConfigCreateClone).map((a) => {
+                        if (
+                            garageDataConfigCreateClone[a].group ==
+                                "parentInfo" &&
+                            garageDataConfigCreateClone[a].field !=
+                                "parentGarageId"
+                        ) {
+                            garageDataConfigCreateClone[a].props.disabled =
+                                true;
+                        } else {
+                            if (
+                                garageDataConfigCreateClone[a].group ==
+                                "garageInfor"
+                            ) {
+                                garageDataConfigCreateClone[a].props.disabled =
+                                    false;
+                            }
+                        }
+                        dynamicComponent.push(garageDataConfigCreateClone[a]);
+                    });
+                    self.dialogConfig = {
+                        show: true,
+                        title: self.$t(
+                            "module.generalManagerment.garage.dialog.createGarage",
+                        ),
+                        dynamicComponent: dynamicComponent,
+                        actions: [
+                            {
+                                class: "inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
+                                name: self.$t(
+                                    "module.generalManagerment.garage.dialog.createGarage",
+                                ),
+                                action: async () => {
+                                    let data = {} as any;
+                                    self.dialogConfig.dynamicComponent.map(
+                                        (a: any) => {
+                                            if (a.static) {
+                                                data[a.field] = a.value;
+                                            } else {
+                                                data[a.field] =
+                                                    a.props.modelValue;
+                                            }
+                                        },
+                                    );
+                                    let res = await store.createGarage(data);
+                                    if (res.code == 1) {
+                                        self.$toast(
+                                            self.$t(
+                                                "module.generalManagerment.garage.toast.createGarageSuccess",
+                                            ),
+                                            true,
+                                        );
+                                    } else {
+                                        self.$toast(
+                                            self.$t(
+                                                "module.generalManagerment.garage.toast.createGarageFailse",
+                                            ),
+                                            false,
+                                        );
+                                    }
+                                    self.dialogConfig.show = false;
+                                },
+                            },
+                        ],
+                    };
+                    self.calculateAdressOption();
                 },
                 name: this.$t("module.generalManagerment.garage.addNew"),
             },
@@ -350,7 +421,7 @@ export default defineComponent({
                                         if (originData.data[a] == null) {
                                             garageDataConfigEditClone[
                                                 a
-                                            ].props.modelValue = undefined;
+                                            ].props.modelValue = "";
                                         } else {
                                             garageDataConfigEditClone[
                                                 a
@@ -414,7 +485,7 @@ export default defineComponent({
                                                             a.props.modelValue
                                                         ) {
                                                             config[a.field] =
-                                                                a.props.modelValue.id;
+                                                                a.props.modelValue;
                                                         } else {
                                                             config[a.field] =
                                                                 null;

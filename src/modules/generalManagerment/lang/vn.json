@@ -59,6 +59,8 @@
             "reject": "Từ chối phê duyệt"
         },
         "toast": {
+            "createGarageSuccess": "Tạo mới gara thành công",
+            "createGarageFailse": "Tạo mới gara thất bại",
             "acceptSuccess": "Duyệt garage thành công",
             "acceptFailse": "Duyệt garage thất bại",
             "rejectSuccess": "Hủy duyệt garage thành công",
@@ -67,6 +69,7 @@
             "updateGarageFailse": "Cập nhật thông tin garage thất bại"
         },
         "dialog": {
+            "createGarage": "Tạo mới gara",
             "parentInfor": "Thông tin gara tổng",
             "deleteGarageTitle": "Xóa garage?",
             "deleteGarageContent": "Xác nhận xóa garage",
