@@ -46,6 +46,10 @@
             "1": "Có hỗ trợ",
             "0": "Không hỗ trợ"
         },
+        "verifiedOption": {
+            "1": "Đã xác thực",
+            "0": "Chưa xác thực"
+        },
         "status": {
             "1": "Đã duyệt",
             "2": "Đã từ chối",
@@ -80,6 +84,11 @@
             "save": "Lưu",
             "garaInfor": "Thông tin gara",
             "detailGarageTitle": "Chi tiết gara"
+        },
+        "multipleRowActions": {
+            "accept": "Duyệt nhanh",
+            "reject": "Hủy duyệt nhanh",
+            "delete": "Xóa các bản ghi đã chọn"
         }
     }
 }

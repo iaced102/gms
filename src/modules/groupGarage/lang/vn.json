@@ -1,14 +1,20 @@
 {
+    "parentGarage": {
+        "tableName": "Danh sách garage tổng",
+        "addNew": "Thêm mới"
+    },
     "groupGarage": {
-        "tableName": "Danh sách garage",
+        "tableName": "Danh sách gara tổng",
         "addNew": "Thêm mới",
         "columnTable": {
+            "garageOwnerName": "Chủ gara",
             "parentGarageId": "Mã garage tổng",
             "parentGarageName": "Tên garage tổng",
             "id": "Mã gara",
-            "code": "Mã gara",
+            "code": "Mã gara tổng",
             "garageId": "Mã gara",
-            "name": "Tên gara",
+            "name": "Tên gara tổng",
+            "garageOwnerPhone": "Số điện thoại chủ gara",
             "address": "Địa chỉ",
             "contactPointPhone": "Số điện thoại người liên hệ",
             "isReceiveWebsite": "Trang web",
@@ -32,8 +38,7 @@
             "openTime": "Giờ mở cửa",
             "closeTime": "Giờ đóng cửa",
             "description": "Mô tả gara",
-            "contractStatus": "Trạng thái hợp đồng",
-            "garageOwnerName": "Chủ gara"
+            "contractStatus": "Trạng thái hợp đồng"
         },
         "contractStatus": {
             "1": "Hiệu lưc",
@@ -42,6 +47,10 @@
         "recueStatus": {
             "1": "Có hỗ trợ",
             "0": "Không hỗ trợ"
+        },
+        "verifiedOption": {
+            "1": "Đã xác thực",
+            "0": "Chưa xác thực"
         },
         "status": {
             "1": "Đã duyệt",
@@ -56,14 +65,19 @@
             "reject": "Từ chối phê duyệt"
         },
         "toast": {
+            "createGarageSuccess": "Tạo mới gara thành công",
+            "createGarageFailse": "Tạo mới gara thất bại",
             "acceptSuccess": "Duyệt garage thành công",
             "acceptFailse": "Duyệt garage thất bại",
             "rejectSuccess": "Hủy duyệt garage thành công",
             "rejectFailse": "Hủy duyệt garage thất bại",
             "updateGarageSuccess": "Cập nhật thông tin garage thành công",
-            "updateGarageFailse": "Cập nhật thông tin garage thất bại"
+            "updateGarageFailse": "Cập nhật thông tin garage thất bại",
+            "deleteGarageSuccess": "Xóa garage thành công",
+            "deleteGarageFailse": "Xóa garage thất bại"
         },
         "dialog": {
+            "createGarage": "Tạo mới gara",
             "parentInfor": "Thông tin gara tổng",
             "deleteGarageTitle": "Xóa garage?",
             "deleteGarageContent": "Xác nhận xóa garage",
@@ -74,6 +88,11 @@
             "save": "Lưu",
             "garaInfor": "Thông tin gara",
             "detailGarageTitle": "Chi tiết gara"
+        },
+        "multipleRowActions": {
+            "accept": "Duyệt nhanh",
+            "reject": "Hủy duyệt nhanh",
+            "delete": "Xóa các bản ghi đã chọn"
         }
     }
 }

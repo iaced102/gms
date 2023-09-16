@@ -1,66 +1,66 @@
 import { instanceI18n } from "@/main";
 const $t = instanceI18n.global.t;
 interface ContractStatus {
-    id: string;
+    id: number;
     value: string;
 }
 interface ContractStatus {
-    id: string;
+    id: number;
     value: string;
 }
 
 const contractStatusOptions = [
     {
-        id: "1",
+        id: 1,
         value: $t("module.generalManagerment.garage.contractStatus.1"),
     },
     {
-        id: "0",
+        id: 0,
         value: $t("module.generalManagerment.garage.contractStatus.0"),
     },
 ] as ContractStatus[];
 interface Rescue {
-    id: string;
+    id: number;
     value: string;
 }
 const RecueOptions = [
     {
-        id: "1",
+        id: 1,
         value: $t("module.generalManagerment.garage.recueStatus.1"),
     },
     {
-        id: "0",
+        id: 0,
         value: $t("module.generalManagerment.garage.recueStatus.0"),
     },
 ] as Rescue[];
 
 interface isSupportAllTime {
-    id: string;
+    id: number;
     value: string;
 }
 const isSupportAllTimeOptions = [
     {
-        id: "1",
+        id: 1,
         value: $t("module.generalManagerment.garage.recueStatus.1"),
     },
     {
-        id: "0",
+        id: 0,
         value: $t("module.generalManagerment.garage.recueStatus.0"),
     },
 ] as isSupportAllTime[];
 
 interface isVerified {
-    id: string;
+    id: number;
     value: string;
 }
 const isVerifiedOptions = [
     {
-        id: "1",
-        value: $t("module.generalManagerment.garage.recueStatus.1"),
+        id: 1,
+        value: $t("module.generalManagerment.garage.verifiedOption.1"),
     },
     {
-        id: "0",
-        value: $t("module.generalManagerment.garage.recueStatus.0"),
+        id: 0,
+        value: $t("module.generalManagerment.garage.verifiedOption.0"),
     },
 ] as isVerified[];
 
@@ -859,9 +859,19 @@ export const garageConfigEdit = {
 
 export const garageConfigCreate = {
     parentGarageId: {
-        static: true,
-        value: 0,
         field: "parentGarageId",
+        type: "CDInput",
+        group: "parentInfor",
+        showForDetail: true,
+        props: {
+            label: $t(
+                "module.generalManagerment.garage.columnTable.parentGarageId",
+            ),
+            modelValue: "",
+            placeholder: $t(
+                "module.generalManagerment.garage.columnTable.parentGarageId",
+            ),
+        },
     },
     name: {
         field: "name",
@@ -1041,21 +1051,19 @@ export const garageConfigCreate = {
             ),
         },
     },
-    rescue: {
-        type: "CDSelect",
-        field: "rescue",
-        group: "garageInfor",
-        showForDetail: true,
-        props: {
-            options: RecueOptions,
-            label: $t("module.generalManagerment.garage.columnTable.rescue"),
-            modelValue: undefined,
-            disabled: true,
-            placeholder: $t(
-                "module.generalManagerment.garage.columnTable.rescue",
-            ),
-        },
-    },
+    // longitude: {
+    //     type: "longitude",
+    //     field: "latitude",
+    //     group: "garageInfor",
+    //     showForDetail: true,
+    //     props: {
+    //         label: $t("module.generalManagerment.garage.columnTable.longitude"),
+    //         modelValue: "",
+    //         placeholder: $t(
+    //             "module.generalManagerment.garage.columnTable.longitude",
+    //         ),
+    //     },
+    // },
     isSupportAllTime: {
         type: "CDSelect",
         field: "isSupportAllTime",

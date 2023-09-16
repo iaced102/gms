@@ -7,12 +7,12 @@
             :actions="tableActions"
             :rowData="rowData"
             :columns="columns"
-            :multipleRowActions="true"
             :forStatus="true"
             :forActions="true"
             positionDropdownClass="right-[40px] bottom-[-65px]"
             :contextActions="contextActions"
             :pagination="pagination"
+            :multipleRowActions="multipleRowActions"
             @changePage="changePage"
         />
         <CDDialog
@@ -47,6 +47,7 @@
                         }}
                     </h1>
                     <CDMultipleRenderDynamicComponent
+                        perItemClass="px-3"
                         :modelValue="
                             dialogConfig.dynamicComponent.filter(
                                 (a) => a.group == 'parentInfor',
@@ -64,6 +65,7 @@
                         }}
                     </h1>
                     <CDMultipleRenderDynamicComponent
+                        perItemClass="px-3"
                         :modelValue="
                             dialogConfig.dynamicComponent.filter(
                                 (a) =>
@@ -264,6 +266,69 @@ export default defineComponent({
     data() {
         let self = this as any;
         return {
+            multipleRowActions: [
+                {
+                    icon: "EllipsisVerticalIcon",
+                    name: self.$t(
+                        "module.generalManagerment.garage.multipleRowActions.accept",
+                    ),
+                    action: async (params: any) => {
+                        let ids = params.map((a: any) => a.id);
+                        let res = await store.acceptGarage(ids);
+                        if (res.code == 1) {
+                            self.$toast(
+                                self.$t(
+                                    "module.generalManagerment.garage.toast.acceptSuccess",
+                                ),
+                                true,
+                            );
+                            self.getDataForTable();
+                        } else {
+                            self.$toast(
+                                self.$t(
+                                    "module.generalManagerment.garage.toast.acceptFailse",
+                                ),
+                                false,
+                            );
+                        }
+                    },
+                },
+                {
+                    icon: "EllipsisVerticalIcon",
+                    name: self.$t(
+                        "module.generalManagerment.garage.multipleRowActions.reject",
+                    ),
+                    action: async (params: any) => {
+                        let ids = params.map((a: any) => a.id);
+                        let res = await store.rejectGarage(ids);
+                        if (res.code == 1) {
+                            self.$toast(
+                                self.$t(
+                                    "module.generalManagerment.garage.toast.rejectSuccess",
+                                ),
+                                true,
+                            );
+                            self.getDataForTable();
+                        } else {
+                            self.$toast(
+                                self.$t(
+                                    "module.generalManagerment.garage.toast.rejectFailse",
+                                ),
+                                false,
+                            );
+                        }
+                    },
+                },
+                {
+                    icon: "EllipsisVerticalIcon",
+                    name: self.$t(
+                        "module.generalManagerment.garage.multipleRowActions.delete",
+                    ),
+                    action: () => {
+                        console.log("click action1");
+                    },
+                },
+            ],
             locationConfig: {
                 provinceId: {
                     value: "",
@@ -339,6 +404,8 @@ export default defineComponent({
                                             }
                                         },
                                     );
+                                    data.contractFromDate = "";
+                                    data.contractToDate = "";
                                     let res = await store.createGarage(data);
                                     if (res.code == 1) {
                                         self.$toast(
@@ -347,6 +414,7 @@ export default defineComponent({
                                             ),
                                             true,
                                         );
+                                        self.getDataForTable();
                                     } else {
                                         self.$toast(
                                             self.$t(
@@ -507,6 +575,7 @@ export default defineComponent({
                                                 ),
                                                 true,
                                             );
+                                            self.getDataForTable();
                                         } else {
                                             self.dialogConfig.show = false;
                                             self.$toast(
@@ -536,6 +605,7 @@ export default defineComponent({
                                                 ),
                                                 true,
                                             );
+                                            self.getDataForTable();
                                         } else {
                                             self.$toast(
                                                 self.$t(
@@ -564,6 +634,7 @@ export default defineComponent({
                                                 ),
                                                 true,
                                             );
+                                            self.getDataForTable();
                                         } else {
                                             self.$toast(
                                                 self.$t(
@@ -773,6 +844,7 @@ export default defineComponent({
                                 ),
                                 true,
                             );
+                            self.getDataForTable();
                         } else {
                             self.$toast(
                                 self.$t(
@@ -797,6 +869,7 @@ export default defineComponent({
                                 ),
                                 true,
                             );
+                            self.getDataForTable();
                         } else {
                             self.$toast(
                                 self.$t(

@@ -1,12 +1,16 @@
 import { defineStore } from "pinia";
 
 import {
-    getAllGroupGarage,
+    getAllGarage,
+    getGarageInforById,
+    getAddressInfo,
+    updateGarage,
+    createGarage,
+    deleteGarage,
     acceptGarages,
     rejectGarage,
-    deleteGarage,
 } from "@/modules/groupGarage/api/index";
-export const groupGarage = defineStore("groupGarage", {
+export const groupGarageStore = defineStore("groupGarageStore", {
     state: () => {
         return {
             demoList: {},
@@ -20,8 +24,27 @@ export const groupGarage = defineStore("groupGarage", {
         // demoList: state => state.demoList
     },
     actions: {
-        async getAllGroupGarage(query: any): Promise<any> {
-            const res = await getAllGroupGarage(query);
+        async getGarageInforById(id: string): Promise<any> {
+            const res = await getGarageInforById(id);
+
+            return this.filterResponse(
+                res,
+                (data: any) => {
+                    this.overviewData = data;
+                },
+                () => {},
+            );
+        },
+        async getAllGarage(query: any): Promise<any> {
+            let res = await getAllGarage(query);
+            res = await this.filterResponse(res, null, ({ data }: any) => {
+                this.overviewData = data;
+            });
+
+            return res as any;
+        },
+        async getAddressInfo(query: any): Promise<any> {
+            const res = await getAddressInfo(query);
 
             return this.filterResponse(
                 res,
@@ -42,8 +65,8 @@ export const groupGarage = defineStore("groupGarage", {
                 () => {},
             );
         },
-        async rejectGarage(query: any): Promise<any> {
-            const res = await rejectGarage(query);
+        async createGarage(query: any): Promise<any> {
+            const res = await createGarage(query);
 
             return this.filterResponse(
                 res,
@@ -55,6 +78,28 @@ export const groupGarage = defineStore("groupGarage", {
         },
         async deleteGarage(id: string): Promise<any> {
             const res = await deleteGarage(id);
+
+            return this.filterResponse(
+                res,
+                (data: any) => {
+                    this.overviewData = data;
+                },
+                () => {},
+            );
+        },
+        async rejectGarage(query: any): Promise<any> {
+            const res = await rejectGarage(query);
+
+            return this.filterResponse(
+                res,
+                (data: any) => {
+                    this.overviewData = data;
+                },
+                () => {},
+            );
+        },
+        async updateGarage(query: any, id: string): Promise<any> {
+            const res = await updateGarage(id, query);
 
             return this.filterResponse(
                 res,
