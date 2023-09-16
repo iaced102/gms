@@ -358,7 +358,9 @@ export default defineComponent({
             },
             tableActions: {
                 action: () => {
-                    let garageDataConfigCreateClone = garageConfigCreate as any;
+                    let garageDataConfigCreateClone = {
+                        ...garageConfigCreate,
+                    } as any;
                     let dynamicComponent = [] as any[];
                     Object.keys(garageDataConfigCreateClone).map((a) => {
                         if (

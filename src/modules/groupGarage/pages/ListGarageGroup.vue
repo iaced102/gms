@@ -99,8 +99,6 @@ const displayCol = [
     "name",
     "garageOwnerName",
     "website",
-    "address",
-    "garageOwnerPhone",
     "status",
 ];
 import { garageConfigEdit, garageConfigCreate } from "../data/index";
@@ -356,7 +354,9 @@ export default defineComponent({
             },
             tableActions: {
                 action: () => {
-                    let garageDataConfigCreateClone = garageConfigCreate as any;
+                    let garageDataConfigCreateClone = {
+                        ...garageConfigCreate,
+                    } as any;
                     let dynamicComponent = [] as any[];
                     Object.keys(garageDataConfigCreateClone).map((a) => {
                         if (

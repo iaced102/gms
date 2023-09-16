@@ -458,6 +458,7 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            disabled: true,
             label: $t("module.groupGarage.groupGarage.columnTable.name"),
             modelValue: "",
             placeholder: $t("module.groupGarage.groupGarage.columnTable.name"),
@@ -469,6 +470,7 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            disabled: true,
             label: $t("module.groupGarage.groupGarage.columnTable.taxCode"),
             modelValue: "",
             placeholder: $t(
@@ -482,6 +484,7 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            disabled: true,
             label: $t(
                 "module.groupGarage.groupGarage.columnTable.garageOwnerName",
             ),
@@ -497,6 +500,7 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            disabled: true,
             label: $t("module.groupGarage.groupGarage.columnTable.website"),
             modelValue: "",
             placeholder: $t(
@@ -525,6 +529,7 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            disabled: true,
             options: [],
             label: $t("module.generalManagerment.garage.columnTable.address"),
             modelValue: undefined,
@@ -539,6 +544,7 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            disabled: true,
             label: $t(
                 "module.groupGarage.groupGarage.columnTable.garageOwnerPhone",
             ),
@@ -574,23 +580,24 @@ export const garageConfigEdit = {
 };
 
 export const garageConfigCreate = {
-    code: {
-        field: "code",
-        type: "CDInput",
-        group: "garageInfor",
-        showForDetail: true,
-        props: {
-            label: $t("module.groupGarage.groupGarage.columnTable.code"),
-            modelValue: "",
-            placeholder: $t("module.groupGarage.groupGarage.columnTable.code"),
-        },
-    },
+    // code: {
+    //     field: "code",
+    //     type: "CDInput",
+    //     group: "garageInfor",
+    //     showForDetail: true,
+    //     props: {
+    //         label: $t("module.groupGarage.groupGarage.columnTable.code"),
+    //         modelValue: "",
+    //         placeholder: $t("module.groupGarage.groupGarage.columnTable.code"),
+    //     },
+    // },
     name: {
         field: "name",
         type: "CDInput",
         group: "garageInfor",
         showForDetail: true,
         props: {
+            disabled: true,
             label: $t("module.groupGarage.groupGarage.columnTable.name"),
             modelValue: "",
             placeholder: $t("module.groupGarage.groupGarage.columnTable.name"),
@@ -602,6 +609,7 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            disabled: true,
             label: $t("module.groupGarage.groupGarage.columnTable.taxCode"),
             modelValue: "",
             placeholder: $t(
@@ -615,6 +623,7 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            disabled: true,
             label: $t(
                 "module.groupGarage.groupGarage.columnTable.garageOwnerName",
             ),
@@ -630,6 +639,7 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            disabled: true,
             label: $t("module.groupGarage.groupGarage.columnTable.website"),
             modelValue: "",
             placeholder: $t(
@@ -658,6 +668,7 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            disabled: true,
             options: [],
             label: $t("module.generalManagerment.garage.columnTable.address"),
             modelValue: undefined,
@@ -672,6 +683,7 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            disabled: true,
             label: $t(
                 "module.groupGarage.groupGarage.columnTable.garageOwnerPhone",
             ),
