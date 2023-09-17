@@ -46,7 +46,7 @@ const i18n = (locales: any) => {
     return createI18n({
         locale: locales, // set locale
         messages,
-        fallbackLocale: "en",
+        fallbackLocale: "vn",
     });
 };
 
