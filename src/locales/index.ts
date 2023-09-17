@@ -2,6 +2,16 @@ import { createI18n } from "vue-i18n";
 import vnMessage from "./lang/vn.json";
 import enMessage from "./lang/en.json";
 
+import sharedModule from "@/modules/sharedModules/lang/vn.json";
+import groupGarage from "@/modules/groupGarage/lang/vn.json";
+import generalManagerment from "@/modules/generalManagerment/lang/vn.json";
+let vn = { ...vnMessage } as any;
+vn.module = {
+    sharedModule: sharedModule,
+    groupGarage: groupGarage,
+    generalManagerment: generalManagerment,
+};
+
 // Vue.use(VueI18n);
 const messages = {
     vn: vnMessage,
