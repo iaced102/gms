@@ -1,6 +1,6 @@
 {
     "parentGarage": {
-        "tableName": "Danh sách garage tổng",
+        "tableName": "Danh sách Gara tổng",
         "addNew": "Thêm mới"
     },
     "groupGarage": {
@@ -8,8 +8,8 @@
         "addNew": "Thêm mới",
         "columnTable": {
             "garageOwnerName": "Chủ Gara",
-            "parentGarageId": "Mã garage tổng",
-            "parentGarageName": "Tên garage tổng",
+            "parentGarageId": "Mã Gara tổng",
+            "parentGarageName": "Tên Gara tổng",
             "id": "Mã Gara",
             "code": "Mã Gara tổng",
             "garageId": "Mã Gara",
@@ -67,20 +67,20 @@
         "toast": {
             "createGarageSuccess": "Tạo mới Gara thành công",
             "createGarageFailse": "Tạo mới Gara thất bại",
-            "acceptSuccess": "Duyệt garage thành công",
-            "acceptFailse": "Duyệt garage thất bại",
-            "rejectSuccess": "Hủy duyệt garage thành công",
-            "rejectFailse": "Hủy duyệt garage thất bại",
-            "updateGarageSuccess": "Cập nhật thông tin garage thành công",
-            "updateGarageFailse": "Cập nhật thông tin garage thất bại",
-            "deleteGarageSuccess": "Xóa garage thành công",
-            "deleteGarageFailse": "Xóa garage thất bại"
+            "acceptSuccess": "Duyệt Gara thành công",
+            "acceptFailse": "Duyệt Gara thất bại",
+            "rejectSuccess": "Hủy duyệt Gara thành công",
+            "rejectFailse": "Hủy duyệt Gara thất bại",
+            "updateGarageSuccess": "Cập nhật thông tin Gara thành công",
+            "updateGarageFailse": "Cập nhật thông tin Gara thất bại",
+            "deleteGarageSuccess": "Xóa Gara thành công",
+            "deleteGarageFailse": "Xóa Gara thất bại"
         },
         "dialog": {
             "createGarage": "Tạo mới Gara",
             "parentInfor": "Thông tin Gara tổng",
-            "deleteGarageTitle": "Xóa garage?",
-            "deleteGarageContent": "Xác nhận xóa garage",
+            "deleteGarageTitle": "Xóa Gara?",
+            "deleteGarageContent": "Xác nhận xóa Gara",
             "deleteConfirm": "Xác nhận xóa",
             "cancel": "Hủy",
             "accept": "Duyệt",

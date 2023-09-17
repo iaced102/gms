@@ -12,7 +12,7 @@ const routes = [
         path: "/app",
         name: "Layout",
         component: () =>
-            import("@/modules/SharedModules/pages/Layout/index.vue"),
+            import("@/modules/sharedModules/pages/Layout/index.vue"),
         meta: {
             middleware: [auth],
         },

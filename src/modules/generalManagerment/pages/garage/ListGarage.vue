@@ -319,15 +319,6 @@ export default defineComponent({
                         }
                     },
                 },
-                {
-                    icon: "EllipsisVerticalIcon",
-                    name: self.$t(
-                        "module.generalManagerment.garage.multipleRowActions.delete",
-                    ),
-                    action: () => {
-                        console.log("click action1");
-                    },
-                },
             ],
             locationConfig: {
                 provinceId: {

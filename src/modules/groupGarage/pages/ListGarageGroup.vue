@@ -315,15 +315,6 @@ export default defineComponent({
                         }
                     },
                 },
-                {
-                    icon: "EllipsisVerticalIcon",
-                    name: self.$t(
-                        "module.groupGarage.groupGarage.multipleRowActions.delete",
-                    ),
-                    action: () => {
-                        console.log("click action1");
-                    },
-                },
             ],
             locationConfig: {
                 provinceId: {
@@ -686,6 +677,7 @@ export default defineComponent({
                                                                 self.$t(
                                                                     "module.groupGarage.groupGarage.toast.deleteGarageSuccess",
                                                                 ),
+                                                                true,
                                                             );
                                                             self.dialogConfig =
                                                                 false;

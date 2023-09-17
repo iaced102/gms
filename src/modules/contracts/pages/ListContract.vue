@@ -57,7 +57,7 @@ const displayCol = [
     "isReceiveWebsite",
     "status",
 ];
-import { garageDataConfigDetail, garageConfigEdit } from "../data/index";
+// import { garageDataConfigDetail, garageConfigEdit } from "../data/index";
 export default defineComponent({
     async created() {
         this.getDataForTable();

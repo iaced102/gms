@@ -1,4 +1,4 @@
-import { instanceI18n } from "@/main.js";
+import { instanceI18n } from "@/main";
 
 const $t = instanceI18n.global.t;
 
