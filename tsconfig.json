@@ -4,7 +4,7 @@
     "target": "esnext",
     "module": "esnext",
     "strict": true,
-    "outDir"    : ".",
+    "outDir": ".",
     "jsx": "preserve",
     "moduleResolution": "node",
     "experimentalDecorators": true,

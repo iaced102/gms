@@ -26,4 +26,12 @@ export default defineConfig({
             "@": path.resolve(__dirname, "./src"),
         },
     },
+    esbuild: {
+        supported: {
+            "top-level-await": true, //browsers can handle top-level-await features
+        },
+    },
+    build: {
+        target: "esnext", //browsers can handle the latest ES features
+    },
 });
