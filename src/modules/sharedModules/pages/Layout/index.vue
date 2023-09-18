@@ -596,13 +596,13 @@ export default defineComponent({
                 {
                     name: this.$t("module.sharedModules.sidebar.home"),
                     href: "/app",
-                    icon: "fa-solid fa-server",
+                    icon: "fa-solid fa-house",
                 },
                 {
                     name: this.$t(
                         "module.sharedModules.sidebar.generalManagerment",
                     ),
-                    icon: "fa-solid fa-house",
+                    icon: "fa-solid fa-list",
                     child: [
                         {
                             href: "/app/parentGarage/list",
