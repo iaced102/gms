@@ -8,10 +8,13 @@
             :rowData="rowData"
             :columns="columns"
             :forStatus="true"
+            :forFilter="true"
+            :filterColumns="filterColumns"
             :forActions="true"
             positionDropdownClass="right-[40px] bottom-[-65px]"
             :contextActions="contextActions"
             :pagination="pagination"
+            @filter="filter"
             :multipleRowActions="multipleRowActions"
             @changePage="changePage"
         />
@@ -101,6 +104,7 @@ const displayCol = [
     "isReceiveWebsite",
     "status",
 ];
+
 import {
     garageDataConfigDetail,
     garageConfigEdit,
@@ -111,6 +115,11 @@ export default defineComponent({
         this.getDataForTable();
     },
     methods: {
+        filter(config: any) {
+            //console.log(config);
+            this.pagination.currentPage = 1;
+            this.getDataForTable(config);
+        },
         updateValueDynamicComponent(val: any, field: string) {
             console.log(val, field);
             debugger;
@@ -194,12 +203,13 @@ export default defineComponent({
             this.pagination.currentPage = val.currentPage;
             this.getDataForTable();
         },
-        async getDataForTable() {
+        async getDataForTable(config: any = {}) {
             let self = this;
             this.rowData = [];
             let res = await store.getAllGarage({
                 pageSize: this.pagination.perPage,
                 pageNumber: this.pagination.currentPage,
+                ...config,
             });
 
             this.rowData = res.data.map((a: any) => {
@@ -266,6 +276,20 @@ export default defineComponent({
     data() {
         let self = this as any;
         return {
+            filterColumns: [
+                {
+                    label: self.$t(
+                        "module.generalManagerment.garage.filterColumn.parentGarageId",
+                    ),
+                    value: "parentGarageId",
+                },
+                {
+                    label: self.$t(
+                        "module.generalManagerment.garage.filterColumn.name",
+                    ),
+                    value: "name",
+                },
+            ],
             multipleRowActions: [
                 {
                     icon: "EllipsisVerticalIcon",

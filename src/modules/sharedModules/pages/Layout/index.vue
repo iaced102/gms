@@ -92,7 +92,7 @@
                                                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
                                                         ]"
                                                     >
-                                                        <component
+                                                        <!-- <component
                                                             :is="item.icon"
                                                             :class="[
                                                                 item.current
@@ -101,7 +101,20 @@
                                                                 'h-6 w-6 shrink-0',
                                                             ]"
                                                             aria-hidden="true"
-                                                        />
+                                                        /> -->
+                                                        <i
+                                                            :class="[
+                                                                item.current
+                                                                    ? 'text-indigo-600'
+                                                                    : 'text-gray-400 group-hover:text-indigo-600',
+                                                                'h-6 w-6 shrink-0',
+                                                                item.icon,
+                                                            ]"
+                                                            style="
+                                                                font-size: 20px !important;
+                                                            "
+                                                        >
+                                                        </i>
                                                         {{ item.name }}
                                                     </a>
                                                 </li>
@@ -202,7 +215,7 @@
                                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
                                         ]"
                                     >
-                                        <component
+                                        <!-- <component
                                             :is="item.icon"
                                             :class="[
                                                 item.current
@@ -211,7 +224,18 @@
                                                 'h-6 w-6 shrink-0',
                                             ]"
                                             aria-hidden="true"
-                                        />
+                                        /> -->
+                                        <i
+                                            :class="[
+                                                item.current
+                                                    ? 'text-indigo-600'
+                                                    : 'text-gray-400 group-hover:text-indigo-600',
+                                                'h-6 w-6 shrink-0',
+                                                item.icon,
+                                            ]"
+                                            style="font-size: 20px !important"
+                                        >
+                                        </i>
                                         {{ item.name }}
                                     </a>
                                     <div
@@ -226,7 +250,7 @@
                                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
                                         ]"
                                     >
-                                        <component
+                                        <!-- <component
                                             :is="item.icon"
                                             :class="[
                                                 item.current
@@ -235,7 +259,17 @@
                                                 'h-6 w-6 shrink-0',
                                             ]"
                                             aria-hidden="true"
-                                        />
+                                        /> -->
+                                        <i
+                                            :class="[
+                                                item.current
+                                                    ? 'text-indigo-600'
+                                                    : 'text-gray-400 group-hover:text-indigo-600',
+                                                'h-6 w-6 shrink-0',
+                                                item.icon,
+                                            ]"
+                                            style="font-size: 20px !important"
+                                        ></i>
                                         <span
                                             class="flex min-w-[calc(100%-60px)] items-center justify-between"
                                         >
@@ -299,7 +333,7 @@
                                                     class="flex-1 flex"
                                                     style="text-align: left"
                                                 >
-                                                    <component
+                                                    <!-- <component
                                                         :is="ci.icon"
                                                         class="mr-2"
                                                         :class="[
@@ -309,7 +343,19 @@
                                                             'h-6 w-6 shrink-0',
                                                         ]"
                                                         aria-hidden="true"
-                                                    />
+                                                    /> -->
+                                                    <i
+                                                        :class="[
+                                                            item.current
+                                                                ? 'text-indigo-600'
+                                                                : 'text-gray-400 group-hover:text-indigo-600',
+                                                            'h-6 w-6 shrink-0 ',
+                                                            ci.icon,
+                                                        ]"
+                                                        style="
+                                                            font-size: 20px !important;
+                                                        "
+                                                    ></i>
                                                     {{ ci.name }}
                                                 </span>
                                             </li>
@@ -550,34 +596,34 @@ export default defineComponent({
                 {
                     name: this.$t("module.sharedModules.sidebar.home"),
                     href: "/app",
-                    icon: AdjustmentsVerticalIcon,
+                    icon: "fa-solid fa-server",
                 },
                 {
                     name: this.$t(
                         "module.sharedModules.sidebar.generalManagerment",
                     ),
-                    icon: HomeIcon,
+                    icon: "fa-solid fa-house",
                     child: [
                         {
                             href: "/app/parentGarage/list",
                             name: this.$t(
                                 "module.sharedModules.sidebar.listParentGarage",
                             ),
-                            icon: DocumentDuplicateIcon,
+                            icon: "fa-solid fa-list-ol",
                         },
                         {
                             name: this.$t(
                                 "module.sharedModules.sidebar.listGarage",
                             ),
                             href: "/app/garage/list",
-                            icon: DocumentDuplicateIcon,
+                            icon: "fa-solid fa-list-ul",
                         },
                         {
                             name: this.$t(
                                 "module.sharedModules.sidebar.listContract",
                             ),
                             href: "/app/contract/list",
-                            icon: DocumentDuplicateIcon,
+                            icon: "fa-solid fa-file-contract",
                         },
                     ],
                 },
@@ -586,25 +632,25 @@ export default defineComponent({
                         "module.sharedModules.sidebar.functionManagerment",
                     ),
                     href: "#",
-                    icon: HomeIcon,
+                    icon: "fa-solid fa-gear",
                     child: [
                         {
                             name: this.$t(
                                 "module.sharedModules.sidebar.listFunction",
                             ),
-                            icon: DocumentDuplicateIcon,
+                            icon: "fa-solid fa-sliders",
                         },
                         {
                             name: this.$t(
                                 "module.sharedModules.sidebar.listGarageFunctionAcion",
                             ),
-                            icon: DocumentDuplicateIcon,
+                            icon: "fa-solid fa-arrow-up-from-bracket",
                         },
                         {
                             name: this.$t(
                                 "module.sharedModules.sidebar.vacationSchedule",
                             ),
-                            icon: DocumentDuplicateIcon,
+                            icon: "fa-solid fa-calendar-days",
                         },
                     ],
                 },

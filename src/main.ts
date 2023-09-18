@@ -12,6 +12,8 @@ import mitt from "mitt";
 import * as MyComponents from "@cardoctor/design-system";
 import "@/assets/scss/index.scss";
 import "@cardoctor/design-system/dist/design-system.css";
+import "vuetify/styles";
+import vuetify from "./plugins/vuetify";
 // import { useGarageStore } from "@/modules/garage/store";
 
 const emitter = mitt();
@@ -25,6 +27,7 @@ const app = createApp(App)
         toastClassName: "dashcode-toast",
         bodyClassName: "dashcode-toast-body",
     })
+    .use(vuetify)
     .use(router);
 
 Object.keys(MyComponents).forEach((componentName) => {

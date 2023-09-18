@@ -350,7 +350,7 @@ export const garageDataConfigDetail = {
         },
     },
     contractFromDate: {
-        type: "CDInput",
+        type: "CDDatePicker",
         field: "contractFromDate",
         group: "garageInfor",
         showForDetail: true,
@@ -682,7 +682,7 @@ export const garageConfigEdit = {
         },
     },
     contractFromDate: {
-        type: "CDInput",
+        type: "CDDatePicker",
         field: "contractFromDate",
         group: "garageInfor",
         showForDetail: true,
@@ -1075,7 +1075,7 @@ export const garageConfigCreate = {
         value: 0,
     },
     contractFromDate: {
-        type: "CDInput",
+        type: "CDDatePicker",
         field: "contractFromDate",
         group: "garageInfor",
         showForDetail: true,

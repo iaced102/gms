@@ -121,6 +121,10 @@
             "accept": "Duyệt nhanh",
             "reject": "Hủy duyệt nhanh",
             "delete": "Xóa các bản ghi đã chọn"
+        },
+        "filterColumn": {
+            "parentGarageId": "Mã Gara tổng",
+            "name": "Tên Gara"
         }
     }
 }

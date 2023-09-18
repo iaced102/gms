@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
-import path from "path";
+import * as path from "path";
 import Vue from "@vitejs/plugin-vue";
 import ViteImages from "vite-plugin-vue-images";
 

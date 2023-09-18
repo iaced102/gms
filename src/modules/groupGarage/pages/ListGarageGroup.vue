@@ -345,9 +345,15 @@ export default defineComponent({
             },
             tableActions: {
                 action: () => {
-                    let garageDataConfigCreateClone = {
-                        ...garageConfigCreate,
-                    } as any;
+                    self.dialogConfig = {
+                        show: false,
+                        title: "",
+                        dynamicComponent: [],
+                        actions: [],
+                    };
+                    let garageDataConfigCreateClone = (() => {
+                        return garageConfigCreate as any;
+                    })();
                     let dynamicComponent = [] as any[];
                     Object.keys(garageDataConfigCreateClone).map((a) => {
                         if (
@@ -358,6 +364,8 @@ export default defineComponent({
                         ) {
                             garageDataConfigCreateClone[a].props.disabled =
                                 true;
+                            garageDataConfigCreateClone[a].props.modelValue =
+                                "";
                         } else {
                             if (
                                 garageDataConfigCreateClone[a].group ==
@@ -365,6 +373,9 @@ export default defineComponent({
                             ) {
                                 garageDataConfigCreateClone[a].props.disabled =
                                     false;
+                                garageDataConfigCreateClone[
+                                    a
+                                ].props.modelValue = "";
                             }
                         }
                         dynamicComponent.push(garageDataConfigCreateClone[a]);
@@ -673,6 +684,7 @@ export default defineComponent({
                                                                     .id,
                                                             );
                                                         if (res.code == 1) {
+                                                            self.getDataForTable();
                                                             self.$toast(
                                                                 self.$t(
                                                                     "module.groupGarage.groupGarage.toast.deleteGarageSuccess",
@@ -826,10 +838,12 @@ export default defineComponent({
                                             params.id,
                                         );
                                         if (res.code == 1) {
+                                            self.getDataForTable();
                                             self.$toast(
                                                 self.$t(
                                                     "module.groupGarage.groupGarage.toast.deleteGarageSuccess",
                                                 ),
+                                                true,
                                             );
                                             self.dialogConfig = false;
                                         } else {
