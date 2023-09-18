@@ -3,15 +3,11 @@
         <CDTable
             ref="table"
             v-if="rowData.length > 0"
-            :tableName="$t('module.generalManagerment.garage.tableName')"
-            :actions="tableActions"
+            :tableName="$t('module.contracts.contracts.tableName')"
             :rowData="rowData"
             :columns="columns"
-            :multipleRowActions="true"
+            :actions="tableActions"
             :forStatus="true"
-            :forActions="true"
-            positionDropdownClass="right-[40px] bottom-[-65px]"
-            :contextActions="contextActions"
             :pagination="pagination"
             @changePage="changePage"
         />
@@ -31,6 +27,27 @@
                     : 'w-96'
             }`"
         >
+            <template
+                v-if="
+                    dialogConfig.dynamicComponent &&
+                    dialogConfig.dynamicComponent.length > 0
+                "
+                #content
+            >
+                <div class="mt-7">
+                    <h1>
+                        {{
+                            $t(
+                                "module.contracts.contracts.dialog.contractInfor",
+                            )
+                        }}
+                    </h1>
+                    <CDMultipleRenderDynamicComponent
+                        perItemClass="px-3"
+                        :modelValue="dialogConfig.dynamicComponent"
+                    />
+                </div>
+            </template>
             <template #action class="mt-4 flex justify-around">
                 <div class="mt-4 flex justify-around">
                     <button
@@ -50,14 +67,14 @@ import { defineComponent } from "vue";
 import { contractStore } from "../store/index";
 const store = contractStore();
 const displayCol = [
-    "code",
-    "name",
-    "address",
-    "contactPointPhone",
-    "isReceiveWebsite",
+    "contractNumber",
+    "garageId",
+    "contractFromDate",
+    "contractToDate",
+
     "status",
 ];
-import { garageDataConfigDetail, garageConfigEdit } from "../data/index";
+import { garageDataConfigCreate } from "../data/index";
 export default defineComponent({
     async created() {
         this.getDataForTable();
@@ -80,7 +97,7 @@ export default defineComponent({
                 a.status = {
                     status: a.status,
                     content: self.$t(
-                        "module.generalManagerment.garage.status." + a.status,
+                        "module.contracts.contracts.status." + a.status,
                     ),
                 };
                 return a;
@@ -89,14 +106,14 @@ export default defineComponent({
                 return {
                     field: a,
                     headerName: this.$t(
-                        "module.generalManagerment.garage.columnTable." + a,
+                        "module.contracts.contracts.columnTable." + a,
                     ),
                 };
             });
             this.columns.push({
                 field: "action",
                 headerName: self.$t(
-                    "module.generalManagerment.garage.columnTable.action",
+                    "module.contracts.contracts.columnTable.action",
                 ),
             });
             this.pagination.total = res.totalElement;
@@ -120,9 +137,80 @@ export default defineComponent({
             },
             tableActions: {
                 action: () => {
-                    self.dialogConfig.show = true;
+                    let garageDataConfigCreateClone = {
+                        ...garageDataConfigCreate,
+                    } as any;
+                    let dynamicComponent = [] as any[];
+                    Object.keys(garageDataConfigCreateClone).map((a) => {
+                        // if (
+                        //     garageDataConfigCreateClone[a].group ==
+                        //         "parentInfo" &&
+                        //     garageDataConfigCreateClone[a].field !=
+                        //         "parentGarageId"
+                        // ) {
+                        //     garageDataConfigCreateClone[a].props.disabled =
+                        //         true;
+                        // } else {
+                        //     if (
+                        //         garageDataConfigCreateClone[a].group ==
+                        //         "garageInfor"
+                        //     ) {
+                        //         garageDataConfigCreateClone[a].props.disabled =
+                        //             false;
+                        //     }
+                        // }
+                        dynamicComponent.push(garageDataConfigCreateClone[a]);
+                    });
+                    self.dialogConfig = {
+                        show: true,
+                        title: self.$t(
+                            "module.contracts.contracts.dialog.createContract",
+                        ),
+                        dynamicComponent: dynamicComponent,
+                        actions: [
+                            {
+                                class: "inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
+                                name: self.$t(
+                                    "module.contracts.contracts.dialog.createContract",
+                                ),
+                                action: async () => {
+                                    let data = {} as any;
+                                    self.dialogConfig.dynamicComponent.map(
+                                        (a: any) => {
+                                            if (a.static) {
+                                                data[a.field] = a.value;
+                                            } else {
+                                                data[a.field] =
+                                                    a.props.modelValue;
+                                            }
+                                        },
+                                    );
+
+                                    let res = await store.createContract(data);
+                                    if (res.code == 1) {
+                                        self.$toast(
+                                            self.$t(
+                                                "module.contracts.contracts.toast.createContractSuccess",
+                                            ),
+                                            true,
+                                        );
+                                        self.getDataForTable();
+                                    } else {
+                                        self.$toast(
+                                            self.$t(
+                                                "module.contracts.contracts.toast.createContractFailse",
+                                            ),
+                                            false,
+                                        );
+                                    }
+                                    self.dialogConfig.show = false;
+                                },
+                            },
+                        ],
+                    };
+                    self.calculateAdressOption();
                 },
-                name: this.$t("module.generalManagerment.garage.addNew"),
+                name: this.$t("module.contracts.contracts.addNew"),
             },
             rowData: [] as any[],
             columns: [] as any[],

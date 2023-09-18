@@ -41,11 +41,15 @@ export const generalManagermentStore = defineStore("g", {
         },
         async getAllGarage(query: any): Promise<any> {
             let res = await getAllGarage(query);
-            res = await this.filterResponse(res, null, ({ data }: any) => {
-                this.overviewData = data;
-            });
+            let response = await this.filterResponse(
+                res,
+                null,
+                ({ data }: any) => {
+                    this.overviewData = data;
+                },
+            );
 
-            return res as any;
+            return response as any;
         },
         async getAddressInfo(query: any): Promise<any> {
             const res = await getAddressInfo(query);

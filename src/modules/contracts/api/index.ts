@@ -8,3 +8,11 @@ export function getAllContract(data: any) {
         params: data,
     });
 }
+
+export function createContract(data: any) {
+    return garageService({
+        url: "garage-contracts",
+        method: "post",
+        data: data,
+    });
+}

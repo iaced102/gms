@@ -11,3 +11,10 @@ declare module "@vue/runtime-core" {
         $store: any;
     }
 }
+import "pinia";
+
+declare module "pinia" {
+    export interface PiniaCustomProperties {
+        filterResponse: (res: any, successCb: any, errorCb: any = null) => void;
+    }
+}

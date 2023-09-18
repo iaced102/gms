@@ -1,66 +1,66 @@
 import { instanceI18n } from "@/main";
 const $t = instanceI18n.global.t;
 interface ContractStatus {
-    id: string;
+    id: number;
     value: string;
 }
 interface ContractStatus {
-    id: string;
+    id: number;
     value: string;
 }
 
 const contractStatusOptions = [
     {
-        id: "1",
-        value: $t("module.generalManagerment.garage.contractStatus.1"),
+        id: 1,
+        value: $t("module.groupGarage.groupGarage.contractStatus.1"),
     },
     {
-        id: "0",
-        value: $t("module.generalManagerment.garage.contractStatus.0"),
+        id: 0,
+        value: $t("module.groupGarage.groupGarage.contractStatus.0"),
     },
 ] as ContractStatus[];
 interface Rescue {
-    id: string;
+    id: number;
     value: string;
 }
 const RecueOptions = [
     {
-        id: "1",
-        value: $t("module.generalManagerment.garage.recueStatus.1"),
+        id: 1,
+        value: $t("module.groupGarage.groupGarage.recueStatus.1"),
     },
     {
-        id: "0",
-        value: $t("module.generalManagerment.garage.recueStatus.0"),
+        id: 0,
+        value: $t("module.groupGarage.groupGarage.recueStatus.0"),
     },
 ] as Rescue[];
 
 interface isSupportAllTime {
-    id: string;
+    id: number;
     value: string;
 }
 const isSupportAllTimeOptions = [
     {
-        id: "1",
-        value: $t("module.generalManagerment.garage.recueStatus.1"),
+        id: 1,
+        value: $t("module.groupGarage.groupGarage.recueStatus.1"),
     },
     {
-        id: "0",
-        value: $t("module.generalManagerment.garage.recueStatus.0"),
+        id: 0,
+        value: $t("module.groupGarage.groupGarage.recueStatus.0"),
     },
 ] as isSupportAllTime[];
 
 interface isVerified {
-    id: string;
+    id: number;
     value: string;
 }
 const isVerifiedOptions = [
     {
-        id: "1",
-        value: $t("module.generalManagerment.garage.recueStatus.1"),
+        id: 1,
+        value: $t("module.groupGarage.groupGarage.verifiedOption.1"),
     },
     {
-        id: "0",
-        value: $t("module.generalManagerment.garage.recueStatus.0"),
+        id: 0,
+        value: $t("module.groupGarage.groupGarage.verifiedOption.0"),
     },
 ] as isVerified[];
 
@@ -72,11 +72,11 @@ export const garageDataConfigDetail = {
         showForDetail: true,
         props: {
             label: $t(
-                "module.generalManagerment.garage.columnTable.parentGarageId",
+                "module.groupGarage.groupGarage.columnTable.parentGarageId",
             ),
             modelValue: "",
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.parentGarageId",
+                "module.groupGarage.groupGarage.columnTable.parentGarageId",
             ),
         },
     },
@@ -87,12 +87,12 @@ export const garageDataConfigDetail = {
         showForDetail: true,
         props: {
             label: $t(
-                "module.generalManagerment.garage.columnTable.parentGarageName",
+                "module.groupGarage.groupGarage.columnTable.parentGarageName",
             ),
             modelValue: "",
             disabled: true,
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.parentGarageName",
+                "module.groupGarage.groupGarage.columnTable.parentGarageName",
             ),
         },
     },
@@ -102,11 +102,11 @@ export const garageDataConfigDetail = {
         field: "taxCode",
         showForDetail: true,
         props: {
-            label: $t("module.generalManagerment.garage.columnTable.taxCode"),
+            label: $t("module.groupGarage.groupGarage.columnTable.taxCode"),
             modelValue: "",
             disabled: true,
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.taxCode",
+                "module.groupGarage.groupGarage.columnTable.taxCode",
             ),
         },
     },
@@ -115,12 +115,10 @@ export const garageDataConfigDetail = {
         type: "CDInput",
         group: "parentInfor",
         props: {
-            label: $t("module.generalManagerment.garage.columnTable.phone"),
+            label: $t("module.groupGarage.groupGarage.columnTable.phone"),
             modelValue: "",
             disabled: true,
-            placeholder: $t(
-                "module.generalManagerment.garage.columnTable.phone",
-            ),
+            placeholder: $t("module.groupGarage.groupGarage.columnTable.phone"),
         },
     },
     website: {
@@ -129,11 +127,11 @@ export const garageDataConfigDetail = {
         group: "parentInfor",
         showForDetail: true,
         props: {
-            label: $t("module.generalManagerment.garage.columnTable.website"),
+            label: $t("module.groupGarage.groupGarage.columnTable.website"),
             modelValue: "",
             disabled: true,
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.website",
+                "module.groupGarage.groupGarage.columnTable.website",
             ),
         },
     },
@@ -143,11 +141,11 @@ export const garageDataConfigDetail = {
         group: "parentInfor",
         showForDetail: true,
         props: {
-            label: $t("module.generalManagerment.garage.columnTable.status"),
+            label: $t("module.groupGarage.groupGarage.columnTable.status"),
             modelValue: "",
             disabled: true,
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.status",
+                "module.groupGarage.groupGarage.columnTable.status",
             ),
         },
     },
@@ -157,12 +155,10 @@ export const garageDataConfigDetail = {
         group: "parentInfor",
         showForDetail: true,
         props: {
-            label: $t("module.generalManagerment.garage.columnTable.mail"),
+            label: $t("module.groupGarage.groupGarage.columnTable.mail"),
             modelValue: "",
             disabled: true,
-            placeholder: $t(
-                "module.generalManagerment.garage.columnTable.mail",
-            ),
+            placeholder: $t("module.groupGarage.groupGarage.columnTable.mail"),
         },
     },
     id: {
@@ -172,12 +168,12 @@ export const garageDataConfigDetail = {
         hidden: true,
         showForDetail: false,
         props: {
-            label: $t("module.generalManagerment.garage.columnTable.images"),
+            label: $t("module.groupGarage.groupGarage.columnTable.images"),
             modelValue: "",
             fileList: [],
             disabled: true,
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.images",
+                "module.groupGarage.groupGarage.columnTable.images",
             ),
         },
     },
@@ -187,12 +183,12 @@ export const garageDataConfigDetail = {
         group: "garageInfor",
         showForDetail: false,
         props: {
-            label: $t("module.generalManagerment.garage.columnTable.images"),
+            label: $t("module.groupGarage.groupGarage.columnTable.images"),
             modelValue: [],
             fileList: [],
             disabled: true,
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.images",
+                "module.groupGarage.groupGarage.columnTable.images",
             ),
         },
     },
@@ -202,11 +198,9 @@ export const garageDataConfigDetail = {
         group: "garageInfor",
         showForDetail: true,
         props: {
-            label: $t("module.generalManagerment.garage.columnTable.name"),
+            label: $t("module.groupGarage.groupGarage.columnTable.name"),
             modelValue: "",
-            placeholder: $t(
-                "module.generalManagerment.garage.columnTable.name",
-            ),
+            placeholder: $t("module.groupGarage.groupGarage.columnTable.name"),
         },
     },
     contactPointName: {
@@ -216,11 +210,11 @@ export const garageDataConfigDetail = {
         showForDetail: true,
         props: {
             label: $t(
-                "module.generalManagerment.garage.columnTable.contactPointName",
+                "module.groupGarage.groupGarage.columnTable.contactPointName",
             ),
             modelValue: "",
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.contactPointName",
+                "module.groupGarage.groupGarage.columnTable.contactPointName",
             ),
         },
     },
@@ -231,11 +225,11 @@ export const garageDataConfigDetail = {
         showForDetail: true,
         props: {
             label: $t(
-                "module.generalManagerment.garage.columnTable.contactPointPhone",
+                "module.groupGarage.groupGarage.columnTable.contactPointPhone",
             ),
             modelValue: "",
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.contactPointPhone",
+                "module.groupGarage.groupGarage.columnTable.contactPointPhone",
             ),
         },
     },
@@ -245,10 +239,10 @@ export const garageDataConfigDetail = {
         group: "garageInfor",
         showForDetail: true,
         props: {
-            label: $t("module.generalManagerment.garage.columnTable.latitude"),
+            label: $t("module.groupGarage.groupGarage.columnTable.latitude"),
             modelValue: "",
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.latitude",
+                "module.groupGarage.groupGarage.columnTable.latitude",
             ),
         },
     },
@@ -258,10 +252,10 @@ export const garageDataConfigDetail = {
         group: "garageInfor",
         showForDetail: true,
         props: {
-            label: $t("module.generalManagerment.garage.columnTable.longitude"),
+            label: $t("module.groupGarage.groupGarage.columnTable.longitude"),
             modelValue: "",
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.longitude",
+                "module.groupGarage.groupGarage.columnTable.longitude",
             ),
         },
     },
@@ -272,12 +266,10 @@ export const garageDataConfigDetail = {
         showForDetail: true,
         props: {
             options: [],
-            label: $t(
-                "module.generalManagerment.garage.columnTable.provinceId",
-            ),
+            label: $t("module.groupGarage.groupGarage.columnTable.provinceId"),
             modelValue: undefined,
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.provinceId",
+                "module.groupGarage.groupGarage.columnTable.provinceId",
             ),
         },
     },
@@ -288,12 +280,10 @@ export const garageDataConfigDetail = {
         showForDetail: true,
         props: {
             options: [],
-            label: $t(
-                "module.generalManagerment.garage.columnTable.districtId",
-            ),
+            label: $t("module.groupGarage.groupGarage.columnTable.districtId"),
             modelValue: undefined,
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.districtId",
+                "module.groupGarage.groupGarage.columnTable.districtId",
             ),
         },
     },
@@ -304,10 +294,10 @@ export const garageDataConfigDetail = {
         group: "garageInfor",
         props: {
             options: [],
-            label: $t("module.generalManagerment.garage.columnTable.wardId"),
+            label: $t("module.groupGarage.groupGarage.columnTable.wardId"),
             modelValue: undefined,
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.wardId",
+                "module.groupGarage.groupGarage.columnTable.wardId",
             ),
         },
     },
@@ -318,10 +308,10 @@ export const garageDataConfigDetail = {
         showForDetail: true,
         props: {
             options: [],
-            label: $t("module.generalManagerment.garage.columnTable.address"),
+            label: $t("module.groupGarage.groupGarage.columnTable.address"),
             modelValue: undefined,
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.address",
+                "module.groupGarage.groupGarage.columnTable.address",
             ),
         },
     },
@@ -333,12 +323,12 @@ export const garageDataConfigDetail = {
         props: {
             options: [],
             label: $t(
-                "module.generalManagerment.garage.columnTable.contractFromDate",
+                "module.groupGarage.groupGarage.columnTable.contractFromDate",
             ),
             modelValue: "",
             disabled: true,
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.contractFromDate",
+                "module.groupGarage.groupGarage.columnTable.contractFromDate",
             ),
         },
     },
@@ -350,12 +340,12 @@ export const garageDataConfigDetail = {
         props: {
             options: contractStatusOptions,
             label: $t(
-                "module.generalManagerment.garage.columnTable.contractStatus",
+                "module.groupGarage.groupGarage.columnTable.contractStatus",
             ),
             modelValue: undefined,
             disabled: true,
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.contractStatus",
+                "module.groupGarage.groupGarage.columnTable.contractStatus",
             ),
         },
     },
@@ -366,11 +356,11 @@ export const garageDataConfigDetail = {
         showForDetail: true,
         props: {
             options: RecueOptions,
-            label: $t("module.generalManagerment.garage.columnTable.rescue"),
+            label: $t("module.groupGarage.groupGarage.columnTable.rescue"),
             modelValue: undefined,
             disabled: true,
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.rescue",
+                "module.groupGarage.groupGarage.columnTable.rescue",
             ),
         },
     },
@@ -382,12 +372,12 @@ export const garageDataConfigDetail = {
         props: {
             options: isSupportAllTimeOptions,
             label: $t(
-                "module.generalManagerment.garage.columnTable.isSupportAllTime",
+                "module.groupGarage.groupGarage.columnTable.isSupportAllTime",
             ),
             modelValue: undefined,
             disabled: true,
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.isSupportAllTime",
+                "module.groupGarage.groupGarage.columnTable.isSupportAllTime",
             ),
         },
     },
@@ -398,13 +388,11 @@ export const garageDataConfigDetail = {
         showForDetail: true,
         props: {
             options: isVerifiedOptions,
-            label: $t(
-                "module.generalManagerment.garage.columnTable.isVerified",
-            ),
+            label: $t("module.groupGarage.groupGarage.columnTable.isVerified"),
             modelValue: undefined,
             disabled: true,
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.isVerified",
+                "module.groupGarage.groupGarage.columnTable.isVerified",
             ),
         },
     },
@@ -414,11 +402,11 @@ export const garageDataConfigDetail = {
         field: "openTime",
         showForDetail: true,
         props: {
-            title: $t("module.generalManagerment.garage.columnTable.openTime"),
+            title: $t("module.groupGarage.groupGarage.columnTable.openTime"),
             modelValue: "",
             disabled: true,
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.openTime",
+                "module.groupGarage.groupGarage.columnTable.openTime",
             ),
         },
     },
@@ -428,11 +416,11 @@ export const garageDataConfigDetail = {
         field: "closeTime",
         showForDetail: true,
         props: {
-            title: $t("module.generalManagerment.garage.columnTable.closeTime"),
+            title: $t("module.groupGarage.groupGarage.columnTable.closeTime"),
             modelValue: "",
             disabled: true,
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.closeTime",
+                "module.groupGarage.groupGarage.columnTable.closeTime",
             ),
         },
     },
@@ -442,298 +430,98 @@ export const garageDataConfigDetail = {
         field: "description",
         showForDetail: true,
         props: {
-            label: $t(
-                "module.generalManagerment.garage.columnTable.description",
-            ),
+            label: $t("module.groupGarage.groupGarage.columnTable.description"),
             modelValue: "",
             disabled: true,
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.description",
+                "module.groupGarage.groupGarage.columnTable.description",
             ),
         },
     },
 };
 
 export const garageConfigEdit = {
-    parentGarageId: {
-        type: "CDInput",
-        group: "parentInfor",
-        field: "parentGarageId",
-        showForDetail: true,
-        props: {
-            label: $t(
-                "module.generalManagerment.garage.columnTable.parentGarageId",
-            ),
-            modelValue: "",
-            placeholder: $t(
-                "module.generalManagerment.garage.columnTable.parentGarageId",
-            ),
-        },
-    },
-    parentGarageName: {
-        type: "CDInput",
-        group: "parentInfor",
-        field: "parentGarageName",
-        showForDetail: true,
-        props: {
-            label: $t(
-                "module.generalManagerment.garage.columnTable.parentGarageName",
-            ),
-            modelValue: "",
-            disabled: true,
-            placeholder: $t(
-                "module.generalManagerment.garage.columnTable.parentGarageName",
-            ),
-        },
-    },
-    taxCode: {
-        type: "CDInput",
-        group: "parentInfor",
-        field: "taxCode",
-        showForDetail: true,
-        props: {
-            label: $t("module.generalManagerment.garage.columnTable.taxCode"),
-            modelValue: "",
-            disabled: true,
-            placeholder: $t(
-                "module.generalManagerment.garage.columnTable.taxCode",
-            ),
-        },
-    },
-    phone: {
-        field: "phone",
-        type: "CDInput",
-        group: "parentInfor",
-        props: {
-            label: $t("module.generalManagerment.garage.columnTable.phone"),
-            modelValue: "",
-            disabled: true,
-            placeholder: $t(
-                "module.generalManagerment.garage.columnTable.phone",
-            ),
-        },
-    },
-    website: {
-        field: "website",
-        type: "CDInput",
-        group: "parentInfor",
-        showForDetail: true,
-        props: {
-            label: $t("module.generalManagerment.garage.columnTable.website"),
-            modelValue: "",
-            disabled: true,
-            placeholder: $t(
-                "module.generalManagerment.garage.columnTable.website",
-            ),
-        },
-    },
-    // status: {
-    //     field: "status",
+    // code: {
+    //     field: "code",
     //     type: "CDInput",
-    //     group: "parentInfor",
+    //     group: "garageInfor",
     //     showForDetail: true,
     //     props: {
-    //         label: $t("module.generalManagerment.garage.columnTable.status"),
+    //         label: $t("module.groupGarage.groupGarage.columnTable.code"),
     //         modelValue: "",
-    //         disabled: true,
-    //         placeholder: $t(
-    //             "module.generalManagerment.garage.columnTable.status",
-    //         ),
+    //         placeholder: $t("module.groupGarage.groupGarage.columnTable.code"),
     //     },
     // },
-    mail: {
-        field: "mail",
-        type: "CDInput",
-        group: "parentInfor",
-        showForDetail: true,
-        props: {
-            label: $t("module.generalManagerment.garage.columnTable.mail"),
-            modelValue: "",
-            disabled: true,
-            placeholder: $t(
-                "module.generalManagerment.garage.columnTable.mail",
-            ),
-        },
-    },
-    id: {
-        static: true,
-        value: 0,
-        field: "id",
-    },
     name: {
         field: "name",
         type: "CDInput",
         group: "garageInfor",
         showForDetail: true,
         props: {
-            label: $t("module.generalManagerment.garage.columnTable.name"),
-            modelValue: "",
-            placeholder: $t(
-                "module.generalManagerment.garage.columnTable.name",
-            ),
-        },
-    },
-    contactPointName: {
-        field: "contactPointName",
-        type: "CDInput",
-        group: "garageInfor",
-        showForDetail: true,
-        props: {
-            label: $t(
-                "module.generalManagerment.garage.columnTable.contactPointName",
-            ),
-            modelValue: "",
-            placeholder: $t(
-                "module.generalManagerment.garage.columnTable.contactPointName",
-            ),
-        },
-    },
-    contactPointPhone: {
-        type: "CDInput",
-        field: "contactPointPhone",
-        group: "garageInfor",
-        showForDetail: true,
-        props: {
-            label: $t(
-                "module.generalManagerment.garage.columnTable.contactPointPhone",
-            ),
-            modelValue: "",
-            placeholder: $t(
-                "module.generalManagerment.garage.columnTable.contactPointPhone",
-            ),
-        },
-    },
-    avatar: {
-        field: "avatar",
-        static: true,
-        value: "",
-    },
-    description: {
-        type: "CDInput",
-        group: "garageInfor",
-        field: "description",
-        showForDetail: true,
-        props: {
-            label: $t(
-                "module.generalManagerment.garage.columnTable.description",
-            ),
-            modelValue: "",
             disabled: true,
-            placeholder: $t(
-                "module.generalManagerment.garage.columnTable.description",
-            ),
-        },
-    },
-    contractStatus: {
-        type: "CDSelect",
-        field: "contractStatus",
-        group: "garageInfor",
-        showForDetail: true,
-        props: {
-            options: contractStatusOptions,
-            label: $t(
-                "module.generalManagerment.garage.columnTable.contractStatus",
-            ),
-            modelValue: undefined,
-            disabled: true,
-            placeholder: $t(
-                "module.generalManagerment.garage.columnTable.contractStatus",
-            ),
-        },
-    },
-    contractFromDate: {
-        type: "CDInput",
-        field: "contractFromDate",
-        group: "garageInfor",
-        showForDetail: true,
-        props: {
-            options: [],
-            label: $t(
-                "module.generalManagerment.garage.columnTable.contractFromDate",
-            ),
+            label: $t("module.groupGarage.groupGarage.columnTable.name"),
             modelValue: "",
-            disabled: true,
-            placeholder: $t(
-                "module.generalManagerment.garage.columnTable.contractFromDate",
-            ),
+            placeholder: $t("module.groupGarage.groupGarage.columnTable.name"),
         },
     },
-    contractToDate: {
-        field: "contractToDate",
-        static: true,
-        value: "2023-09-13T06:27:39.808Z",
-    },
-    latitude: {
-        field: "latitude",
+    taxCode: {
+        field: "taxCode",
         type: "CDInput",
         group: "garageInfor",
         showForDetail: true,
         props: {
-            label: $t("module.generalManagerment.garage.columnTable.latitude"),
+            disabled: true,
+            label: $t("module.groupGarage.groupGarage.columnTable.taxCode"),
             modelValue: "",
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.latitude",
+                "module.groupGarage.groupGarage.columnTable.taxCode",
             ),
         },
     },
-    longitude: {
-        type: "longitude",
-        field: "latitude",
+    garageOwnerName: {
+        field: "garageOwnerName",
+        type: "CDInput",
         group: "garageInfor",
         showForDetail: true,
         props: {
-            label: $t("module.generalManagerment.garage.columnTable.longitude"),
+            disabled: true,
+            label: $t(
+                "module.groupGarage.groupGarage.columnTable.garageOwnerName",
+            ),
             modelValue: "",
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.longitude",
+                "module.groupGarage.groupGarage.columnTable.garageOwnerName",
+            ),
+        },
+    },
+    website: {
+        field: "website",
+        type: "CDInput",
+        group: "garageInfor",
+        showForDetail: true,
+        props: {
+            disabled: true,
+            label: $t("module.groupGarage.groupGarage.columnTable.website"),
+            modelValue: "",
+            placeholder: $t(
+                "module.groupGarage.groupGarage.columnTable.website",
             ),
         },
     },
     provinceId: {
+        static: true,
         field: "provinceId",
-        type: "CDSelect",
-        group: "garageInfor",
-        showForDetail: true,
-        props: {
-            options: [],
-            label: $t(
-                "module.generalManagerment.garage.columnTable.provinceId",
-            ),
-            modelValue: undefined,
-            placeholder: $t(
-                "module.generalManagerment.garage.columnTable.provinceId",
-            ),
-        },
+        value: 0,
     },
     districtId: {
-        type: "CDSelect",
-        field: "districtId",
-        group: "garageInfor",
-        showForDetail: true,
-        props: {
-            options: [],
-            label: $t(
-                "module.generalManagerment.garage.columnTable.districtId",
-            ),
-            modelValue: undefined,
-            placeholder: $t(
-                "module.generalManagerment.garage.columnTable.districtId",
-            ),
-        },
+        static: true,
+        field: "wardId",
+        value: 0,
     },
     wardId: {
-        type: "CDSelect",
+        static: true,
         field: "wardId",
-        showForDetail: true,
-        group: "garageInfor",
-        props: {
-            options: [],
-            label: $t("module.generalManagerment.garage.columnTable.wardId"),
-            modelValue: undefined,
-            placeholder: $t(
-                "module.generalManagerment.garage.columnTable.wardId",
-            ),
-        },
+        value: 0,
     },
     address: {
         type: "CDInput",
@@ -741,6 +529,7 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            disabled: true,
             options: [],
             label: $t("module.generalManagerment.garage.columnTable.address"),
             modelValue: undefined,
@@ -749,110 +538,182 @@ export const garageConfigEdit = {
             ),
         },
     },
-    // supportSos: 0,
-    isSupportAllTime: {
-        type: "CDSelect",
-        field: "isSupportAllTime",
+    garageOwnerPhone: {
+        field: "garageOwnerPhone",
+        type: "CDInput",
         group: "garageInfor",
         showForDetail: true,
         props: {
-            options: isSupportAllTimeOptions,
-            label: $t(
-                "module.generalManagerment.garage.columnTable.isSupportAllTime",
-            ),
-            modelValue: undefined,
             disabled: true,
+            label: $t(
+                "module.groupGarage.groupGarage.columnTable.garageOwnerPhone",
+            ),
+            modelValue: "",
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.isSupportAllTime",
+                "module.groupGarage.groupGarage.columnTable.garageOwnerPhone",
             ),
         },
     },
-    isReceiveWebsite: {
-        field: "isReceiveWebsite",
+    placeOfIssue: {
+        // field: "placeOfIssue",
+        // type: "CDInput",
+        // group: "garageInfor",
+        // showForDetail: true,
+        // props: {
+        //     label: $t(
+        //         "module.groupGarage.groupGarage.columnTable.placeOfIssue",
+        //     ),
+        //     modelValue: "",
+        //     placeholder: $t(
+        //         "module.groupGarage.groupGarage.columnTable.placeOfIssue",
+        //     ),
+        // },
         static: true,
+        field: "placeOfIssue",
+        value: "",
+    },
+    dateOfIssue: {
+        field: "dateOfIssue",
+        static: true,
+        value: "2023-09-16T00:31:00.938Z",
+    },
+};
+
+export const garageConfigCreate = {
+    // code: {
+    //     field: "code",
+    //     type: "CDInput",
+    //     group: "garageInfor",
+    //     showForDetail: true,
+    //     props: {
+    //         label: $t("module.groupGarage.groupGarage.columnTable.code"),
+    //         modelValue: "",
+    //         placeholder: $t("module.groupGarage.groupGarage.columnTable.code"),
+    //     },
+    // },
+    name: {
+        field: "name",
+        type: "CDInput",
+        group: "garageInfor",
+        showForDetail: true,
+        props: {
+            disabled: true,
+            label: $t("module.groupGarage.groupGarage.columnTable.name"),
+            modelValue: "",
+            placeholder: $t("module.groupGarage.groupGarage.columnTable.name"),
+        },
+    },
+    taxCode: {
+        field: "taxCode",
+        type: "CDInput",
+        group: "garageInfor",
+        showForDetail: true,
+        props: {
+            disabled: true,
+            label: $t("module.groupGarage.groupGarage.columnTable.taxCode"),
+            modelValue: "",
+            placeholder: $t(
+                "module.groupGarage.groupGarage.columnTable.taxCode",
+            ),
+        },
+    },
+    garageOwnerName: {
+        field: "garageOwnerName",
+        type: "CDInput",
+        group: "garageInfor",
+        showForDetail: true,
+        props: {
+            disabled: true,
+            label: $t(
+                "module.groupGarage.groupGarage.columnTable.garageOwnerName",
+            ),
+            modelValue: "",
+            placeholder: $t(
+                "module.groupGarage.groupGarage.columnTable.garageOwnerName",
+            ),
+        },
+    },
+    website: {
+        field: "website",
+        type: "CDInput",
+        group: "garageInfor",
+        showForDetail: true,
+        props: {
+            disabled: true,
+            label: $t("module.groupGarage.groupGarage.columnTable.website"),
+            modelValue: "",
+            placeholder: $t(
+                "module.groupGarage.groupGarage.columnTable.website",
+            ),
+        },
+    },
+    provinceId: {
+        static: true,
+        field: "provinceId",
         value: 0,
     },
-    isReceiveBooking: {
-        field: "isReceiveBooking",
+    districtId: {
         static: true,
+        field: "wardId",
         value: 0,
     },
-    openTime: {
-        type: "CDTimePicker",
-        group: "garageInfor",
-        field: "openTime",
-        showForDetail: true,
-        props: {
-            title: $t("module.generalManagerment.garage.columnTable.openTime"),
-            modelValue: "",
-            disabled: true,
-            placeholder: $t(
-                "module.generalManagerment.garage.columnTable.openTime",
-            ),
-        },
+    wardId: {
+        static: true,
+        field: "wardId",
+        value: 0,
     },
-    closeTime: {
-        type: "CDTimePicker",
+    address: {
+        type: "CDInput",
+        field: "address",
         group: "garageInfor",
-        field: "closeTime",
         showForDetail: true,
         props: {
-            title: $t("module.generalManagerment.garage.columnTable.closeTime"),
-            modelValue: "",
             disabled: true,
-            placeholder: $t(
-                "module.generalManagerment.garage.columnTable.closeTime",
-            ),
-        },
-    },
-    isVerified: {
-        type: "CDSelect",
-        field: "isVerified",
-        group: "garageInfor",
-        showForDetail: true,
-        props: {
-            options: isVerifiedOptions,
-            label: $t(
-                "module.generalManagerment.garage.columnTable.isVerified",
-            ),
+            options: [],
+            label: $t("module.generalManagerment.garage.columnTable.address"),
             modelValue: undefined,
-            disabled: true,
             placeholder: $t(
-                "module.generalManagerment.garage.columnTable.isVerified",
+                "module.generalManagerment.garage.columnTable.address",
             ),
         },
     },
-    images: {
-        field: "images",
-        static: true,
-        value: [
-            {
-                url: "string",
-                description: "string",
-            },
-        ],
+    garageOwnerPhone: {
+        field: "garageOwnerPhone",
+        type: "CDInput",
+        group: "garageInfor",
+        showForDetail: true,
+        props: {
+            disabled: true,
+            label: $t(
+                "module.groupGarage.groupGarage.columnTable.garageOwnerPhone",
+            ),
+            modelValue: "",
+            placeholder: $t(
+                "module.groupGarage.groupGarage.columnTable.garageOwnerPhone",
+            ),
+        },
     },
-    carSubSystems: {
-        field: "carSubSystems",
+    placeOfIssue: {
+        // field: "placeOfIssue",
+        // type: "CDInput",
+        // group: "garageInfor",
+        // showForDetail: true,
+        // props: {
+        //     label: $t(
+        //         "module.groupGarage.groupGarage.columnTable.placeOfIssue",
+        //     ),
+        //     modelValue: "",
+        //     placeholder: $t(
+        //         "module.groupGarage.groupGarage.columnTable.placeOfIssue",
+        //     ),
+        // },
         static: true,
-        value: [
-            {
-                id: 0,
-                name: "string",
-                description: "string",
-                status: 0,
-            },
-        ],
+        field: "placeOfIssue",
+        value: "",
     },
-    customFieldValueRequests: {
-        field: "customFieldValueRequests",
+    dateOfIssue: {
+        field: "dateOfIssue",
         static: true,
-        value: [
-            {
-                customFieldId: 0,
-                optionValue: 0,
-                textValue: "string",
-            },
-        ],
+        value: "2023-09-16T00:31:00.938Z",
     },
 };

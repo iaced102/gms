@@ -1,14 +1,20 @@
 {
+    "parentGarage": {
+        "tableName": "Danh sách Gara tổng",
+        "addNew": "Thêm mới"
+    },
     "groupGarage": {
-        "tableName": "Danh sách garage",
+        "tableName": "Danh sách Gara tổng",
         "addNew": "Thêm mới",
         "columnTable": {
-            "parentGarageId": "Mã garage tổng",
-            "parentGarageName": "Tên garage tổng",
-            "id": "Mã gara",
-            "code": "Mã gara",
-            "garageId": "Mã gara",
-            "name": "Tên gara",
+            "garageOwnerName": "Chủ Gara",
+            "parentGarageId": "Mã Gara tổng",
+            "parentGarageName": "Tên Gara tổng",
+            "id": "Mã Gara",
+            "code": "Mã Gara tổng",
+            "garageId": "Mã Gara",
+            "name": "Tên Gara tổng",
+            "garageOwnerPhone": "Số điện thoại chủ Gara",
             "address": "Địa chỉ",
             "contactPointPhone": "Số điện thoại người liên hệ",
             "isReceiveWebsite": "Trang web",
@@ -18,7 +24,7 @@
             "phone": "Số điện thoại",
             "website": "Trang web",
             "mail": "Mail",
-            "images": "Hình ảnh gara",
+            "images": "Hình ảnh Gara",
             "contactPointName": "Tên người đại diện",
             "latitude": "Vĩ độ",
             "longitude": "Kinh độ",
@@ -28,12 +34,11 @@
             "contractFromDate": "Ngày hợp đồng",
             "rescue": "Hỗ trợ cứu hộ",
             "isSupportAllTime": "Phục vụ 24/7",
-            "isVerified": "Xác thực gara",
+            "isVerified": "Xác thực Gara",
             "openTime": "Giờ mở cửa",
             "closeTime": "Giờ đóng cửa",
-            "description": "Mô tả gara",
-            "contractStatus": "Trạng thái hợp đồng",
-            "garageOwnerName": "Chủ gara"
+            "description": "Mô tả Gara",
+            "contractStatus": "Trạng thái hợp đồng"
         },
         "contractStatus": {
             "1": "Hiệu lưc",
@@ -42,6 +47,10 @@
         "recueStatus": {
             "1": "Có hỗ trợ",
             "0": "Không hỗ trợ"
+        },
+        "verifiedOption": {
+            "1": "Đã xác thực",
+            "0": "Chưa xác thực"
         },
         "status": {
             "1": "Đã duyệt",
@@ -56,24 +65,34 @@
             "reject": "Từ chối phê duyệt"
         },
         "toast": {
-            "acceptSuccess": "Duyệt garage thành công",
-            "acceptFailse": "Duyệt garage thất bại",
-            "rejectSuccess": "Hủy duyệt garage thành công",
-            "rejectFailse": "Hủy duyệt garage thất bại",
-            "updateGarageSuccess": "Cập nhật thông tin garage thành công",
-            "updateGarageFailse": "Cập nhật thông tin garage thất bại"
+            "createGarageSuccess": "Tạo mới Gara thành công",
+            "createGarageFailse": "Tạo mới Gara thất bại",
+            "acceptSuccess": "Duyệt Gara thành công",
+            "acceptFailse": "Duyệt Gara thất bại",
+            "rejectSuccess": "Hủy duyệt Gara thành công",
+            "rejectFailse": "Hủy duyệt Gara thất bại",
+            "updateGarageSuccess": "Cập nhật thông tin Gara thành công",
+            "updateGarageFailse": "Cập nhật thông tin Gara thất bại",
+            "deleteGarageSuccess": "Xóa Gara thành công",
+            "deleteGarageFailse": "Xóa Gara thất bại"
         },
         "dialog": {
-            "parentInfor": "Thông tin gara tổng",
-            "deleteGarageTitle": "Xóa garage?",
-            "deleteGarageContent": "Xác nhận xóa garage",
+            "createGarage": "Tạo mới Gara",
+            "parentInfor": "Thông tin Gara tổng",
+            "deleteGarageTitle": "Xóa Gara?",
+            "deleteGarageContent": "Xác nhận xóa Gara",
             "deleteConfirm": "Xác nhận xóa",
             "cancel": "Hủy",
             "accept": "Duyệt",
             "reject": "Hủy duyệt",
             "save": "Lưu",
-            "garaInfor": "Thông tin gara",
-            "detailGarageTitle": "Chi tiết gara"
+            "garaInfor": "Thông tin Gara",
+            "detailGarageTitle": "Chi tiết Gara"
+        },
+        "multipleRowActions": {
+            "accept": "Duyệt nhanh",
+            "reject": "Hủy duyệt nhanh",
+            "delete": "Xóa các bản ghi đã chọn"
         }
     }
 }
