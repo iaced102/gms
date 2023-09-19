@@ -31,9 +31,9 @@ export const garageDataConfigCreate = {
         },
     },
     contractFromDate: {
-        type: "CDInput",
+        type: "CDDatePicker",
         group: "parentInfor",
-        field: "garageId",
+        field: "contractFromDate",
         showForDetail: true,
         props: {
             label: $t(
@@ -46,9 +46,9 @@ export const garageDataConfigCreate = {
         },
     },
     contractToDate: {
-        type: "CDInput",
+        type: "CDDatePicker",
         group: "parentInfor",
-        field: "garageId",
+        field: "contractToDate",
         showForDetail: true,
         props: {
             label: $t(

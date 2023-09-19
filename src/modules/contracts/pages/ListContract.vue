@@ -69,6 +69,7 @@ const store = contractStore();
 const displayCol = [
     "contractNumber",
     "garageId",
+    "garageName",
     "contractFromDate",
     "contractToDate",
 
@@ -110,12 +111,12 @@ export default defineComponent({
                     ),
                 };
             });
-            this.columns.push({
-                field: "action",
-                headerName: self.$t(
-                    "module.contracts.contracts.columnTable.action",
-                ),
-            });
+            // this.columns.push({
+            //     field: "action",
+            //     headerName: self.$t(
+            //         "module.contracts.contracts.columnTable.action",
+            //     ),
+            // });
             this.pagination.total = res.totalElement;
         },
     },
@@ -141,7 +142,8 @@ export default defineComponent({
                         ...garageDataConfigCreate,
                     } as any;
                     let dynamicComponent = [] as any[];
-                    Object.keys(garageDataConfigCreateClone).map((a) => {
+                    Object.keys(garageDataConfigCreateClone).map((a: any) => {
+                        garageDataConfigCreateClone[a].props.modelValue = "";
                         // if (
                         //     garageDataConfigCreateClone[a].group ==
                         //         "parentInfo" &&
