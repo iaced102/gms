@@ -64,6 +64,11 @@
             "accept": "Duyệt",
             "reject": "Từ chối phê duyệt"
         },
+        "filterColumn": {
+            "code": "Mã Gara tổng",
+            "name": "Tên Gara tổng",
+            "status": "Trạng thái"
+        },
         "toast": {
             "createGarageSuccess": "Tạo mới Gara thành công",
             "createGarageFailse": "Tạo mới Gara thất bại",
@@ -93,6 +98,9 @@
             "accept": "Duyệt nhanh",
             "reject": "Hủy duyệt nhanh",
             "delete": "Xóa các bản ghi đã chọn"
+        },
+        "validator": {
+            "nameCannotBeEmpty": "Tên không thể bỏ trống"
         }
     }
 }

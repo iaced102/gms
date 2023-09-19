@@ -34,6 +34,9 @@
                     : 'w-96'
             }`"
         >
+            <template #title>
+                <h1 class="pb-5 border-b text-2xl">{{ dialogConfig.title }}</h1>
+            </template>
             <template
                 v-if="
                     dialogConfig.dynamicComponent &&
@@ -42,7 +45,8 @@
                 #content
             >
                 <div>
-                    <h1>
+                    <h1 class="text-lg ml-2 mt-4">
+                        <!-- <i class="fa-solid fa-link text-gray-500"></i> -->
                         {{
                             $t(
                                 "module.generalManagerment.garage.dialog.parentInfor",
@@ -50,7 +54,8 @@
                         }}
                     </h1>
                     <CDMultipleRenderDynamicComponent
-                        perItemClass="px-3"
+                        perItemClass="px-3 py-6 border-b"
+                        commonClass="flex"
                         @onSearch="onSearch"
                         @updateValue="({val, instanceKey}:any)=>updateValueDynamicComponent({val,instanceKey})"
                         :modelValue="
@@ -62,7 +67,7 @@
                 </div>
 
                 <div class="mt-7">
-                    <h1>
+                    <h1 class="text-lg ml-2 mt-4">
                         {{
                             $t(
                                 "module.generalManagerment.garage.dialog.garaInfor",
@@ -70,7 +75,8 @@
                         }}
                     </h1>
                     <CDMultipleRenderDynamicComponent
-                        perItemClass="px-3"
+                        perItemClass="px-3 py-6 border-b"
+                        commonClass="flex align-center"
                         @uploadFile="onUploadFile"
                         @onSearch="onSearch"
                         :modelValue="
@@ -293,7 +299,9 @@ export default defineComponent({
             });
         },
         async getParrentGarageInfor(id: string) {
-            let originData = await store.getGarageInforById(id);
+            let originData = await groupGarageStoreInstance.getGarageInforById(
+                id,
+            );
             return originData.data;
         },
         changePage(val: any) {
@@ -389,6 +397,33 @@ export default defineComponent({
                         "module.generalManagerment.garage.filterColumn.name",
                     ),
                     value: "name",
+                },
+                {
+                    label: self.$t(
+                        "module.generalManagerment.garage.filterColumn.status",
+                    ),
+                    value: "status",
+                    type: "CDSelect",
+                    options: [
+                        {
+                            id: 1,
+                            value: self.$t(
+                                "module.generalManagerment.garage.status.1",
+                            ),
+                        },
+                        {
+                            id: 2,
+                            value: self.$t(
+                                "module.generalManagerment.garage.status.2",
+                            ),
+                        },
+                        {
+                            id: 3,
+                            value: self.$t(
+                                "module.generalManagerment.garage.status.3",
+                            ),
+                        },
+                    ],
                 },
             ],
             multipleRowActions: [
@@ -521,6 +556,26 @@ export default defineComponent({
                                     "module.generalManagerment.garage.dialog.createGarage",
                                 ),
                                 action: async () => {
+                                    let isValidate = true;
+                                    self.dialogConfig.dynamicComponent.map(
+                                        (a: any) => {
+                                            if (a.validator) {
+                                                let error = a.validator(
+                                                    a.props.modelValue,
+                                                );
+                                                if (error) {
+                                                    self.$toast(error, false);
+                                                    a.props.isValidate = false;
+                                                    isValidate = false;
+                                                } else {
+                                                    a.props.isValidate = true;
+                                                }
+                                            }
+                                        },
+                                    );
+                                    if (!isValidate) {
+                                        return;
+                                    }
                                     let data = {} as any;
                                     self.dialogConfig.dynamicComponent.map(
                                         (a: any) => {
@@ -637,9 +692,9 @@ export default defineComponent({
                             }
                             if (
                                 garageDataConfigEditClone[a].group ==
-                                    "parentInfo" &&
-                                garageDataConfigEditClone[a].field !=
-                                    "parentGarageId"
+                                "parentInfo"
+                                // && garageDataConfigEditClone[a].field !=
+                                //     "parentGarageId"
                             ) {
                                 garageDataConfigEditClone[a].props.disabled =
                                     true;
@@ -648,9 +703,9 @@ export default defineComponent({
                                     garageDataConfigEditClone[a].group ==
                                     "garageInfor"
                                 ) {
-                                    garageDataConfigEditClone[
-                                        a
-                                    ].props.disabled = false;
+                                    // garageDataConfigEditClone[
+                                    //     a
+                                    // ].props.disabled = false;
                                 }
                             }
                             dynamicComponent.push(garageDataConfigEditClone[a]);

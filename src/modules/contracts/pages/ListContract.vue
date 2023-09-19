@@ -27,6 +27,9 @@
                     : 'w-96'
             }`"
         >
+            <template #title>
+                <h1 class="pb-5 border-b text-2xl">{{ dialogConfig.title }}</h1>
+            </template>
             <template
                 v-if="
                     dialogConfig.dynamicComponent &&
@@ -35,7 +38,7 @@
                 #content
             >
                 <div class="mt-7">
-                    <h1>
+                    <h1 class="text-lg ml-2 mt-4">
                         {{
                             $t(
                                 "module.contracts.contracts.dialog.contractInfor",
@@ -43,8 +46,10 @@
                         }}
                     </h1>
                     <CDMultipleRenderDynamicComponent
-                        perItemClass="px-3"
+                        perItemClass="px-3 py-6 border-b"
+                        commonClass="flex align-center"
                         :modelValue="dialogConfig.dynamicComponent"
+                        @onSearch="onSearch"
                     />
                 </div>
             </template>
@@ -75,12 +80,75 @@ const displayCol = [
 
     "status",
 ];
-import { garageDataConfigCreate } from "../data/index";
+import _cloneDeep from "lodash/cloneDeep";
+import { contractDataConfigCreate } from "../data/index";
+import { generalManagermentStore } from "@/modules/generalManagerment/store";
+const garageStore = generalManagermentStore();
+const cloneContractConfigCreate = _cloneDeep(contractDataConfigCreate);
 export default defineComponent({
     async created() {
         this.getDataForTable();
+        this.contractDataConfigCreate.garageId.setup = (
+            instanceKey: string,
+        ) => {
+            this.getListGarage("", instanceKey);
+        };
+        this.contractDataConfigCreate.garageId.onSearch = (
+            instanceKey: string,
+            val: string,
+        ) => {
+            this.getListGarage(val, instanceKey);
+        };
     },
     methods: {
+        async getListGarage(val: string, instanceKey: any) {
+            if (val == "") {
+                let res = await garageStore.getAllGarage({
+                    pageSize: 10,
+                    pageNumber: 1,
+                });
+                let field = this.dialogConfig.dynamicComponent.find(
+                    (a: any) => a.instanceKey == instanceKey,
+                );
+                field.props.options = res.data.map((a: any) => {
+                    return {
+                        id: a.id,
+                        value: a.id,
+                        text: a.name,
+                    };
+                });
+            } else {
+                let res = await garageStore.getAllGarage({
+                    pageSize: 10,
+                    pageNumber: 1,
+                    name: val,
+                });
+                let field = this.dialogConfig.dynamicComponent.find(
+                    (a: any) => a.instanceKey == instanceKey,
+                );
+                field.props.options = res.data.map((a: any) => {
+                    return {
+                        id: a.id,
+                        value: a.id,
+                        text: a.name,
+                    };
+                });
+            }
+        },
+        onSearch(instanceKey: string, val: string) {
+            let field = this.dialogConfig.dynamicComponent.find(
+                (a: any) => a.instanceKey == instanceKey,
+            );
+            console.log(instanceKey, val);
+            clearTimeout(this.timeOut[field.instanceKey]);
+            this.timeOut[field.instanceKey] = () => {
+                setTimeout(() => {
+                    console.log("on timeout");
+                    field.onSearch(instanceKey, val);
+                }, 1000);
+            };
+            this.timeOut[field.instanceKey]();
+        },
         changePage(val: any) {
             this.pagination.currentPage = val.currentPage;
             this.getDataForTable();
@@ -123,7 +191,9 @@ export default defineComponent({
     data() {
         let self = this as any;
         return {
+            contractDataConfigCreate: cloneContractConfigCreate as any,
             originData: {} as any,
+            timeOut: {} as any,
             dialogConfig: {
                 show: false,
                 title: "",
@@ -139,28 +209,21 @@ export default defineComponent({
             tableActions: {
                 action: () => {
                     let garageDataConfigCreateClone = {
-                        ...garageDataConfigCreate,
+                        ...this.contractDataConfigCreate,
                     } as any;
                     let dynamicComponent = [] as any[];
                     Object.keys(garageDataConfigCreateClone).map((a: any) => {
+                        if (garageDataConfigCreateClone[a].props) {
+                            garageDataConfigCreateClone[a].instanceKey =
+                                Date.now() +
+                                garageDataConfigCreateClone[a].field;
+                        }
+                        if (garageDataConfigCreateClone[a].setup) {
+                            garageDataConfigCreateClone[a].setup(
+                                garageDataConfigCreateClone[a].instanceKey,
+                            );
+                        }
                         garageDataConfigCreateClone[a].props.modelValue = "";
-                        // if (
-                        //     garageDataConfigCreateClone[a].group ==
-                        //         "parentInfo" &&
-                        //     garageDataConfigCreateClone[a].field !=
-                        //         "parentGarageId"
-                        // ) {
-                        //     garageDataConfigCreateClone[a].props.disabled =
-                        //         true;
-                        // } else {
-                        //     if (
-                        //         garageDataConfigCreateClone[a].group ==
-                        //         "garageInfor"
-                        //     ) {
-                        //         garageDataConfigCreateClone[a].props.disabled =
-                        //             false;
-                        //     }
-                        // }
                         dynamicComponent.push(garageDataConfigCreateClone[a]);
                     });
                     self.dialogConfig = {
