@@ -59,8 +59,8 @@
         },
         "contextActions": {
             "update": "Cập nhật",
-            "detail": "xem chi tiết",
-            "delete": "xóa",
+            "detail": "Xem chi tiết",
+            "delete": "Xóa",
             "accept": "Duyệt",
             "reject": "Từ chối phê duyệt"
         },
