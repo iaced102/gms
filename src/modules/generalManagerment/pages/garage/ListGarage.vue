@@ -51,6 +51,8 @@
                     </h1>
                     <CDMultipleRenderDynamicComponent
                         perItemClass="px-3"
+                        @onSearch="onSearch"
+                        @updateValue="({val, instanceKey}:any)=>updateValueDynamicComponent({val,instanceKey})"
                         :modelValue="
                             dialogConfig.dynamicComponent.filter(
                                 (a) => a.group == 'parentInfor',
@@ -69,6 +71,8 @@
                     </h1>
                     <CDMultipleRenderDynamicComponent
                         perItemClass="px-3"
+                        @uploadFile="onUploadFile"
+                        @onSearch="onSearch"
                         :modelValue="
                             dialogConfig.dynamicComponent.filter(
                                 (a) =>
@@ -95,7 +99,10 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { generalManagermentStore } from "../../store/index";
+import _cloneDeep from "lodash/cloneDeep";
+import { groupGarageStore } from "@/modules/groupGarage/store";
 const store = generalManagermentStore();
+const groupGarageStoreInstance = groupGarageStore();
 const displayCol = [
     "code",
     "name",
@@ -110,32 +117,122 @@ import {
     garageConfigEdit,
     garageConfigCreate,
 } from "../../data/index";
+const cloneGarageConfigCreate = _cloneDeep(garageConfigCreate);
 export default defineComponent({
     async created() {
         this.getDataForTable();
+        this.garageConfigCreate.parentGarageId.setup = (
+            instanceKey: string,
+        ) => {
+            this.getGroupGarage("", instanceKey);
+        };
+        this.garageConfigCreate.parentGarageId.onSearch = (
+            instanceKey: string,
+            val: string,
+        ) => {
+            this.getGroupGarage(val, instanceKey);
+        };
+        this.garageConfigCreate.parentGarageId.onUpdate = (
+            val: string,
+            instanceKey: string,
+        ) => {
+            this.onUpdateParentGarageId(val, instanceKey);
+        };
     },
     methods: {
+        async onUpdateParentGarageId(val: any, instanceKey: string) {
+            // let field = this.dialogConfig.dynamicComponent.find((a:any)=>a.instanceKey==instanceKey)
+            let res = await groupGarageStoreInstance.getGarageInforById(val);
+            console.log(res);
+            this.dialogConfig.dynamicComponent.map((a: any) => {
+                if (
+                    a.group == "parentInfor" &&
+                    res.data.hasOwnProperty(a.field)
+                ) {
+                    a.props.modelValue = res.data[a.field];
+                }
+            });
+        },
+        onSearch(instanceKey: string, val: string) {
+            let field = this.dialogConfig.dynamicComponent.find(
+                (a: any) => a.instanceKey == instanceKey,
+            );
+            console.log(instanceKey, val);
+            clearTimeout(this.timeOut[field.instanceKey]);
+            this.timeOut[field.instanceKey] = () => {
+                setTimeout(() => {
+                    console.log("on timeout");
+                    field.onSearch(instanceKey, val);
+                }, 1000);
+            };
+            this.timeOut[field.instanceKey]();
+        },
+        async getGroupGarage(val: string, instanceKey: any) {
+            if (val == "") {
+                let res = await groupGarageStoreInstance.getAllGarage({
+                    pageSize: 10,
+                    pageNumber: 1,
+                });
+                let field = this.dialogConfig.dynamicComponent.find(
+                    (a: any) => a.instanceKey == instanceKey,
+                );
+                field.props.options = res.data.map((a: any) => {
+                    return {
+                        id: a.id,
+                        value: a.id,
+                        text: a.name,
+                    };
+                });
+            } else {
+                let res = await groupGarageStoreInstance.getAllGarage({
+                    pageSize: 10,
+                    pageNumber: 1,
+                    name: val,
+                });
+                let field = this.dialogConfig.dynamicComponent.find(
+                    (a: any) => a.instanceKey == instanceKey,
+                );
+                field.props.options = res.data.map((a: any) => {
+                    return {
+                        id: a.id,
+                        value: a.id,
+                        text: a.name,
+                    };
+                });
+            }
+        },
+        async onUploadFile(instanceKey: string, val: any) {
+            console.log(instanceKey, val);
+            const f = val.target.files[0];
+            if (f) {
+                const reader = new FileReader();
+                reader.onload = function (evt: any) {
+                    const contents = evt.target.result;
+                    console.log(contents);
+                };
+                reader.readAsDataURL(f);
+                // args.fileList.push(f.name);
+                let config = this.dialogConfig.dynamicComponent.find((a) => {
+                    // if (a.props) {
+                    return a.instanceKey == instanceKey;
+                    // }
+                });
+                // let res = await store.getPresignUrl([f.name], "OTHER");
+                // console.log(res);
+                config.props.fileList.push(f.name);
+            }
+        },
         filter(config: any) {
             //console.log(config);
             this.pagination.currentPage = 1;
             this.getDataForTable(config);
         },
-        updateValueDynamicComponent(val: any, field: string) {
-            console.log(val, field);
-            debugger;
-            if (field == "provinceId") {
-                this.locationConfig.provinceId.value = val;
-            } else if (field == "districtId") {
-                this.locationConfig.districtId.value = val;
-            } else if (field == "wardId") {
-                this.locationConfig.wardId.value = val;
-            }
-            if (
-                field == "provinceId" ||
-                field == "districtId" ||
-                field == "wardId"
-            ) {
-                this.calculateAdressOption();
+        updateValueDynamicComponent({ val, instanceKey }: any) {
+            let field = this.dialogConfig.dynamicComponent.find(
+                (a: any) => a.instanceKey == instanceKey,
+            );
+            if (field.onUpdate) {
+                field.onUpdate(val, instanceKey);
             }
         },
         async calculateAdressOption() {
@@ -278,6 +375,8 @@ export default defineComponent({
     data() {
         let self = this as any;
         return {
+            timeOut: {} as any,
+            garageConfigCreate: cloneGarageConfigCreate as any,
             filterColumns: [
                 {
                     label: self.$t(
@@ -374,12 +473,22 @@ export default defineComponent({
                 currentPage: 1,
             },
             tableActions: {
-                action: () => {
+                action: async () => {
                     let garageDataConfigCreateClone = {
-                        ...garageConfigCreate,
+                        ..._cloneDeep(self.garageConfigCreate),
                     } as any;
                     let dynamicComponent = [] as any[];
                     Object.keys(garageDataConfigCreateClone).map((a) => {
+                        if (garageDataConfigCreateClone[a].props) {
+                            garageDataConfigCreateClone[a].instanceKey =
+                                Date.now() +
+                                garageDataConfigCreateClone[a].field;
+                        }
+                        if (garageDataConfigCreateClone[a].setup) {
+                            garageDataConfigCreateClone[a].setup(
+                                garageDataConfigCreateClone[a].instanceKey,
+                            );
+                        }
                         if (
                             garageDataConfigCreateClone[a].group ==
                                 "parentInfo" &&
@@ -521,6 +630,11 @@ export default defineComponent({
                         });
                         let dynamicComponent = [] as any[];
                         Object.keys(garageDataConfigEditClone).map((a) => {
+                            if (garageDataConfigEditClone[a].props) {
+                                garageDataConfigEditClone[a].instanceKey =
+                                    Date.now() +
+                                    garageDataConfigEditClone[a].field;
+                            }
                             if (
                                 garageDataConfigEditClone[a].group ==
                                     "parentInfo" &&
@@ -796,6 +910,11 @@ export default defineComponent({
                         });
                         let dynamicComponent = [] as any[];
                         Object.keys(garageDataConfigDetailClone).map((a) => {
+                            if (garageDataConfigDetailClone[a].props) {
+                                garageDataConfigDetailClone[a].instanceKey =
+                                    Date.now() +
+                                    garageDataConfigDetailClone[a].field;
+                            }
                             dynamicComponent.push(
                                 garageDataConfigDetailClone[a],
                             );

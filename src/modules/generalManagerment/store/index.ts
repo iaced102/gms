@@ -6,6 +6,7 @@ import {
     getAddressInfo,
     getAddressDetail,
     getAllRescues,
+    getPresignUrl,
     // getListSubSystem,
     updateGarage,
     createGarage,
@@ -97,6 +98,20 @@ export const generalManagermentStore = defineStore("g", {
         },
         async updateGarage(query: any, id: string): Promise<any> {
             const res = await updateGarage(id, query);
+
+            return this.filterResponse(
+                res,
+                (data: any) => {
+                    this.overviewData = data;
+                },
+                () => {},
+            );
+        },
+        async getPresignUrl(
+            fileNames: string[],
+            uploadType: string,
+        ): Promise<any> {
+            const res = await getPresignUrl(fileNames, uploadType);
 
             return this.filterResponse(
                 res,
