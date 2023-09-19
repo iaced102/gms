@@ -1,5 +1,5 @@
 import { garageService } from "@/utils/request";
-import { contentService } from "@/utils/request";
+import { contentService, chatService } from "@/utils/request";
 
 export function getAllGarage(data: any) {
     return garageService({
@@ -154,5 +154,22 @@ export function getAllRescues(data: any) {
         url: "rescues",
         method: "get",
         params: data,
+    });
+}
+
+export function getPresignUrl(fileNames: string[], uploadType: string) {
+    let data = {
+        fileNames: fileNames,
+        uploadType: uploadType,
+    };
+    return chatService({
+        uri: "minio/storage/presign",
+        method: "post",
+        // headers: {
+        //     "Access-Control-Allow-Origin": "*",
+        //     "Content-Type": "application/json",
+        //     "Access-Control-Allow-Credentials": true,
+        // },
+        data: data,
     });
 }

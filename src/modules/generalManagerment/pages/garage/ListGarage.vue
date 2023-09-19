@@ -69,6 +69,7 @@
                     </h1>
                     <CDMultipleRenderDynamicComponent
                         perItemClass="px-3"
+                        @uploadFile="onUploadFile"
                         :modelValue="
                             dialogConfig.dynamicComponent.filter(
                                 (a) =>
@@ -95,7 +96,10 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { generalManagermentStore } from "../../store/index";
+import cloneDeep from "lodash";
+import { groupGarageStore } from "@/modules/groupGarage/store";
 const store = generalManagermentStore();
+const groupGarageStoreInstance = groupGarageStore();
 const displayCol = [
     "code",
     "name",
@@ -110,11 +114,51 @@ import {
     garageConfigEdit,
     garageConfigCreate,
 } from "../../data/index";
+const cloneGarageConfigCreate = cloneDeep(garageConfigCreate);
 export default defineComponent({
     async created() {
         this.getDataForTable();
+        this.garageConfigCreate.parentGarageId.setup = (context: any) => {
+            this.getGroupGarage("", context);
+        };
     },
     methods: {
+        async getGroupGarage(val: string, context: any) {
+            if (val != "") {
+                let res = await groupGarageStoreInstance.getAllGarage({
+                    pageSize: 10,
+                    pageNumber: 1,
+                });
+                context.props.options = res.data;
+            } else {
+                let res = await groupGarageStoreInstance.getAllGarage({
+                    pageSize: 10,
+                    pageNumber: 1,
+                });
+                context.props.options = res.data;
+            }
+        },
+        async onUploadFile(instanceKey: string, val: any) {
+            console.log(instanceKey, val);
+            const f = val.target.files[0];
+            if (f) {
+                const reader = new FileReader();
+                reader.onload = function (evt: any) {
+                    const contents = evt.target.result;
+                    console.log(contents);
+                };
+                reader.readAsDataURL(f);
+                // args.fileList.push(f.name);
+                let config = this.dialogConfig.dynamicComponent.find((a) => {
+                    // if (a.props) {
+                    return a.instanceKey == instanceKey;
+                    // }
+                });
+                // let res = await store.getPresignUrl([f.name], "OTHER");
+                // console.log(res);
+                config.props.fileList.push(f.name);
+            }
+        },
         filter(config: any) {
             //console.log(config);
             this.pagination.currentPage = 1;
@@ -278,6 +322,7 @@ export default defineComponent({
     data() {
         let self = this as any;
         return {
+            garageConfigCreate: cloneGarageConfigCreate as any,
             filterColumns: [
                 {
                     label: self.$t(
@@ -380,6 +425,11 @@ export default defineComponent({
                     } as any;
                     let dynamicComponent = [] as any[];
                     Object.keys(garageDataConfigCreateClone).map((a) => {
+                        if (garageDataConfigCreateClone[a].props) {
+                            garageDataConfigCreateClone[a].instanceKey =
+                                Date.now() +
+                                garageDataConfigCreateClone[a].field;
+                        }
                         if (
                             garageDataConfigCreateClone[a].group ==
                                 "parentInfo" &&
@@ -521,6 +571,11 @@ export default defineComponent({
                         });
                         let dynamicComponent = [] as any[];
                         Object.keys(garageDataConfigEditClone).map((a) => {
+                            if (garageDataConfigEditClone[a].props) {
+                                garageDataConfigEditClone[a].instanceKey =
+                                    Date.now() +
+                                    garageDataConfigEditClone[a].field;
+                            }
                             if (
                                 garageDataConfigEditClone[a].group ==
                                     "parentInfo" &&
@@ -796,6 +851,11 @@ export default defineComponent({
                         });
                         let dynamicComponent = [] as any[];
                         Object.keys(garageDataConfigDetailClone).map((a) => {
+                            if (garageDataConfigDetailClone[a].props) {
+                                garageDataConfigDetailClone[a].instanceKey =
+                                    Date.now() +
+                                    garageDataConfigDetailClone[a].field;
+                            }
                             dynamicComponent.push(
                                 garageDataConfigDetailClone[a],
                             );

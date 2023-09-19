@@ -59,11 +59,42 @@ export const codeMessage = {
 export const service = (baseURL: string) => {
     return axios.create({
         baseURL: baseURL,
-        timeout: 15000,
     });
 };
 export const garageService = service(import.meta.env.VITE_GARAGE_SERVICE);
 export const contentService = service(import.meta.env.VITE_CONTENT_API);
+export const chatService = ({ uri, method, headers, data }: any) => {
+    let defaultHeaders = {};
+    headers = Object.assign(defaultHeaders, headers);
+    let url = import.meta.env.VITE_CHAT_SERVICE + uri;
+    let res = {};
+    /**
+     * Hàm check nếu gọi api từ worker thì thêm 1 hàm mới gọi từ đó
+     */
+    try {
+        if (self.window) {
+            let queryData = {};
+            if (method == "GET") {
+                queryData = data;
+                return (res = axios({
+                    method: "get",
+                    url: url,
+                    params: queryData,
+                }));
+            }
+            return (res = axios({
+                method: method.toLocaleLowerCase(),
+
+                url: url,
+                data: data,
+            }));
+        } else {
+        }
+    } catch (error) {
+        throw error;
+    }
+    return res;
+};
 //  axios.create({
 //   baseURL: import.meta.env.GARAGE_SERVICE,
 //   timeout: 15000
