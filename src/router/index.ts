@@ -20,7 +20,7 @@ router.beforeEach((to, from, next) => {
     for (let i = 0; i < wordslength; i++) {
         words[i] = words[i][0].toUpperCase() + words[i].substr(1);
     }
-    document.title = "Dashcode  - " + words;
+    document.title = "GMS  - " + words;
 
     /** Navigate to next if middleware is not applied */
     if (!to.meta.middleware) {

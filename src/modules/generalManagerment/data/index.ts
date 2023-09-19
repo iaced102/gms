@@ -1188,8 +1188,20 @@ export const garageConfigCreate = {
     },
     images: {
         field: "images",
-        value: [],
-        static: true,
+        type: "CDFileUpload",
+        group: "garageInfor",
+        showForDetail: true,
+        props: {
+            label: $t(
+                "module.generalManagerment.garage.dialogColumnTable.images",
+            ),
+            modelValue: [],
+            fileList: [],
+            disabled: true,
+            placeholder: $t(
+                "module.generalManagerment.garage.dialogColumnTable.images",
+            ),
+        },
     },
     carSubSystems: {
         field: "carSubSystems",

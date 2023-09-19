@@ -12,6 +12,7 @@
             "contractFromDate": "Hiệu lực từ ngày",
             "contractToDate": "Hiệu lực đến ngày",
             "status": "Trạng thái",
+            "garageName": "Tên Gara",
             "action": "Hành động"
         },
         "dialogColumnTable": {

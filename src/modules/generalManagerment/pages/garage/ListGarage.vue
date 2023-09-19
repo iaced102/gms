@@ -242,33 +242,35 @@ export default defineComponent({
         "dialogConfig.dynamicComponent": {
             deep: true,
             handler(newVal: any, old: any) {
-                console.log(newVal, old);
-                let newProvinceId = newVal.find(
-                    (a: any) => a.field == "provinceId",
-                );
-                let oldProvinceId = this.locationConfig.provinceId.value;
-                if (
-                    newProvinceId &&
-                    newProvinceId.props.modelValue &&
-                    newProvinceId.props.modelValue != oldProvinceId
-                ) {
-                    console.log("asdjlfkjalskdjf");
-                    this.locationConfig.provinceId.value =
-                        newProvinceId.props.modelValue;
-                    this.calculateAdressOption();
-                }
-                let newDistrcitId = newVal.find(
-                    (a: any) => a.field == "districtId",
-                );
-                let oldDistrcitId = this.locationConfig.districtId.value;
-                if (
-                    newDistrcitId &&
-                    newDistrcitId.props.modelValue &&
-                    newDistrcitId.props.modelValue != oldDistrcitId
-                ) {
-                    this.locationConfig.districtId.value =
-                        newDistrcitId.props.modelValue;
-                    this.calculateAdressOption();
+                if (newVal && newVal.length) {
+                    console.log(newVal, old);
+                    let newProvinceId = newVal.find(
+                        (a: any) => a.field == "provinceId",
+                    );
+                    let oldProvinceId = this.locationConfig.provinceId.value;
+                    if (
+                        newProvinceId &&
+                        newProvinceId.props.modelValue &&
+                        newProvinceId.props.modelValue != oldProvinceId
+                    ) {
+                        console.log("asdjlfkjalskdjf");
+                        this.locationConfig.provinceId.value =
+                            newProvinceId.props.modelValue;
+                        this.calculateAdressOption();
+                    }
+                    let newDistrcitId = newVal.find(
+                        (a: any) => a.field == "districtId",
+                    );
+                    let oldDistrcitId = this.locationConfig.districtId.value;
+                    if (
+                        newDistrcitId &&
+                        newDistrcitId.props.modelValue &&
+                        newDistrcitId.props.modelValue != oldDistrcitId
+                    ) {
+                        this.locationConfig.districtId.value =
+                            newDistrcitId.props.modelValue;
+                        this.calculateAdressOption();
+                    }
                 }
             },
         },
@@ -810,43 +812,43 @@ export default defineComponent({
                         };
                     },
                 },
-                {
-                    icon: "EllipsisVerticalIcon",
-                    name: self.$t(
-                        "module.generalManagerment.garage.contextActions.delete",
-                    ),
-                    action: (params: any) => {
-                        self.dialogConfig = {
-                            show: true,
-                            title: self.$t(
-                                "module.generalManagerment.garage.dialog.deleteGarageTitle",
-                            ),
-                            content: self.$t(
-                                "module.generalManagerment.garage.dialog.deleteGarageContent",
-                            ),
-                            actions: [
-                                {
-                                    class: "inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
-                                    name: self.$t(
-                                        "module.generalManagerment.garage.dialog.deleteConfirm",
-                                    ),
-                                    action: () => {
-                                        self.dialogConfig = false;
-                                    },
-                                },
-                                {
-                                    class: "inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
-                                    name: self.$t(
-                                        "module.generalManagerment.garage.dialog.cancel",
-                                    ),
-                                    action: () => {
-                                        self.dialogConfig = false;
-                                    },
-                                },
-                            ],
-                        };
-                    },
-                },
+                // {
+                //     icon: "EllipsisVerticalIcon",
+                //     name: self.$t(
+                //         "module.generalManagerment.garage.contextActions.delete",
+                //     ),
+                //     action: (params: any) => {
+                //         self.dialogConfig = {
+                //             show: true,
+                //             title: self.$t(
+                //                 "module.generalManagerment.garage.dialog.deleteGarageTitle",
+                //             ),
+                //             content: self.$t(
+                //                 "module.generalManagerment.garage.dialog.deleteGarageContent",
+                //             ),
+                //             actions: [
+                //                 {
+                //                     class: "inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
+                //                     name: self.$t(
+                //                         "module.generalManagerment.garage.dialog.deleteConfirm",
+                //                     ),
+                //                     action: () => {
+                //                         self.dialogConfig = false;
+                //                     },
+                //                 },
+                //                 {
+                //                     class: "inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
+                //                     name: self.$t(
+                //                         "module.generalManagerment.garage.dialog.cancel",
+                //                     ),
+                //                     action: () => {
+                //                         self.dialogConfig = false;
+                //                     },
+                //                 },
+                //             ],
+                //         };
+                //     },
+                // },
                 {
                     icon: "ArchiveBoxIcon",
                     name: self.$t(
