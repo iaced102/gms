@@ -51,6 +51,8 @@
                     </h1>
                     <CDMultipleRenderDynamicComponent
                         perItemClass="px-3"
+                        @onSearch="onSearch"
+                        @updateValue="({val, instanceKey}:any)=>updateValueDynamicComponent({val,instanceKey})"
                         :modelValue="
                             dialogConfig.dynamicComponent.filter(
                                 (a) => a.group == 'parentInfor',
@@ -70,6 +72,7 @@
                     <CDMultipleRenderDynamicComponent
                         perItemClass="px-3"
                         @uploadFile="onUploadFile"
+                        @onSearch="onSearch"
                         :modelValue="
                             dialogConfig.dynamicComponent.filter(
                                 (a) =>
@@ -96,7 +99,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { generalManagermentStore } from "../../store/index";
-import cloneDeep from "lodash";
+import _cloneDeep from "lodash/cloneDeep";
 import { groupGarageStore } from "@/modules/groupGarage/store";
 const store = generalManagermentStore();
 const groupGarageStoreInstance = groupGarageStore();
@@ -114,28 +117,88 @@ import {
     garageConfigEdit,
     garageConfigCreate,
 } from "../../data/index";
-const cloneGarageConfigCreate = cloneDeep(garageConfigCreate);
+const cloneGarageConfigCreate = _cloneDeep(garageConfigCreate);
 export default defineComponent({
     async created() {
         this.getDataForTable();
-        this.garageConfigCreate.parentGarageId.setup = (context: any) => {
-            this.getGroupGarage("", context);
+        this.garageConfigCreate.parentGarageId.setup = (
+            instanceKey: string,
+        ) => {
+            this.getGroupGarage("", instanceKey);
+        };
+        this.garageConfigCreate.parentGarageId.onSearch = (
+            instanceKey: string,
+            val: string,
+        ) => {
+            this.getGroupGarage(val, instanceKey);
+        };
+        this.garageConfigCreate.parentGarageId.onUpdate = (
+            val: string,
+            instanceKey: string,
+        ) => {
+            this.onUpdateParentGarageId(val, instanceKey);
         };
     },
     methods: {
-        async getGroupGarage(val: string, context: any) {
-            if (val != "") {
+        async onUpdateParentGarageId(val: any, instanceKey: string) {
+            // let field = this.dialogConfig.dynamicComponent.find((a:any)=>a.instanceKey==instanceKey)
+            let res = await groupGarageStoreInstance.getGarageInforById(val);
+            console.log(res);
+            this.dialogConfig.dynamicComponent.map((a: any) => {
+                if (
+                    a.group == "parentInfor" &&
+                    res.data.hasOwnProperty(a.field)
+                ) {
+                    a.props.modelValue = res.data[a.field];
+                }
+            });
+        },
+        onSearch(instanceKey: string, val: string) {
+            let field = this.dialogConfig.dynamicComponent.find(
+                (a: any) => a.instanceKey == instanceKey,
+            );
+            console.log(instanceKey, val);
+            clearTimeout(this.timeOut[field.instanceKey]);
+            this.timeOut[field.instanceKey] = () => {
+                setTimeout(() => {
+                    console.log("on timeout");
+                    field.onSearch(instanceKey, val);
+                }, 1000);
+            };
+            this.timeOut[field.instanceKey]();
+        },
+        async getGroupGarage(val: string, instanceKey: any) {
+            if (val == "") {
                 let res = await groupGarageStoreInstance.getAllGarage({
                     pageSize: 10,
                     pageNumber: 1,
                 });
-                context.props.options = res.data;
+                let field = this.dialogConfig.dynamicComponent.find(
+                    (a: any) => a.instanceKey == instanceKey,
+                );
+                field.props.options = res.data.map((a: any) => {
+                    return {
+                        id: a.id,
+                        value: a.id,
+                        text: a.name,
+                    };
+                });
             } else {
                 let res = await groupGarageStoreInstance.getAllGarage({
                     pageSize: 10,
                     pageNumber: 1,
+                    name: val,
                 });
-                context.props.options = res.data;
+                let field = this.dialogConfig.dynamicComponent.find(
+                    (a: any) => a.instanceKey == instanceKey,
+                );
+                field.props.options = res.data.map((a: any) => {
+                    return {
+                        id: a.id,
+                        value: a.id,
+                        text: a.name,
+                    };
+                });
             }
         },
         async onUploadFile(instanceKey: string, val: any) {
@@ -164,22 +227,12 @@ export default defineComponent({
             this.pagination.currentPage = 1;
             this.getDataForTable(config);
         },
-        updateValueDynamicComponent(val: any, field: string) {
-            console.log(val, field);
-            debugger;
-            if (field == "provinceId") {
-                this.locationConfig.provinceId.value = val;
-            } else if (field == "districtId") {
-                this.locationConfig.districtId.value = val;
-            } else if (field == "wardId") {
-                this.locationConfig.wardId.value = val;
-            }
-            if (
-                field == "provinceId" ||
-                field == "districtId" ||
-                field == "wardId"
-            ) {
-                this.calculateAdressOption();
+        updateValueDynamicComponent({ val, instanceKey }: any) {
+            let field = this.dialogConfig.dynamicComponent.find(
+                (a: any) => a.instanceKey == instanceKey,
+            );
+            if (field.onUpdate) {
+                field.onUpdate(val, instanceKey);
             }
         },
         async calculateAdressOption() {
@@ -322,6 +375,7 @@ export default defineComponent({
     data() {
         let self = this as any;
         return {
+            timeOut: {} as any,
             garageConfigCreate: cloneGarageConfigCreate as any,
             filterColumns: [
                 {
@@ -419,9 +473,9 @@ export default defineComponent({
                 currentPage: 1,
             },
             tableActions: {
-                action: () => {
+                action: async () => {
                     let garageDataConfigCreateClone = {
-                        ...garageConfigCreate,
+                        ..._cloneDeep(self.garageConfigCreate),
                     } as any;
                     let dynamicComponent = [] as any[];
                     Object.keys(garageDataConfigCreateClone).map((a) => {
@@ -429,6 +483,11 @@ export default defineComponent({
                             garageDataConfigCreateClone[a].instanceKey =
                                 Date.now() +
                                 garageDataConfigCreateClone[a].field;
+                        }
+                        if (garageDataConfigCreateClone[a].setup) {
+                            garageDataConfigCreateClone[a].setup(
+                                garageDataConfigCreateClone[a].instanceKey,
+                            );
                         }
                         if (
                             garageDataConfigCreateClone[a].group ==

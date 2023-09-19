@@ -912,7 +912,7 @@ export const garageConfigEdit = {
 export const garageConfigCreate = {
     parentGarageId: {
         field: "parentGarageId",
-        type: "CDInput",
+        type: "CDComboBox",
         group: "parentInfor",
         showForDetail: true,
         props: {
@@ -922,6 +922,86 @@ export const garageConfigCreate = {
             modelValue: "",
             placeholder: $t(
                 "module.generalManagerment.garage.dialogColumnTable.parentGarageId",
+            ),
+            options: [],
+        },
+    },
+    parentGarageName: {
+        type: "CDInput",
+        group: "parentInfor",
+        field: "parentGarageName",
+        showForDetail: true,
+        props: {
+            label: $t(
+                "module.generalManagerment.garage.dialogColumnTable.parentGarageName",
+            ),
+            modelValue: "",
+            disabled: true,
+            placeholder: $t(
+                "module.generalManagerment.garage.dialogColumnTable.parentGarageName",
+            ),
+        },
+    },
+    taxCode: {
+        type: "CDInput",
+        group: "parentInfor",
+        field: "taxCode",
+        showForDetail: true,
+        props: {
+            label: $t(
+                "module.generalManagerment.garage.dialogColumnTable.taxCode",
+            ),
+            modelValue: "",
+            disabled: true,
+            placeholder: $t(
+                "module.generalManagerment.garage.dialogColumnTable.taxCode",
+            ),
+        },
+    },
+    phone: {
+        field: "phone",
+        type: "CDInput",
+        group: "parentInfor",
+        props: {
+            label: $t(
+                "module.generalManagerment.garage.dialogColumnTable.phone",
+            ),
+            modelValue: "",
+            disabled: true,
+            placeholder: $t(
+                "module.generalManagerment.garage.dialogColumnTable.phone",
+            ),
+        },
+    },
+    website: {
+        field: "website",
+        type: "CDInput",
+        group: "parentInfor",
+        showForDetail: true,
+        props: {
+            label: $t(
+                "module.generalManagerment.garage.dialogColumnTable.website",
+            ),
+            modelValue: "",
+            disabled: true,
+            placeholder: $t(
+                "module.generalManagerment.garage.dialogColumnTable.website",
+            ),
+        },
+    },
+    status: {
+        field: "status",
+        type: "CDInput",
+        group: "parentInfor",
+        showForDetail: true,
+        props: {
+            label: $t(
+                "module.generalManagerment.garage.dialogColumnTable.status",
+            ),
+            modelValue: "",
+            disabled: true,
+            placeholder: $t(
+                "module.generalManagerment.garage.dialogColumnTable.status",
             ),
         },
     },
