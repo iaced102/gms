@@ -929,7 +929,7 @@ export const garageConfigCreate = {
     parentGarageName: {
         type: "CDInput",
         group: "parentInfor",
-        field: "parentGarageName",
+        field: "name",
         showForDetail: true,
         props: {
             label: $t(
@@ -1266,23 +1266,6 @@ export const garageConfigCreate = {
             ),
         },
     },
-    images: {
-        field: "images",
-        type: "CDFileUpload",
-        group: "garageInfor",
-        showForDetail: true,
-        props: {
-            label: $t(
-                "module.generalManagerment.garage.dialogColumnTable.images",
-            ),
-            modelValue: [],
-            fileList: [],
-            disabled: true,
-            placeholder: $t(
-                "module.generalManagerment.garage.dialogColumnTable.images",
-            ),
-        },
-    },
     carSubSystems: {
         field: "carSubSystems",
         value: [],
@@ -1306,6 +1289,23 @@ export const garageConfigCreate = {
             disabled: true,
             placeholder: $t(
                 "module.generalManagerment.garage.dialogColumnTable.closeTime",
+            ),
+        },
+    },
+    images: {
+        field: "images",
+        type: "CDFileUpload",
+        group: "garageInfor",
+        showForDetail: true,
+        props: {
+            label: $t(
+                "module.generalManagerment.garage.dialogColumnTable.images",
+            ),
+            modelValue: [],
+            fileList: [],
+            disabled: true,
+            placeholder: $t(
+                "module.generalManagerment.garage.dialogColumnTable.images",
             ),
         },
     },
