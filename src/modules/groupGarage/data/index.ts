@@ -71,6 +71,8 @@ export const garageDataConfigDetail = {
         field: "parentGarageId",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.groupGarage.groupGarage.columnTable.parentGarageId",
             ),
@@ -86,6 +88,8 @@ export const garageDataConfigDetail = {
         field: "parentGarageName",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.groupGarage.groupGarage.columnTable.parentGarageName",
             ),
@@ -102,6 +106,8 @@ export const garageDataConfigDetail = {
         field: "taxCode",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t("module.groupGarage.groupGarage.columnTable.taxCode"),
             modelValue: "",
             disabled: true,
@@ -115,6 +121,8 @@ export const garageDataConfigDetail = {
         type: "CDInput",
         group: "parentInfor",
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t("module.groupGarage.groupGarage.columnTable.phone"),
             modelValue: "",
             disabled: true,
@@ -127,6 +135,8 @@ export const garageDataConfigDetail = {
         group: "parentInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t("module.groupGarage.groupGarage.columnTable.website"),
             modelValue: "",
             disabled: true,
@@ -141,6 +151,8 @@ export const garageDataConfigDetail = {
         group: "parentInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t("module.groupGarage.groupGarage.columnTable.status"),
             modelValue: "",
             disabled: true,
@@ -155,6 +167,8 @@ export const garageDataConfigDetail = {
         group: "parentInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t("module.groupGarage.groupGarage.columnTable.mail"),
             modelValue: "",
             disabled: true,
@@ -168,6 +182,8 @@ export const garageDataConfigDetail = {
         hidden: true,
         showForDetail: false,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t("module.groupGarage.groupGarage.columnTable.images"),
             modelValue: "",
             fileList: [],
@@ -183,6 +199,8 @@ export const garageDataConfigDetail = {
         group: "garageInfor",
         showForDetail: false,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t("module.groupGarage.groupGarage.columnTable.images"),
             modelValue: [],
             fileList: [],
@@ -197,7 +215,16 @@ export const garageDataConfigDetail = {
         type: "CDInput",
         group: "garageInfor",
         showForDetail: true,
+        validator: (val: string) => {
+            if (val == "") {
+                return $t(
+                    "module.groupGarage.groupGarage.validator.nameCannotBeEmpty",
+                );
+            }
+        },
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t("module.groupGarage.groupGarage.columnTable.name"),
             modelValue: "",
             placeholder: $t("module.groupGarage.groupGarage.columnTable.name"),
@@ -209,6 +236,8 @@ export const garageDataConfigDetail = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.groupGarage.groupGarage.columnTable.contactPointName",
             ),
@@ -224,6 +253,8 @@ export const garageDataConfigDetail = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.groupGarage.groupGarage.columnTable.contactPointPhone",
             ),
@@ -239,6 +270,8 @@ export const garageDataConfigDetail = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t("module.groupGarage.groupGarage.columnTable.latitude"),
             modelValue: "",
             placeholder: $t(
@@ -252,6 +285,8 @@ export const garageDataConfigDetail = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t("module.groupGarage.groupGarage.columnTable.longitude"),
             modelValue: "",
             placeholder: $t(
@@ -265,6 +300,8 @@ export const garageDataConfigDetail = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: [],
             label: $t("module.groupGarage.groupGarage.columnTable.provinceId"),
             modelValue: undefined,
@@ -279,6 +316,8 @@ export const garageDataConfigDetail = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: [],
             label: $t("module.groupGarage.groupGarage.columnTable.districtId"),
             modelValue: undefined,
@@ -293,6 +332,8 @@ export const garageDataConfigDetail = {
         showForDetail: true,
         group: "garageInfor",
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: [],
             label: $t("module.groupGarage.groupGarage.columnTable.wardId"),
             modelValue: undefined,
@@ -307,6 +348,8 @@ export const garageDataConfigDetail = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: [],
             label: $t("module.groupGarage.groupGarage.columnTable.address"),
             modelValue: undefined,
@@ -321,6 +364,8 @@ export const garageDataConfigDetail = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: [],
             label: $t(
                 "module.groupGarage.groupGarage.columnTable.contractFromDate",
@@ -338,6 +383,8 @@ export const garageDataConfigDetail = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: contractStatusOptions,
             label: $t(
                 "module.groupGarage.groupGarage.columnTable.contractStatus",
@@ -355,6 +402,8 @@ export const garageDataConfigDetail = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: RecueOptions,
             label: $t("module.groupGarage.groupGarage.columnTable.rescue"),
             modelValue: undefined,
@@ -370,6 +419,8 @@ export const garageDataConfigDetail = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: isSupportAllTimeOptions,
             label: $t(
                 "module.groupGarage.groupGarage.columnTable.isSupportAllTime",
@@ -387,6 +438,8 @@ export const garageDataConfigDetail = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: isVerifiedOptions,
             label: $t("module.groupGarage.groupGarage.columnTable.isVerified"),
             modelValue: undefined,
@@ -402,6 +455,8 @@ export const garageDataConfigDetail = {
         field: "openTime",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             title: $t("module.groupGarage.groupGarage.columnTable.openTime"),
             modelValue: "",
             disabled: true,
@@ -416,6 +471,8 @@ export const garageDataConfigDetail = {
         field: "closeTime",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             title: $t("module.groupGarage.groupGarage.columnTable.closeTime"),
             modelValue: "",
             disabled: true,
@@ -430,6 +487,8 @@ export const garageDataConfigDetail = {
         field: "description",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t("module.groupGarage.groupGarage.columnTable.description"),
             modelValue: "",
             disabled: true,
@@ -456,8 +515,18 @@ export const garageConfigEdit = {
         field: "name",
         type: "CDInput",
         group: "garageInfor",
+        validator: (val: string) => {
+            if (!val) {
+                return $t(
+                    "module.groupGarage.groupGarage.validator.nameCannotBeEmpty",
+                );
+            }
+        },
         showForDetail: true,
         props: {
+            isRequired: true,
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             disabled: true,
             label: $t("module.groupGarage.groupGarage.columnTable.name"),
             modelValue: "",
@@ -470,6 +539,8 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             disabled: true,
             label: $t("module.groupGarage.groupGarage.columnTable.taxCode"),
             modelValue: "",
@@ -484,6 +555,8 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             disabled: true,
             label: $t(
                 "module.groupGarage.groupGarage.columnTable.garageOwnerName",
@@ -500,6 +573,8 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             disabled: true,
             label: $t("module.groupGarage.groupGarage.columnTable.website"),
             modelValue: "",
@@ -529,6 +604,8 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             disabled: true,
             options: [],
             label: $t("module.generalManagerment.garage.columnTable.address"),
@@ -544,6 +621,8 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             disabled: true,
             label: $t(
                 "module.groupGarage.groupGarage.columnTable.garageOwnerPhone",
@@ -596,7 +675,17 @@ export const garageConfigCreate = {
         type: "CDInput",
         group: "garageInfor",
         showForDetail: true,
+        validator: (val: string) => {
+            if (val == "") {
+                return $t(
+                    "module.groupGarage.groupGarage.validator.nameCannotBeEmpty",
+                );
+            }
+        },
         props: {
+            isRequired: true,
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             disabled: true,
             label: $t("module.groupGarage.groupGarage.columnTable.name"),
             modelValue: "",
@@ -609,6 +698,8 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             disabled: true,
             label: $t("module.groupGarage.groupGarage.columnTable.taxCode"),
             modelValue: "",
@@ -623,6 +714,8 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             disabled: true,
             label: $t(
                 "module.groupGarage.groupGarage.columnTable.garageOwnerName",
@@ -639,6 +732,8 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             disabled: true,
             label: $t("module.groupGarage.groupGarage.columnTable.website"),
             modelValue: "",
@@ -668,6 +763,8 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             disabled: true,
             options: [],
             label: $t("module.generalManagerment.garage.columnTable.address"),
@@ -683,6 +780,8 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             disabled: true,
             label: $t(
                 "module.groupGarage.groupGarage.columnTable.garageOwnerPhone",

@@ -9,6 +9,9 @@
             :columns="columns"
             :forStatus="true"
             :forActions="true"
+            @filter="filter"
+            :filterColumns="filterColumns"
+            :forFilter="true"
             positionDropdownClass="right-[40px] bottom-[-65px]"
             :contextActions="contextActions"
             :pagination="pagination"
@@ -31,6 +34,9 @@
                     : 'w-96'
             }`"
         >
+            <template #title>
+                <h1 class="pb-5 border-b text-2xl">{{ dialogConfig.title }}</h1>
+            </template>
             <template
                 v-if="
                     dialogConfig.dynamicComponent &&
@@ -38,26 +44,8 @@
                 "
                 #content
             >
-                <!-- <div>
-                    <h1>
-                        {{
-                            $t(
-                                "module.groupGarage.groupGarage.dialog.parentInfor",
-                            )
-                        }}
-                    </h1>
-                    <CDMultipleRenderDynamicComponent
-                        perItemClass="px-3"
-                        :modelValue="
-                            dialogConfig.dynamicComponent.filter(
-                                (a) => a.group == 'parentInfor',
-                            )
-                        "
-                    />
-                </div> -->
-
                 <div class="mt-7">
-                    <h1>
+                    <h1 class="text-lg ml-2 mt-4">
                         {{
                             $t(
                                 "module.groupGarage.groupGarage.dialog.garaInfor",
@@ -65,7 +53,8 @@
                         }}
                     </h1>
                     <CDMultipleRenderDynamicComponent
-                        perItemClass="px-3"
+                        perItemClass="px-3 py-6 border-b"
+                        commonClass="flex align-center"
                         :modelValue="
                             dialogConfig.dynamicComponent.filter(
                                 (a) =>
@@ -107,24 +96,11 @@ export default defineComponent({
         this.getDataForTable();
     },
     methods: {
-        // updateValueDynamicComponent(val: any, field: string) {
-        //     console.log(val, field);
-        //     debugger;
-        //     if (field == "provinceId") {
-        //         this.locationConfig.provinceId.value = val;
-        //     } else if (field == "districtId") {
-        //         this.locationConfig.districtId.value = val;
-        //     } else if (field == "wardId") {
-        //         this.locationConfig.wardId.value = val;
-        //     }
-        //     if (
-        //         field == "provinceId" ||
-        //         field == "districtId" ||
-        //         field == "wardId"
-        //     ) {
-        //         this.calculateAdressOption();
-        //     }
-        // },
+        filter(config: any) {
+            //console.log(config);
+            this.pagination.currentPage = 1;
+            this.getDataForTable(config);
+        },
         async calculateAdressOption() {
             let res: any = await store.getAddressInfo({
                 provinceId: !this.locationConfig.provinceId.value
@@ -190,12 +166,13 @@ export default defineComponent({
             this.pagination.currentPage = val.currentPage;
             this.getDataForTable();
         },
-        async getDataForTable() {
+        async getDataForTable(config: any = {}) {
             let self = this;
             this.rowData = [];
             let res = await store.getAllGarage({
                 pageSize: this.pagination.perPage,
                 pageNumber: this.pagination.currentPage,
+                ...config,
             });
 
             this.rowData = res.data.map((a: any) => {
@@ -224,44 +201,51 @@ export default defineComponent({
             this.pagination.total = res.totalElement;
         },
     },
-    watch: {
-        // "dialogConfig.dynamicComponent": {
-        //     deep: true,
-        //     handler(newVal: any, old: any) {
-        //         console.log(newVal, old);
-        //         let newProvinceId = newVal.find(
-        //             (a: any) => a.field == "provinceId",
-        //         );
-        //         let oldProvinceId = this.locationConfig.provinceId.value;
-        //         if (
-        //             newProvinceId &&
-        //             newProvinceId.props.modelValue &&
-        //             newProvinceId.props.modelValue != oldProvinceId
-        //         ) {
-        //             console.log("asdjlfkjalskdjf");
-        //             this.locationConfig.provinceId.value =
-        //                 newProvinceId.props.modelValue;
-        //             this.calculateAdressOption();
-        //         }
-        //         let newDistrcitId = newVal.find(
-        //             (a: any) => a.field == "districtId",
-        //         );
-        //         let oldDistrcitId = this.locationConfig.districtId.value;
-        //         if (
-        //             newDistrcitId &&
-        //             newDistrcitId.props.modelValue &&
-        //             newDistrcitId.props.modelValue != oldDistrcitId
-        //         ) {
-        //             this.locationConfig.districtId.value =
-        //                 newDistrcitId.props.modelValue;
-        //             this.calculateAdressOption();
-        //         }
-        //     },
-        // },
-    },
+    watch: {},
     data() {
         let self = this as any;
         return {
+            filterColumns: [
+                {
+                    label: self.$t(
+                        "module.groupGarage.groupGarage.filterColumn.code",
+                    ),
+                    value: "code",
+                },
+                {
+                    label: self.$t(
+                        "module.groupGarage.groupGarage.filterColumn.name",
+                    ),
+                    value: "name",
+                },
+                {
+                    label: self.$t(
+                        "module.groupGarage.groupGarage.filterColumn.status",
+                    ),
+                    value: "status",
+                    type: "CDSelect",
+                    options: [
+                        {
+                            id: 1,
+                            value: self.$t(
+                                "module.groupGarage.groupGarage.status.1",
+                            ),
+                        },
+                        {
+                            id: 2,
+                            value: self.$t(
+                                "module.groupGarage.groupGarage.status.2",
+                            ),
+                        },
+                        {
+                            id: 3,
+                            value: self.$t(
+                                "module.groupGarage.groupGarage.status.3",
+                            ),
+                        },
+                    ],
+                },
+            ],
             multipleRowActions: [
                 {
                     icon: "EllipsisVerticalIcon",
@@ -393,6 +377,27 @@ export default defineComponent({
                                     "module.groupGarage.groupGarage.dialog.createGarage",
                                 ),
                                 action: async () => {
+                                    let isValidate = true;
+                                    self.dialogConfig.dynamicComponent.map(
+                                        (a: any) => {
+                                            if (a.validator) {
+                                                let error = a.validator(
+                                                    a.props.modelValue,
+                                                );
+                                                console.log(error);
+                                                if (error) {
+                                                    self.$toast(error, false);
+                                                    a.props.isValidate = false;
+                                                    isValidate = false;
+                                                } else {
+                                                    a.props.isValidate = true;
+                                                }
+                                            }
+                                        },
+                                    );
+                                    if (!isValidate) {
+                                        return;
+                                    }
                                     let data = {} as any;
                                     self.dialogConfig.dynamicComponent.map(
                                         (a: any) => {

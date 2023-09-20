@@ -117,6 +117,7 @@ export const garageDataConfigDetail = {
         type: "CDInput",
         group: "parentInfor",
         props: {
+            type: "number",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.phone",
             ),
@@ -246,6 +247,7 @@ export const garageDataConfigDetail = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            type: "number",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.contactPointPhone",
             ),
@@ -491,6 +493,9 @@ export const garageConfigEdit = {
         field: "parentGarageId",
         showForDetail: true,
         props: {
+            disabled: true,
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.parentGarageId",
             ),
@@ -506,6 +511,8 @@ export const garageConfigEdit = {
         field: "parentGarageName",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.parentGarageName",
             ),
@@ -522,6 +529,8 @@ export const garageConfigEdit = {
         field: "taxCode",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.taxCode",
             ),
@@ -537,6 +546,9 @@ export const garageConfigEdit = {
         type: "CDInput",
         group: "parentInfor",
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
+            type: "number",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.phone",
             ),
@@ -553,6 +565,8 @@ export const garageConfigEdit = {
         group: "parentInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.website",
             ),
@@ -583,6 +597,8 @@ export const garageConfigEdit = {
         group: "parentInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.mail",
             ),
@@ -604,6 +620,8 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.name",
             ),
@@ -619,6 +637,8 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.contactPointName",
             ),
@@ -634,6 +654,9 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
+            type: "number",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.contactPointPhone",
             ),
@@ -654,11 +677,12 @@ export const garageConfigEdit = {
         field: "description",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.description",
             ),
             modelValue: "",
-            disabled: true,
             placeholder: $t(
                 "module.generalManagerment.garage.dialogColumnTable.description",
             ),
@@ -670,12 +694,13 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: contractStatusOptions,
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.contractStatus",
             ),
             modelValue: undefined,
-            disabled: true,
             placeholder: $t(
                 "module.generalManagerment.garage.dialogColumnTable.contractStatus",
             ),
@@ -687,12 +712,13 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: [],
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.contractFromDate",
             ),
             modelValue: "",
-            disabled: true,
             placeholder: $t(
                 "module.generalManagerment.garage.dialogColumnTable.contractFromDate",
             ),
@@ -709,6 +735,8 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.latitude",
             ),
@@ -719,11 +747,13 @@ export const garageConfigEdit = {
         },
     },
     longitude: {
-        type: "longitude",
-        field: "latitude",
+        type: "CDInput",
+        field: "longitude",
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.longitude",
             ),
@@ -739,6 +769,8 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: [],
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.provinceId",
@@ -755,6 +787,8 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: [],
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.districtId",
@@ -771,6 +805,8 @@ export const garageConfigEdit = {
         showForDetail: true,
         group: "garageInfor",
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: [],
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.wardId",
@@ -787,6 +823,8 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: [],
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.address",
@@ -804,12 +842,13 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: isSupportAllTimeOptions,
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.isSupportAllTime",
             ),
             modelValue: undefined,
-            disabled: true,
             placeholder: $t(
                 "module.generalManagerment.garage.dialogColumnTable.isSupportAllTime",
             ),
@@ -831,11 +870,12 @@ export const garageConfigEdit = {
         field: "openTime",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             title: $t(
                 "module.generalManagerment.garage.dialogColumnTable.openTime",
             ),
             modelValue: "",
-            disabled: true,
             placeholder: $t(
                 "module.generalManagerment.garage.dialogColumnTable.openTime",
             ),
@@ -847,11 +887,12 @@ export const garageConfigEdit = {
         field: "closeTime",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             title: $t(
                 "module.generalManagerment.garage.dialogColumnTable.closeTime",
             ),
             modelValue: "",
-            disabled: true,
             placeholder: $t(
                 "module.generalManagerment.garage.dialogColumnTable.closeTime",
             ),
@@ -863,12 +904,13 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: isVerifiedOptions,
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.isVerified",
             ),
             modelValue: undefined,
-            disabled: true,
             placeholder: $t(
                 "module.generalManagerment.garage.dialogColumnTable.isVerified",
             ),
@@ -915,7 +957,17 @@ export const garageConfigCreate = {
         type: "CDComboBox",
         group: "parentInfor",
         showForDetail: true,
+        validator: (val: string) => {
+            if (val == "") {
+                return $t(
+                    "module.generalManagerment.garage.validator.parentGarageIdCannotBeEmpty",
+                );
+            }
+        },
         props: {
+            isRequired: true,
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.parentGarageId",
             ),
@@ -932,6 +984,8 @@ export const garageConfigCreate = {
         field: "name",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.parentGarageName",
             ),
@@ -948,6 +1002,8 @@ export const garageConfigCreate = {
         field: "taxCode",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.taxCode",
             ),
@@ -963,6 +1019,9 @@ export const garageConfigCreate = {
         type: "CDInput",
         group: "parentInfor",
         props: {
+            type: "number",
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.phone",
             ),
@@ -979,6 +1038,8 @@ export const garageConfigCreate = {
         group: "parentInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.website",
             ),
@@ -995,6 +1056,8 @@ export const garageConfigCreate = {
         group: "parentInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.status",
             ),
@@ -1010,7 +1073,17 @@ export const garageConfigCreate = {
         type: "CDInput",
         group: "garageInfor",
         showForDetail: true,
+        validator: (val: string) => {
+            if (val == "") {
+                return $t(
+                    "module.generalManagerment.garage.validator.garageNameCannotBeEmpty",
+                );
+            }
+        },
         props: {
+            isRequired: true,
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.name",
             ),
@@ -1026,6 +1099,8 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.contactPointName",
             ),
@@ -1046,6 +1121,9 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            type: "number",
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.contactPointPhone",
             ),
@@ -1061,6 +1139,8 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.latitude",
             ),
@@ -1072,10 +1152,12 @@ export const garageConfigCreate = {
     },
     longitude: {
         type: "CDInput",
-        field: "latitude",
+        field: "longitude",
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.longitude",
             ),
@@ -1091,6 +1173,8 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: [],
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.provinceId",
@@ -1107,6 +1191,8 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: [],
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.districtId",
@@ -1123,6 +1209,8 @@ export const garageConfigCreate = {
         showForDetail: true,
         group: "garageInfor",
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: [],
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.wardId",
@@ -1139,6 +1227,8 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: [],
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.address",
@@ -1160,6 +1250,8 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: [],
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.contractFromDate",
@@ -1182,6 +1274,8 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: contractStatusOptions,
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.contractStatus",
@@ -1212,6 +1306,8 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: isSupportAllTimeOptions,
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.isSupportAllTime",
@@ -1239,6 +1335,8 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             options: isVerifiedOptions,
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.isVerified",
@@ -1256,6 +1354,8 @@ export const garageConfigCreate = {
         field: "openTime",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             title: $t(
                 "module.generalManagerment.garage.dialogColumnTable.openTime",
             ),
@@ -1282,6 +1382,8 @@ export const garageConfigCreate = {
         field: "closeTime",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             title: $t(
                 "module.generalManagerment.garage.dialogColumnTable.closeTime",
             ),
@@ -1298,6 +1400,8 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.images",
             ),
@@ -1315,6 +1419,8 @@ export const garageConfigCreate = {
         field: "description",
         showForDetail: true,
         props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
             label: $t(
                 "module.generalManagerment.garage.dialogColumnTable.description",
             ),

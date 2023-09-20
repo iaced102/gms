@@ -209,7 +209,7 @@
                                         v-if="!item.hasOwnProperty('child')"
                                         :href="item.href"
                                         :class="[
-                                            item.current
+                                            i == activeSubmenu
                                                 ? 'bg-gray-50 text-indigo-600'
                                                 : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
                                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
@@ -227,7 +227,7 @@
                                         /> -->
                                         <i
                                             :class="[
-                                                item.current
+                                                i == activeSubmenu
                                                     ? 'text-indigo-600'
                                                     : 'text-gray-400 group-hover:text-indigo-600',
                                                 'h-6 w-6 shrink-0',
@@ -307,7 +307,12 @@
                                                     ci, index
                                                 ) in item.child"
                                                 :key="index"
-                                                class="p-2 cursor-pointer"
+                                                class="p-2 cursor-pointer rounded"
+                                                :class="`${
+                                                    ci.href == $route.fullPath
+                                                        ? 'bg-gray-50 text-indigo-600'
+                                                        : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
+                                                }`"
                                                 @click="
                                                     {
                                                         if (
@@ -346,7 +351,8 @@
                                                     /> -->
                                                     <i
                                                         :class="[
-                                                            item.current
+                                                            ci.href ==
+                                                            $route.fullPath
                                                                 ? 'text-indigo-600'
                                                                 : 'text-gray-400 group-hover:text-indigo-600',
                                                             'h-6 w-6 shrink-0 ',
@@ -588,8 +594,23 @@ export default defineComponent({
         AdjustmentsVerticalIcon,
         ChevronRightIcon,
     },
+    created() {
+        this.navigation.map((a: any, index: number) => {
+            if (
+                a.href == this.$route.fullPath ||
+                (a.child &&
+                    a.child.length > 0 &&
+                    a.child.some((c: any) => {
+                        return c.href == this.$route.fullPath;
+                    }))
+            ) {
+                this.activeSubmenu = index;
+            }
+        });
+    },
     data() {
         return {
+            activeItemSubMenu: NaN as number,
             activeSubmenu: NaN as number,
             logo: logo,
             navigation: [

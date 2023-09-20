@@ -124,7 +124,12 @@
         },
         "filterColumn": {
             "parentGarageId": "Mã Gara tổng",
-            "name": "Tên Gara"
+            "name": "Tên Gara",
+            "status": "Trạng thái"
+        },
+        "validator": {
+            "parentGarageIdCannotBeEmpty": "Gara tổng không được để trống",
+            "garageNameCannotBeEmpty": "Tên Gara không được để trống"
         }
     }
 }
