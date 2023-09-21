@@ -43,7 +43,7 @@
             "parentGarageName": "Tên Gara tổng",
             "id": "Mã Gara",
             "code": "Mã Gara",
-            "garageId": "Mã Gara",
+            "garageId": "Tên Gara",
             "name": "Tên Gara",
             "address": "Địa chỉ",
             "contactPointPhone": "Số điện thoại người đại diện",

@@ -55,6 +55,7 @@
                     <CDMultipleRenderDynamicComponent
                         perItemClass="px-3 py-6 border-b"
                         commonClass="flex align-center"
+                        @updateValue="({val, instanceKey}:any)=>updateValueDynamicComponent({val,instanceKey})"
                         :modelValue="
                             dialogConfig.dynamicComponent.filter(
                                 (a) =>
@@ -96,6 +97,14 @@ export default defineComponent({
         this.getDataForTable();
     },
     methods: {
+        updateValueDynamicComponent({ val, instanceKey }: any) {
+            let field = this.dialogConfig.dynamicComponent.find(
+                (a: any) => a.instanceKey == instanceKey,
+            );
+            if (field.onUpdate) {
+                field.onUpdate(val, instanceKey);
+            }
+        },
         filter(config: any) {
             //console.log(config);
             this.pagination.currentPage = 1;
@@ -340,28 +349,31 @@ export default defineComponent({
                     })();
                     let dynamicComponent = [] as any[];
                     Object.keys(garageDataConfigCreateClone).map((a) => {
-                        if (
-                            garageDataConfigCreateClone[a].group ==
-                                "parentInfo" &&
-                            garageDataConfigCreateClone[a].field !=
-                                "parentGarageId"
-                        ) {
+                        // if (
+                        //     garageDataConfigCreateClone[a].group ==
+                        //         "parentInfo" &&
+                        //     garageDataConfigCreateClone[a].field !=
+                        //         "parentGarageId"
+                        // ) {
+                        //     garageDataConfigCreateClone[a].props.disabled =
+                        //         true;
+                        //     garageDataConfigCreateClone[a].props.modelValue =
+                        //         "";
+                        // } else {
+                        // if (
+                        //     garageDataConfigCreateClone[a].group ==
+                        //     "garageInfor"
+                        // ) {
+                        garageDataConfigCreateClone[a].instanceKey =
+                            Date.now() + garageDataConfigCreateClone[a].field;
+                        if (garageDataConfigCreateClone[a].props) {
                             garageDataConfigCreateClone[a].props.disabled =
-                                true;
+                                false;
                             garageDataConfigCreateClone[a].props.modelValue =
                                 "";
-                        } else {
-                            if (
-                                garageDataConfigCreateClone[a].group ==
-                                "garageInfor"
-                            ) {
-                                garageDataConfigCreateClone[a].props.disabled =
-                                    false;
-                                garageDataConfigCreateClone[
-                                    a
-                                ].props.modelValue = "";
-                            }
                         }
+                        // }
+                        // }
                         dynamicComponent.push(garageDataConfigCreateClone[a]);
                     });
                     self.dialogConfig = {
@@ -507,25 +519,33 @@ export default defineComponent({
                         });
                         let dynamicComponent = [] as any[];
                         Object.keys(garageDataConfigEditClone).map((a) => {
-                            if (
-                                garageDataConfigEditClone[a].group ==
-                                    "parentInfo" &&
-                                garageDataConfigEditClone[a].field !=
-                                    "parentGarageId"
-                            ) {
-                                garageDataConfigEditClone[a].props.disabled =
-                                    true;
-                            } else {
-                                if (
-                                    garageDataConfigEditClone[a].group ==
-                                    "garageInfor"
-                                ) {
-                                    garageDataConfigEditClone[
-                                        a
-                                    ].props.disabled = false;
-                                }
+                            // if (
+                            //     garageDataConfigEditClone[a].group ==
+                            //         "parentInfo" &&
+                            //     garageDataConfigEditClone[a].field !=
+                            //         "parentGarageId"
+                            // ) {
+                            //     garageDataConfigEditClone[a].props.disabled =
+                            //         true;
+                            // } else {
+                            // if (
+                            //     garageDataConfigEditClone[a].group ==
+                            //     "garageInfor"
+                            // ) {
+                            if (garageDataConfigEditClone[a].props) {
+                                garageDataConfigEditClone[a].instanceKey =
+                                    Date.now() +
+                                    garageDataConfigEditClone[a].field;
                             }
-                            dynamicComponent.push(garageDataConfigEditClone[a]);
+                            if (garageDataConfigEditClone[a].props) {
+                                garageDataConfigEditClone[a].props.disabled =
+                                    false;
+                                // }
+                                // }
+                                dynamicComponent.push(
+                                    garageDataConfigEditClone[a],
+                                );
+                            }
                         });
                         self.dialogConfig = {
                             show: true,

@@ -2,7 +2,6 @@
     <div>
         <CDTable
             ref="table"
-            v-if="rowData.length > 0"
             :tableName="$t('module.generalManagerment.garage.tableName')"
             :actions="tableActions"
             :rowData="rowData"
@@ -114,7 +113,7 @@ const displayCol = [
     "name",
     "address",
     "contactPointPhone",
-    "isReceiveWebsite",
+    "contactPointName",
     "status",
 ];
 

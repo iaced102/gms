@@ -780,6 +780,7 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            type: "number",
             labelClass: "w-1/3",
             contentClass: "w-2/3",
             disabled: true,
