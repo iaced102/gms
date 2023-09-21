@@ -49,6 +49,7 @@
                         perItemClass="px-3 py-6 border-b"
                         commonClass="flex align-center"
                         :modelValue="dialogConfig.dynamicComponent"
+                        @updateValue="({val, instanceKey}:any)=>updateValueDynamicComponent({val,instanceKey})"
                         @onSearch="onSearch"
                     />
                 </div>
@@ -83,6 +84,10 @@ const displayCol = [
 import _cloneDeep from "lodash/cloneDeep";
 import { contractDataConfigCreate } from "../data/index";
 import { generalManagermentStore } from "@/modules/generalManagerment/store";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+// var customParseFormat = require('dayjs/plugin/customParseFormat')
+dayjs.extend(customParseFormat);
 const garageStore = generalManagermentStore();
 const cloneContractConfigCreate = _cloneDeep(contractDataConfigCreate);
 export default defineComponent({
@@ -99,8 +104,45 @@ export default defineComponent({
         ) => {
             this.getListGarage(val, instanceKey);
         };
+        this.contractDataConfigCreate.contractFromDate.onUpdate = (
+            val: string,
+            instanceKey: string,
+        ) => {
+            let date = dayjs(val, "DD/MM/YYYY").toDate();
+            const contractToDate = this.dialogConfig.dynamicComponent.find(
+                (field) => {
+                    if (field.field == "contractToDate") {
+                        return true;
+                    }
+                },
+            );
+            contractToDate.props.min = date;
+        };
+        this.contractDataConfigCreate.contractToDate.onUpdate = (
+            val: string,
+            instanceKey: string,
+        ) => {
+            let date = dayjs(val, "DD/MM/YYYY").toDate();
+            const contractFromDate = this.dialogConfig.dynamicComponent.find(
+                (field) => {
+                    if (field.field == "contractFromDate") {
+                        return true;
+                    }
+                },
+            );
+            contractFromDate.props.max = date;
+        };
     },
     methods: {
+        updateValueDynamicComponent({ val, instanceKey }: any) {
+            let field = this.dialogConfig.dynamicComponent.find(
+                (a: any) => a.instanceKey == instanceKey,
+            );
+            console.log(val, instanceKey);
+            if (field.onUpdate) {
+                field.onUpdate(val, instanceKey);
+            }
+        },
         async getListGarage(val: string, instanceKey: any) {
             if (val == "") {
                 let res = await garageStore.getAllGarage({
@@ -273,7 +315,7 @@ export default defineComponent({
                             },
                         ],
                     };
-                    self.calculateAdressOption();
+                    // self.calculateAdressOption();
                 },
                 name: this.$t("module.contracts.contracts.addNew"),
             },

@@ -1050,24 +1050,30 @@ export const garageConfigCreate = {
             ),
         },
     },
-    status: {
-        field: "status",
-        type: "CDInput",
-        group: "parentInfor",
-        showForDetail: true,
-        props: {
-            labelClass: "w-1/3",
-            contentClass: "w-2/3",
-            label: $t(
-                "module.generalManagerment.garage.dialogColumnTable.status",
-            ),
-            modelValue: "",
-            disabled: true,
-            placeholder: $t(
-                "module.generalManagerment.garage.dialogColumnTable.status",
-            ),
-        },
-    },
+    // status: {
+    //     field: "status",
+    //     type: "CDInput",
+    //     group: "parentInfor",
+    //     showForDetail: true,
+    //     formatterModelValue: (val: number): string => {
+    //         if (val == 1 || val == 2 || val == 3) {
+    //             return $t("module.generalManagerment.garage.status." + val);
+    //         }
+    //         return "";
+    //     },
+    //     props: {
+    //         labelClass: "w-1/3",
+    //         contentClass: "w-2/3",
+    //         label: $t(
+    //             "module.generalManagerment.garage.dialogColumnTable.status",
+    //         ),
+    //         modelValue: "",
+    //         disabled: true,
+    //         placeholder: $t(
+    //             "module.generalManagerment.garage.dialogColumnTable.status",
+    //         ),
+    //     },
+    // },
     name: {
         field: "name",
         type: "CDInput",
@@ -1366,11 +1372,11 @@ export const garageConfigCreate = {
             ),
         },
     },
-    carSubSystems: {
-        field: "carSubSystems",
-        value: [],
-        static: true,
-    },
+    // carSubSystems: {
+    //     field: "carSubSystems",
+    //     value: [],
+    //     static: true,
+    // },
     customFieldValueRequests: {
         field: "customFieldValueRequests",
         value: [],
@@ -1410,6 +1416,66 @@ export const garageConfigCreate = {
             disabled: true,
             placeholder: $t(
                 "module.generalManagerment.garage.dialogColumnTable.images",
+            ),
+        },
+    },
+    carSubSystems: {
+        field: "carSubSystems",
+        type: "CDMultiselect",
+        group: "garageInfor",
+        showForDetail: true,
+        props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
+            options: [],
+            label: $t(
+                "module.generalManagerment.garage.dialogColumnTable.carSubSystems",
+            ),
+            modelValue: [],
+            getterFormatter(val: any[]) {
+                let result = val.map((a) => {
+                    return a.id;
+                });
+                return result;
+            },
+            setterFormatter(val: number[] | string[]) {
+                let result = val.map((a) => {
+                    return { id: a };
+                });
+                return result;
+            },
+            placeholder: $t(
+                "module.generalManagerment.garage.dialogColumnTable.carSubSystems",
+            ),
+        },
+    },
+    rescues: {
+        field: "rescues",
+        type: "CDMultiselect",
+        group: "garageInfor",
+        showForDetail: true,
+        props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
+            options: [],
+            label: $t(
+                "module.generalManagerment.garage.dialogColumnTable.rescues",
+            ),
+            modelValue: [],
+            getterFormatter(val: any[]) {
+                let result = val.map((a) => {
+                    return a.id;
+                });
+                return result;
+            },
+            setterFormatter(val: number[] | string[]) {
+                let result = val.map((a) => {
+                    return { id: a };
+                });
+                return result;
+            },
+            placeholder: $t(
+                "module.generalManagerment.garage.dialogColumnTable.rescues",
             ),
         },
     },
