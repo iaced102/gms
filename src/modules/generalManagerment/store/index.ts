@@ -7,7 +7,7 @@ import {
     getAddressDetail,
     getAllRescues,
     getPresignUrl,
-    // getListSubSystem,
+    getListSubSystem,
     updateGarage,
     createGarage,
     // getRescues,
@@ -23,12 +23,54 @@ export const generalManagermentStore = defineStore("g", {
                 title: "",
                 content: "",
             },
+            listSubSystem: [],
+            listRescues: [],
         };
     },
     getters: {
         // demoList: state => state.demoList
     },
     actions: {
+        async getListSubSystem() {
+            let data = {
+                pageSize: 10000,
+                pageNumber: 1,
+                status: 1,
+            };
+            const res = await getListSubSystem(data);
+
+            let filtered = (await this.filterResponse(
+                res,
+                (data: any) => {
+                    this.overviewData = data;
+                },
+                () => {},
+            )) as any;
+            if (filtered.code == 1) {
+                this.listSubSystem = filtered.data;
+            }
+            console.log(filtered);
+        },
+        async getAllRescues() {
+            let data = {
+                pageSize: 10000,
+                pageNumber: 1,
+                status: 1,
+            };
+            const res = await getAllRescues(data);
+
+            let filtered = (await this.filterResponse(
+                res,
+                (data: any) => {
+                    this.overviewData = data;
+                },
+                () => {},
+            )) as any;
+            if (filtered.code == 1) {
+                this.listRescues = filtered.data;
+            }
+            console.log(filtered);
+        },
         async getGarageInforById(id: string): Promise<any> {
             const res = await getGarageInforById(id);
 

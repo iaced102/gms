@@ -21,11 +21,7 @@
             v-if="dialogConfig.show"
             :title="dialogConfig.title"
             :content="dialogConfig.content"
-            @closeDialog="
-                () => {
-                    dialogConfig.show = false;
-                }
-            "
+            @closeDialog="closeDialog"
             :width="`${
                 dialogConfig.dynamicComponent &&
                 dialogConfig.dynamicComponent.length > 0
@@ -54,7 +50,7 @@
                     </h1>
                     <CDMultipleRenderDynamicComponent
                         perItemClass="px-3 py-6 border-b"
-                        commonClass="flex"
+                        commonClass="flex items-center align-center"
                         @onSearch="onSearch"
                         @updateValue="({val, instanceKey}:any)=>updateValueDynamicComponent({val,instanceKey})"
                         :modelValue="
@@ -122,14 +118,19 @@ import {
     garageConfigEdit,
     garageConfigCreate,
 } from "../../data/index";
-const cloneGarageConfigCreate = _cloneDeep(garageConfigCreate);
+const cloneGarageConfigCreate = _cloneDeep(garageConfigCreate) as any;
+const baseCloneGarageConfigCreate = _cloneDeep(garageConfigCreate) as any;
 export default defineComponent({
     async created() {
+        store.getListSubSystem();
+        store.getAllRescues();
         this.getDataForTable();
         this.garageConfigCreate.parentGarageId.setup = (
             instanceKey: string,
         ) => {
-            this.getGroupGarage("", instanceKey);
+            setTimeout(() => {
+                this.getGroupGarage("", instanceKey);
+            }, 100);
         };
         this.garageConfigCreate.parentGarageId.onSearch = (
             instanceKey: string,
@@ -143,12 +144,48 @@ export default defineComponent({
         ) => {
             this.onUpdateParentGarageId(val, instanceKey);
         };
+        this.garageConfigCreate.carSubSystems.setup = (instanceKey: string) => {
+            setTimeout(() => {
+                let options = store.listSubSystem.map((a: any) => {
+                    return {
+                        id: a.id,
+                        value: a.name,
+                    };
+                });
+                let field = this.dialogConfig.dynamicComponent.find(
+                    (a: any) => a.instanceKey == instanceKey,
+                );
+                field.props.options = options;
+            }, 100);
+        };
+        this.garageConfigCreate.rescues.setup = (instanceKey: string) => {
+            setTimeout(() => {
+                let options = store.listRescues.map((a: any) => {
+                    return {
+                        id: a.id,
+                        value: a.name,
+                    };
+                });
+                let field = this.dialogConfig.dynamicComponent.find(
+                    (a: any) => a.instanceKey == instanceKey,
+                );
+                field.props.options = options;
+            }, 100);
+        };
     },
     methods: {
+        closeDialog() {
+            this.dialogConfig.show = false;
+            // this.dialogConfig.dynamicComponent.map((a) => {
+            //     if (a.props) {
+            //         a.props.modelValue =
+            //             cloneGarageConfigCreate[a.field].props.modelValue;
+            //     }
+            // });
+        },
         async onUpdateParentGarageId(val: any, instanceKey: string) {
             // let field = this.dialogConfig.dynamicComponent.find((a:any)=>a.instanceKey==instanceKey)
             let res = await groupGarageStoreInstance.getGarageInforById(val);
-            console.log(res);
             this.dialogConfig.dynamicComponent.map((a: any) => {
                 if (
                     a.group == "parentInfor" &&
@@ -162,25 +199,41 @@ export default defineComponent({
             let field = this.dialogConfig.dynamicComponent.find(
                 (a: any) => a.instanceKey == instanceKey,
             );
-            console.log(instanceKey, val);
             clearTimeout(this.timeOut[field.instanceKey]);
             this.timeOut[field.instanceKey] = () => {
                 setTimeout(() => {
-                    console.log("on timeout");
                     field.onSearch(instanceKey, val);
                 }, 1000);
             };
             this.timeOut[field.instanceKey]();
         },
         async getGroupGarage(val: string, instanceKey: any) {
-            if (val == "") {
+            let field = this.dialogConfig.dynamicComponent.find(
+                (a: any) => a.instanceKey == instanceKey,
+            );
+            if (
+                field &&
+                field.props.options.length == 0 &&
+                field.props.options.modelValue != ""
+            ) {
+                let res = await groupGarageStoreInstance.getAllGarage({
+                    pageSize: 10,
+                    pageNumber: 1,
+                    id: field.props.modelValue,
+                });
+                field.props.options = res.data.map((a: any) => {
+                    return {
+                        id: a.id,
+                        value: a.id,
+                        text: a.name,
+                    };
+                });
+            } else if (val == "") {
                 let res = await groupGarageStoreInstance.getAllGarage({
                     pageSize: 10,
                     pageNumber: 1,
                 });
-                let field = this.dialogConfig.dynamicComponent.find(
-                    (a: any) => a.instanceKey == instanceKey,
-                );
+
                 field.props.options = res.data.map((a: any) => {
                     return {
                         id: a.id,
@@ -194,9 +247,6 @@ export default defineComponent({
                     pageNumber: 1,
                     name: val,
                 });
-                let field = this.dialogConfig.dynamicComponent.find(
-                    (a: any) => a.instanceKey == instanceKey,
-                );
                 field.props.options = res.data.map((a: any) => {
                     return {
                         id: a.id,
@@ -207,13 +257,11 @@ export default defineComponent({
             }
         },
         async onUploadFile(instanceKey: string, val: any) {
-            console.log(instanceKey, val);
             const f = val.target.files[0];
             if (f) {
                 const reader = new FileReader();
                 reader.onload = function (evt: any) {
                     const contents = evt.target.result;
-                    console.log(contents);
                 };
                 reader.readAsDataURL(f);
                 // args.fileList.push(f.name);
@@ -343,11 +391,22 @@ export default defineComponent({
         },
     },
     watch: {
+        "dialogConfig.show"(newVal) {
+            if (!newVal) {
+                this.dialogConfig.dynamicComponent.map((a) => {
+                    if (a.props) {
+                        a.props.modelValue =
+                            baseCloneGarageConfigCreate[
+                                a.field
+                            ].props.modelValue;
+                    }
+                });
+            }
+        },
         "dialogConfig.dynamicComponent": {
             deep: true,
             handler(newVal: any, old: any) {
                 if (newVal && newVal.length) {
-                    console.log(newVal, old);
                     let newProvinceId = newVal.find(
                         (a: any) => a.field == "provinceId",
                     );
@@ -357,7 +416,6 @@ export default defineComponent({
                         newProvinceId.props.modelValue &&
                         newProvinceId.props.modelValue != oldProvinceId
                     ) {
-                        console.log("asdjlfkjalskdjf");
                         this.locationConfig.provinceId.value =
                             newProvinceId.props.modelValue;
                         this.calculateAdressOption();
@@ -512,7 +570,7 @@ export default defineComponent({
                         ..._cloneDeep(self.garageConfigCreate),
                     } as any;
                     let dynamicComponent = [] as any[];
-                    Object.keys(garageDataConfigCreateClone).map((a) => {
+                    Object.keys(garageDataConfigCreateClone).map(async (a) => {
                         if (garageDataConfigCreateClone[a].props) {
                             garageDataConfigCreateClone[a].instanceKey =
                                 Date.now() +
@@ -623,33 +681,51 @@ export default defineComponent({
                         "module.generalManagerment.garage.contextActions.update",
                     ),
                     action: async (params: any) => {
-                        let garageDataConfigEditClone = garageConfigEdit as any;
+                        let garageDataConfigEditClone = this
+                            .garageConfigCreate as any;
                         let originData = await store.getGarageInforById(
                             params.id,
                         );
-                        console.log(originData);
                         if (originData.error) {
                             self.$toast("Lấy thông tin garage thất bại", false);
                             return;
                         }
                         self.originData = originData.data;
                         self.originData.id = params.id;
-                        let parentInfor;
+                        let parentInfor: any;
                         if (originData.data.parentGarageId) {
                             parentInfor = await self.getParrentGarageInfor(
                                 originData.data.parentGarageId,
                             );
                             if (parentInfor != null) {
-                                garageDataConfigEditClone.parentGarageName.props.modelValue =
-                                    parentInfor.name;
-                                garageDataConfigEditClone.taxCode.props.modelValue =
-                                    parentInfor.taxCode;
-                                garageDataConfigEditClone.phone.props.modelValue =
-                                    parentInfor.phone;
-                                garageDataConfigEditClone.website.props.modelValue =
-                                    parentInfor.website;
-                                garageDataConfigEditClone.mail.props.modelValue =
-                                    parentInfor.mail;
+                                Object.keys(parentInfor).map((a) => {
+                                    if (
+                                        garageDataConfigEditClone.hasOwnProperty(
+                                            a,
+                                        ) &&
+                                        garageDataConfigEditClone[a].props
+                                    ) {
+                                        if (
+                                            garageDataConfigEditClone[
+                                                a
+                                            ].hasOwnProperty(
+                                                "formatterModelValue",
+                                            )
+                                        ) {
+                                            garageDataConfigEditClone[
+                                                a
+                                            ].props.modelValue = garageDataConfigEditClone[
+                                                a
+                                            ].formatterModelValue(
+                                                parentInfor[a],
+                                            );
+                                        } else {
+                                            garageDataConfigEditClone[
+                                                a
+                                            ].props.modelValue = parentInfor[a];
+                                        }
+                                    }
+                                });
                             }
                         }
                         Object.keys(originData.data).map((a: string) => {
@@ -689,6 +765,16 @@ export default defineComponent({
                                     Date.now() +
                                     garageDataConfigEditClone[a].field;
                             }
+                            if (garageDataConfigEditClone[a].setup) {
+                                garageDataConfigEditClone[a].setup(
+                                    garageDataConfigEditClone[a].instanceKey,
+                                );
+                            }
+                            if (garageDataConfigEditClone[a].props) {
+                                garageDataConfigEditClone[a].instanceKey =
+                                    Date.now() +
+                                    garageDataConfigEditClone[a].field;
+                            }
                             if (
                                 garageDataConfigEditClone[a].group ==
                                 "parentInfo"
@@ -702,9 +788,11 @@ export default defineComponent({
                                     garageDataConfigEditClone[a].group ==
                                     "garageInfor"
                                 ) {
-                                    // garageDataConfigEditClone[
-                                    //     a
-                                    // ].props.disabled = false;
+                                    if (garageDataConfigEditClone[a].props) {
+                                        garageDataConfigEditClone[
+                                            a
+                                        ].props.disabled = false;
+                                    }
                                 }
                             }
                             dynamicComponent.push(garageDataConfigEditClone[a]);
@@ -894,8 +982,8 @@ export default defineComponent({
                         "module.generalManagerment.garage.contextActions.detail",
                     ),
                     action: async (params: any) => {
-                        let garageDataConfigDetailClone =
-                            garageConfigEdit as any;
+                        let garageDataConfigEditClone = this
+                            .garageConfigCreate as any;
                         let originData = await store.getGarageInforById(
                             params.id,
                         );
@@ -905,73 +993,94 @@ export default defineComponent({
                         }
                         self.originData = originData.data;
                         self.originData.id = params.id;
-                        let parentInfor;
+                        let parentInfor: any;
                         if (originData.data.parentGarageId) {
                             parentInfor = await self.getParrentGarageInfor(
                                 originData.data.parentGarageId,
                             );
                             if (parentInfor != null) {
-                                garageDataConfigDetailClone.parentGarageName.props.modelValue =
-                                    parentInfor.name;
-                                garageDataConfigDetailClone.taxCode.props.modelValue =
-                                    parentInfor.taxCode;
-                                garageDataConfigDetailClone.phone.props.modelValue =
-                                    parentInfor.phone;
-                                garageDataConfigDetailClone.website.props.modelValue =
-                                    parentInfor.website;
-                                garageDataConfigDetailClone.mail.props.modelValue =
-                                    parentInfor.mail;
-                                console.log(parentInfor);
+                                Object.keys(parentInfor).map((a) => {
+                                    if (
+                                        garageDataConfigEditClone.hasOwnProperty(
+                                            a,
+                                        ) &&
+                                        garageDataConfigEditClone[a].props
+                                    ) {
+                                        if (
+                                            garageDataConfigEditClone[
+                                                a
+                                            ].hasOwnProperty(
+                                                "formatterModelValue",
+                                            )
+                                        ) {
+                                            garageDataConfigEditClone[
+                                                a
+                                            ].props.modelValue = garageDataConfigEditClone[
+                                                a
+                                            ].formatterModelValue(
+                                                parentInfor[a],
+                                            );
+                                        } else {
+                                            garageDataConfigEditClone[
+                                                a
+                                            ].props.modelValue = parentInfor[a];
+                                        }
+                                    }
+                                });
                             }
                         }
-
                         Object.keys(originData.data).map((a: string) => {
-                            if (
-                                !garageDataConfigDetailClone.hasOwnProperty(a)
-                            ) {
+                            if (!garageDataConfigEditClone.hasOwnProperty(a)) {
                             } else {
-                                if (garageDataConfigDetailClone[a].static) {
-                                    garageDataConfigDetailClone[a].value =
+                                if (garageDataConfigEditClone[a].static) {
+                                    garageDataConfigEditClone[a].value =
                                         originData.data[a];
                                 } else {
-                                    garageDataConfigDetailClone[
+                                    garageDataConfigEditClone[
                                         a
                                     ].props.modelValue = originData.data[a]
                                         ? originData.data[a]
                                         : "";
                                     if (
-                                        garageDataConfigDetailClone[a].type ==
+                                        garageDataConfigEditClone[a].type ==
                                         "CDSelect"
                                     ) {
                                         if (originData.data[a] == null) {
-                                            garageDataConfigDetailClone[
+                                            garageDataConfigEditClone[
                                                 a
-                                            ].props.modelValue = undefined;
+                                            ].props.modelValue = "";
                                         } else {
-                                            garageDataConfigDetailClone[
+                                            garageDataConfigEditClone[
                                                 a
-                                            ].props.modelValue = {
-                                                id: originData.data[a],
-                                                value: originData.data[a],
-                                            };
+                                            ].props.modelValue =
+                                                originData.data[a];
                                         }
                                     }
-                                    garageDataConfigDetailClone[
-                                        a
-                                    ].props.disabled = true;
                                 }
                             }
                         });
                         let dynamicComponent = [] as any[];
-                        Object.keys(garageDataConfigDetailClone).map((a) => {
-                            if (garageDataConfigDetailClone[a].props) {
-                                garageDataConfigDetailClone[a].instanceKey =
+                        Object.keys(garageDataConfigEditClone).map((a) => {
+                            if (garageDataConfigEditClone[a].props) {
+                                garageDataConfigEditClone[a].instanceKey =
                                     Date.now() +
-                                    garageDataConfigDetailClone[a].field;
+                                    garageDataConfigEditClone[a].field;
                             }
-                            dynamicComponent.push(
-                                garageDataConfigDetailClone[a],
-                            );
+                            if (garageDataConfigEditClone[a].setup) {
+                                garageDataConfigEditClone[a].setup(
+                                    garageDataConfigEditClone[a].instanceKey,
+                                );
+                            }
+                            if (garageDataConfigEditClone[a].props) {
+                                garageDataConfigEditClone[a].instanceKey =
+                                    Date.now() +
+                                    garageDataConfigEditClone[a].field;
+                            }
+                            if (garageDataConfigEditClone[a].props) {
+                                garageDataConfigEditClone[a].props.disabled =
+                                    true;
+                            }
+                            dynamicComponent.push(garageDataConfigEditClone[a]);
                         });
                         self.dialogConfig = {
                             show: true,
@@ -985,43 +1094,6 @@ export default defineComponent({
                         };
                     },
                 },
-                // {
-                //     icon: "EllipsisVerticalIcon",
-                //     name: self.$t(
-                //         "module.generalManagerment.garage.contextActions.delete",
-                //     ),
-                //     action: (params: any) => {
-                //         self.dialogConfig = {
-                //             show: true,
-                //             title: self.$t(
-                //                 "module.generalManagerment.garage.dialog.deleteGarageTitle",
-                //             ),
-                //             content: self.$t(
-                //                 "module.generalManagerment.garage.dialog.deleteGarageContent",
-                //             ),
-                //             actions: [
-                //                 {
-                //                     class: "inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
-                //                     name: self.$t(
-                //                         "module.generalManagerment.garage.dialog.deleteConfirm",
-                //                     ),
-                //                     action: () => {
-                //                         self.dialogConfig = false;
-                //                     },
-                //                 },
-                //                 {
-                //                     class: "inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
-                //                     name: self.$t(
-                //                         "module.generalManagerment.garage.dialog.cancel",
-                //                     ),
-                //                     action: () => {
-                //                         self.dialogConfig = false;
-                //                     },
-                //                 },
-                //             ],
-                //         };
-                //     },
-                // },
                 {
                     icon: "ArchiveBoxIcon",
                     name: self.$t(
