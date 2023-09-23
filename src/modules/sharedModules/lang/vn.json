@@ -8,7 +8,9 @@
         "functionManagerment": "Quản trị chức năng",
         "listFunction": "Danh sách chức năng",
         "listGarageFunctionAcion": "Danh sách chức năng, hoạt động của garage",
-        "vacationSchedule": "Lịch nghỉ"
+        "vacationSchedule": "Lịch nghỉ",
+        "rescues": "Cứu hộ",
+        "subSystem": "Hệ thống phụ"
     },
     "header": {},
     "functionSidebar": {}

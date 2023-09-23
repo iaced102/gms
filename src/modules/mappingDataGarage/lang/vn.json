@@ -1,0 +1,98 @@
+{
+    "rescues": {
+        "tableName": "Danh sách thông tin cứu hộ",
+        "addNew": "Thêm mới",
+        "columnTable": {
+            "id": "id",
+            "name": "Tên",
+            "description": "Mô tả",
+            "status": "Trạng thái",
+            "action": "Hành động"
+        },
+        "dialog": {
+            "create": "Tạo mới",
+            "createRescues": "Tạo mới Thông tin cứu hộ",
+            "dialogColumnTable": {
+                "name": "Tên",
+                "description": "Mô tả"
+            }
+        },
+        "status": {
+            "1": "Đã duyệt",
+            "2": "Đã từ chối",
+            "3": "Chờ duyệt"
+        },
+        "contextActions": {
+            "update": "Cập nhật",
+            "detail": "Xem chi tiết",
+            "delete": "Xóa",
+            "accept": "Duyệt",
+            "reject": "Từ chối phê duyệt"
+        },
+        "toast": {
+            "acceptFailse": "Duyệt thông tin cứu hộ thất bại",
+            "acceptSuccess": "Duyệt thông tin cứu hộ thành công",
+            "rejectSuccess": "Hủy duyệt thông tin cứu hộ thành công",
+            "rejectFailse": "Hủy duyệt thông tin cứu hộ thất bại",
+            "createRescuesSuccess": "Tạo mới thông tin cứu hộ thành công",
+            "createRescuesFailse": "Tạo mới thông tin cứu hộ thất bại"
+        },
+        "multipleRowActions": {
+            "accept": "Duyệt nhanh",
+            "reject": "Hủy duyệt nhanh"
+        },
+        "filterColumn": {
+            "description": "Mô tả",
+            "name": "Tên",
+            "status": "Trạng thái"
+        }
+    },
+    "subSystem": {
+        "tableName": "Danh sách hệ thống phụ",
+        "addNew": "Thêm mới",
+        "columnTable": {
+            "id": "id",
+            "name": "Tên",
+            "description": "Mô tả",
+            "status": "Trạng thái",
+            "action": "Hành động"
+        },
+        "dialog": {
+            "create": "Tạo mới",
+            "createSubSystem": "Tạo mới hệ thống phụ",
+            "dialogColumnTable": {
+                "name": "Tên",
+                "description": "Mô tả"
+            }
+        },
+        "status": {
+            "1": "Đã duyệt",
+            "2": "Đã từ chối",
+            "3": "Chờ duyệt"
+        },
+        "contextActions": {
+            "update": "Cập nhật",
+            "detail": "Xem chi tiết",
+            "delete": "Xóa",
+            "accept": "Duyệt",
+            "reject": "Từ chối phê duyệt"
+        },
+        "toast": {
+            "acceptFailse": "Duyệt hệ thống phụ thất bại",
+            "acceptSuccess": "Duyệt hệ thống phụ thành công",
+            "rejectSuccess": "Hủy duyệt hệ thống phụ thành công",
+            "rejectFailse": "Hủy duyệt hệ thống phụ thất bại",
+            "createRescuesSuccess": "Tạo mới hệ thống phụ thành công",
+            "createRescuesFailse": "Tạo mới hệ thống phụ thất bại"
+        },
+        "multipleRowActions": {
+            "accept": "Duyệt nhanh",
+            "reject": "Hủy duyệt nhanh"
+        },
+        "filterColumn": {
+            "description": "Mô tả",
+            "name": "Tên",
+            "status": "Trạng thái"
+        }
+    }
+}

@@ -9,11 +9,10 @@ import { createVuetify } from "vuetify";
 
 export default createVuetify({
     icons: {
-        defaultSet: "mdi",
+        defaultSet: "fa",
         aliases,
         sets: {
             fa,
-            mdi,
         },
     },
     ssr: true,
