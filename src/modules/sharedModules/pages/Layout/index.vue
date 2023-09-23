@@ -92,16 +92,6 @@
                                                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
                                                         ]"
                                                     >
-                                                        <!-- <component
-                                                            :is="item.icon"
-                                                            :class="[
-                                                                item.current
-                                                                    ? 'text-indigo-600'
-                                                                    : 'text-gray-400 group-hover:text-indigo-600',
-                                                                'h-6 w-6 shrink-0',
-                                                            ]"
-                                                            aria-hidden="true"
-                                                        /> -->
                                                         <i
                                                             :class="[
                                                                 item.current
@@ -191,11 +181,6 @@
             >
                 <div class="flex h-42 shrink-0 items-center flex-col">
                     <img class="h-32 w-auto" :src="logo" alt="Your Company" />
-                    <!-- <img
-                        class="h-auto w-48"
-                        :src="headerLogo"
-                        alt="Your Company"
-                    /> -->
                 </div>
                 <nav class="flex flex-1 flex-col">
                     <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -215,16 +200,6 @@
                                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
                                         ]"
                                     >
-                                        <!-- <component
-                                            :is="item.icon"
-                                            :class="[
-                                                item.current
-                                                    ? 'text-indigo-600'
-                                                    : 'text-gray-400 group-hover:text-indigo-600',
-                                                'h-6 w-6 shrink-0',
-                                            ]"
-                                            aria-hidden="true"
-                                        /> -->
                                         <i
                                             :class="[
                                                 i == activeSubmenu
@@ -250,16 +225,6 @@
                                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold',
                                         ]"
                                     >
-                                        <!-- <component
-                                            :is="item.icon"
-                                            :class="[
-                                                item.current
-                                                    ? 'text-indigo-600'
-                                                    : 'text-gray-400 group-hover:text-indigo-600',
-                                                'h-6 w-6 shrink-0',
-                                            ]"
-                                            aria-hidden="true"
-                                        /> -->
                                         <i
                                             :class="[
                                                 item.current
@@ -311,7 +276,11 @@
                                                 :class="`${
                                                     ci.href == $route.fullPath
                                                         ? 'bg-gray-50 text-indigo-600'
-                                                        : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
+                                                        : 'text-gray-700 '
+                                                } ${
+                                                    ci.child
+                                                        ? ''
+                                                        : 'hover:text-indigo-600 hover:bg-gray-50'
                                                 }`"
                                                 @click="
                                                     {
@@ -338,23 +307,15 @@
                                                     class="flex-1 flex"
                                                     style="text-align: left"
                                                 >
-                                                    <!-- <component
-                                                        :is="ci.icon"
-                                                        class="mr-2"
-                                                        :class="[
-                                                            item.current
-                                                                ? 'text-indigo-600'
-                                                                : 'text-gray-400 group-hover:text-indigo-600',
-                                                            'h-6 w-6 shrink-0',
-                                                        ]"
-                                                        aria-hidden="true"
-                                                    /> -->
                                                     <i
                                                         :class="[
                                                             ci.href ==
                                                             $route.fullPath
                                                                 ? 'text-indigo-600'
-                                                                : 'text-gray-400 group-hover:text-indigo-600',
+                                                                : 'text-gray-400',
+                                                            ci.child
+                                                                ? 'group-hover:text-indigo-600'
+                                                                : '',
                                                             'h-6 w-6 shrink-0 ',
                                                             ci.icon,
                                                         ]"
@@ -364,6 +325,65 @@
                                                     ></i>
                                                     {{ ci.name }}
                                                 </span>
+                                                <div v-if="ci.child">
+                                                    <ul class="list-none pl-12">
+                                                        <li
+                                                            v-for="(
+                                                                cCi, index
+                                                            ) in ci.child"
+                                                            :key="index"
+                                                            class="p-2 cursor-pointer rounded"
+                                                            :class="`${
+                                                                cCi.href ==
+                                                                $route.fullPath
+                                                                    ? 'bg-gray-50 text-indigo-600'
+                                                                    : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
+                                                            }`"
+                                                            @click="
+                                                                {
+                                                                    if (
+                                                                        cCi.hasOwnProperty(
+                                                                            'href',
+                                                                        )
+                                                                    ) {
+                                                                        $router.push(
+                                                                            cCi.href,
+                                                                        );
+                                                                    }
+                                                                    if (
+                                                                        cCi.hasOwnProperty(
+                                                                            'action',
+                                                                        )
+                                                                    ) {
+                                                                        cCi.action();
+                                                                    }
+                                                                }
+                                                            "
+                                                        >
+                                                            <span
+                                                                class="flex-1 flex"
+                                                                style="
+                                                                    text-align: left;
+                                                                "
+                                                            >
+                                                                <i
+                                                                    :class="[
+                                                                        cCi.href ==
+                                                                        $route.fullPath
+                                                                            ? 'text-indigo-600'
+                                                                            : 'text-gray-400 group-hover:text-indigo-600',
+                                                                        'h-6 w-6 shrink-0 ',
+                                                                        cCi.icon,
+                                                                    ]"
+                                                                    style="
+                                                                        font-size: 20px !important;
+                                                                    "
+                                                                ></i>
+                                                                {{ cCi.name }}
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </li>
                                         </ul>
                                     </Transition>
@@ -660,6 +680,22 @@ export default defineComponent({
                                 "module.sharedModules.sidebar.listFunction",
                             ),
                             icon: "fa-solid fa-sliders",
+                            child: [
+                                {
+                                    name: this.$t(
+                                        "module.sharedModules.sidebar.rescues",
+                                    ),
+                                    href: "/app/rescues/list",
+                                    icon: "fa-solid fa-file-contract",
+                                },
+                                {
+                                    name: this.$t(
+                                        "module.sharedModules.sidebar.subSystem",
+                                    ),
+                                    href: "/app/car-sub-system/list",
+                                    icon: "fa-solid fa-file-contract",
+                                },
+                            ],
                         },
                         {
                             name: this.$t(

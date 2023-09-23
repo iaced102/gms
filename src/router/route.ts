@@ -43,6 +43,22 @@ const routes = [
                 component: () =>
                     import("@/modules/contracts/pages/ListContract.vue"),
             },
+            {
+                name: "listRescues",
+                path: "rescues/list",
+                component: () =>
+                    import(
+                        "@/modules/mappingDataGarage/pages/rescues/ListRescues.vue"
+                    ),
+            },
+            {
+                name: "listSubSystem",
+                path: "car-sub-system/list",
+                component: () =>
+                    import(
+                        "@/modules/mappingDataGarage/pages/subSystem/ListSubSystem.vue"
+                    ),
+            },
         ],
     },
     // {
