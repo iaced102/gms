@@ -292,6 +292,11 @@ export default defineComponent({
                                             }
                                         },
                                     );
+                                    console.log(data);
+                                    data.contractFromDate = store.convertDateFormat(data.contractFromDate);
+                                    data.contractToDate = store.convertDateFormat(data.contractToDate);
+                                    console.log(data);
+
 
                                     let res = await store.createContract(data);
                                     if (res.code == 1) {

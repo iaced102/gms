@@ -41,7 +41,7 @@
         "dialogColumnTable": {
             "rescues": "Thông tin cứu hộ",
             "carSubSystems": "Hệ thống phụ",
-            "parentGarageId": "Mã Gara tổng",
+            "parentGarageId": "Chọn Gara tổng",
             "parentGarageName": "Tên Gara tổng",
             "id": "Mã Gara",
             "code": "Mã Gara",

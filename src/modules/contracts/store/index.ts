@@ -37,5 +37,10 @@ export const contractStore = defineStore("contract", {
                 () => {},
             );
         },
+        convertDateFormat(inputDate: any) {
+            const [day, month, year] = inputDate.split('/').map(Number);
+            const formattedDate = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            return formattedDate;
+        }
     },
 });
