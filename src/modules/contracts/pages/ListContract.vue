@@ -146,7 +146,7 @@ export default defineComponent({
         async getListGarage(val: string, instanceKey: any) {
             if (val == "") {
                 let res = await garageStore.getAllGarage({
-                    pageSize: 10,
+                    pageSize: 50,
                     pageNumber: 1,
                     status: 1,
                 });
@@ -166,6 +166,7 @@ export default defineComponent({
                     pageNumber: 1,
                     status: 1,
                     name: val,
+                    status: 1,
                 });
                 let field = this.dialogConfig.dynamicComponent.find(
                     (a: any) => a.instanceKey == instanceKey,
