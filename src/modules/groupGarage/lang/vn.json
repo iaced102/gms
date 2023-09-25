@@ -7,7 +7,7 @@
         "tableName": "Danh sách Gara tổng",
         "addNew": "Thêm mới",
         "columnTable": {
-            "garageOwnerName": "Chủ Gara",
+            "garageOwnerName": "Tên chủ Gara",
             "parentGarageId": "Mã Gara tổng",
             "parentGarageName": "Tên Gara tổng",
             "id": "Mã Gara",

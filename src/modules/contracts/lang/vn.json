@@ -17,7 +17,7 @@
         },
         "dialogColumnTable": {
             "contractNumber": "Số hợp đồng",
-            "garageId": "Tên Gara",
+            "garageId": "Chọn Gara",
             "contractFromDate": "Hiệu lực từ ngày",
             "contractToDate": "Hiệu lực đến ngày",
             "status": "Trạng thái",

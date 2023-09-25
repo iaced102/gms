@@ -564,7 +564,7 @@
 </template>
 
 <script lang="ts">
-import logo from "@/assets/images/carDoctor/jpg_logo.jpg";
+import logo from "@/assets/images/carDoctor/logo_header.svg";
 import {
     Dialog,
     DialogPanel,
