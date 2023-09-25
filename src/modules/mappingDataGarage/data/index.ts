@@ -70,3 +70,38 @@ export const subSystemConfigTemplate = {
         },
     },
 };
+
+export const insurancesConfigTemplate = {
+    name: {
+        type: "CDInput",
+        field: "name",
+        showForDetail: true,
+        props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
+            label: $t(
+                "module.mappingDataGarage.rescues.dialog.dialogColumnTable.name",
+            ),
+            modelValue: "",
+            placeholder: $t(
+                "module.mappingDataGarage.rescues.dialog.dialogColumnTable.name",
+            ),
+        },
+    },
+    description: {
+        type: "CDInput",
+        field: "description",
+        showForDetail: true,
+        props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
+            label: $t(
+                "module.mappingDataGarage.rescues.dialog.dialogColumnTable.description",
+            ),
+            modelValue: "",
+            placeholder: $t(
+                "module.mappingDataGarage.rescues.dialog.dialogColumnTable.description",
+            ),
+        },
+    },
+};

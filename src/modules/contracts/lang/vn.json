@@ -60,7 +60,8 @@
             "save": "Lưu",
             "garaInfor": "Thông tin gara",
             "detailGarageTitle": "Chi tiết gara",
-            "createContract": "Tạo mới hợp đồng"
+            "createContract": "Tạo mới hợp đồng",
+            "create": "Lưu"
         }
     }
 }

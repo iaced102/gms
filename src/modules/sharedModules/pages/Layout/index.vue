@@ -695,6 +695,13 @@ export default defineComponent({
                                     href: "/app/car-sub-system/list",
                                     icon: "fa-solid fa-file-contract",
                                 },
+                                {
+                                    name: this.$t(
+                                        "module.sharedModules.sidebar.insurances",
+                                    ),
+                                    href: "/app/insurances/list",
+                                    icon: "fa-solid fa-file-contract",
+                                },
                             ],
                         },
                         {

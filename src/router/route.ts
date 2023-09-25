@@ -59,6 +59,14 @@ const routes = [
                         "@/modules/mappingDataGarage/pages/subSystem/ListSubSystem.vue"
                     ),
             },
+            {
+                name: "listInsurances",
+                path: "insurances/list",
+                component: () =>
+                    import(
+                        "@/modules/mappingDataGarage/pages/insurances/ListInsurances.vue"
+                    ),
+            },
         ],
     },
     // {

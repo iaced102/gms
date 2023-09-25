@@ -54,10 +54,11 @@
                     />
                 </div>
             </template>
-            <template #action class="mt-4 flex justify-around">
-                <div class="mt-4 flex justify-around">
+            <template #action>
+                <div class="mt-4 flex justify-end">
                     <button
                         v-for="a in dialogConfig.actions"
+                        class="mr-2"
                         :class="a.class"
                         @click="a.action"
                     >
@@ -276,9 +277,18 @@ export default defineComponent({
                         dynamicComponent: dynamicComponent,
                         actions: [
                             {
-                                class: "inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
+                                class: "block rounded-md px-3 py-2 text-center text-sm font-semibold shadow-sm border mr-4 flex justify-center items-center border-black",
                                 name: self.$t(
-                                    "module.contracts.contracts.dialog.createContract",
+                                    "module.generalManagerment.garage.dialog.cancel",
+                                ),
+                                action: () => {
+                                    self.dialogConfig.show = false;
+                                },
+                            },
+                            {
+                                class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600",
+                                name: self.$t(
+                                    "module.contracts.contracts.dialog.create",
                                 ),
                                 action: async () => {
                                     let data = {} as any;
@@ -293,10 +303,15 @@ export default defineComponent({
                                         },
                                     );
                                     console.log(data);
-                                    data.contractFromDate = store.convertDateFormat(data.contractFromDate);
-                                    data.contractToDate = store.convertDateFormat(data.contractToDate);
+                                    data.contractFromDate =
+                                        store.convertDateFormat(
+                                            data.contractFromDate,
+                                        );
+                                    data.contractToDate =
+                                        store.convertDateFormat(
+                                            data.contractToDate,
+                                        );
                                     console.log(data);
-
 
                                     let res = await store.createContract(data);
                                     if (res.code == 1) {

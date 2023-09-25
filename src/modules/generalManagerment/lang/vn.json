@@ -39,6 +39,7 @@
             "contractStatus": "Trạng thái hợp đồng"
         },
         "dialogColumnTable": {
+            "insurances": "Thông tin bảo hiểm",
             "rescues": "Thông tin cứu hộ",
             "carSubSystems": "Hệ thống phụ",
             "parentGarageId": "Chọn Gara tổng",
@@ -108,6 +109,7 @@
         },
         "dialog": {
             "createGarage": "Tạo mới Gara",
+            "create": "Lưu",
             "parentInfor": "Thông tin Gara tổng",
             "deleteGarageTitle": "Xóa Gara?",
             "deleteGarageContent": "Xác nhận xóa Gara",

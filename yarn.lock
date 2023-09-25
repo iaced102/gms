@@ -1223,7 +1223,7 @@
     "to-fast-properties" "^2.0.0"
 
 "@cardoctor/design-system@file:cardoctor-design-system-0.0.0.tgz":
-  "integrity" "sha512-vrcoeGonIaR+4bgut2wNbWkqqGsElFSUWR6GYWhOP+jGu0KhFtnRu6B+Nuzq3I7QE2v/acIuQj8O00qvMd60yQ=="
+  "integrity" "sha512-fyZ33D5CclgbsPEFWu7xCmkvx25dIj3TEiVoRL+78SNvmR1tiu9wUw8m/Ywz+InlrHeifzXVgRjQMWCK52fPtA=="
   "resolved" "file:cardoctor-design-system-0.0.0.tgz"
   "version" "0.0.0"
   dependencies:

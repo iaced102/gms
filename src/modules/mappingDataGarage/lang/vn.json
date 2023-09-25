@@ -10,8 +10,11 @@
             "action": "Hành động"
         },
         "dialog": {
-            "create": "Tạo mới",
-            "createRescues": "Tạo mới Thông tin cứu hộ",
+            "create": "Lưu",
+            "createRescues": "Tạo mới thông tin cứu hộ",
+            "detail": "Chi tiết thông tin cứu hộ",
+            "update": "Cập nhật",
+            "updateRescues": "Cập nhật thông tin cứu hộ",
             "dialogColumnTable": {
                 "name": "Tên",
                 "description": "Mô tả"
@@ -30,6 +33,8 @@
             "reject": "Từ chối phê duyệt"
         },
         "toast": {
+            "updaterescuesSuccess": "Cập nhật thông tin cứu hộ thành công",
+            "updaterescuesFailse": "Cập nhật thông tin cứu hộ thất bại",
             "acceptFailse": "Duyệt thông tin cứu hộ thất bại",
             "acceptSuccess": "Duyệt thông tin cứu hộ thành công",
             "rejectSuccess": "Hủy duyệt thông tin cứu hộ thành công",
@@ -58,8 +63,10 @@
             "action": "Hành động"
         },
         "dialog": {
-            "create": "Tạo mới",
+            "create": "Lưu",
             "createSubSystem": "Tạo mới hệ thống phụ",
+            "detail": "Chi tiết hệ thống phụ",
+            "update": "Cập nhật hệ thống phụ",
             "dialogColumnTable": {
                 "name": "Tên",
                 "description": "Mô tả"
@@ -83,7 +90,61 @@
             "rejectSuccess": "Hủy duyệt hệ thống phụ thành công",
             "rejectFailse": "Hủy duyệt hệ thống phụ thất bại",
             "createRescuesSuccess": "Tạo mới hệ thống phụ thành công",
-            "createRescuesFailse": "Tạo mới hệ thống phụ thất bại"
+            "createRescuesFailse": "Tạo mới hệ thống phụ thất bại",
+            "updateSubSystemSuccess": "Cập nhật hệ thống phụ thành công",
+            "updateSubSystemFailse": "Cập nhật hệ thống phụ thất bại"
+        },
+        "multipleRowActions": {
+            "accept": "Duyệt nhanh",
+            "reject": "Hủy duyệt nhanh"
+        },
+        "filterColumn": {
+            "description": "Mô tả",
+            "name": "Tên",
+            "status": "Trạng thái"
+        }
+    },
+    "insurances": {
+        "tableName": "Danh sách thông tin bảo hiểm",
+        "addNew": "Thêm mới",
+        "columnTable": {
+            "id": "id",
+            "name": "Tên",
+            "description": "Mô tả",
+            "status": "Trạng thái",
+            "action": "Hành động"
+        },
+        "dialog": {
+            "create": "Lưu",
+            "createInsurances": "Tạo mới thông tin bảo hiểm",
+            "detail": "Chi tiết thông tin bảo hiểm",
+            "update": "Cập nhật thông tin bảo hiểm",
+            "dialogColumnTable": {
+                "name": "Tên",
+                "description": "Mô tả"
+            }
+        },
+        "status": {
+            "1": "Đã duyệt",
+            "2": "Đã từ chối",
+            "3": "Chờ duyệt"
+        },
+        "contextActions": {
+            "update": "Cập nhật",
+            "detail": "Xem chi tiết",
+            "delete": "Xóa",
+            "accept": "Duyệt",
+            "reject": "Từ chối phê duyệt"
+        },
+        "toast": {
+            "updateinsurancesSuccess": "Cập nhật thông tin bảo hiểm thành công",
+            "updateinsurancesFailse": "Cập nhật thông tin bảo hiểm thất bại",
+            "acceptFailse": "Duyệt thông tin bảo hiểm thất bại",
+            "acceptSuccess": "Duyệt thông tin bảo hiểm thành công",
+            "rejectSuccess": "Hủy duyệt thông tin bảo hiểm thành công",
+            "rejectFailse": "Hủy duyệt thông tin bảo hiểm thất bại",
+            "createInsurancesSuccess": "Tạo mới thông tin bảo hiểm thành công",
+            "createInsurancesFailse": "Tạo mới thông tin bảo hiểm thất bại"
         },
         "multipleRowActions": {
             "accept": "Duyệt nhanh",

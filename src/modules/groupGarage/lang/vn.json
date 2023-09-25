@@ -83,6 +83,7 @@
         },
         "dialog": {
             "createGarage": "Tạo mới Gara",
+            "create": "Lưu",
             "parentInfor": "Thông tin Gara tổng",
             "deleteGarageTitle": "Xóa Gara?",
             "deleteGarageContent": "Xác nhận xóa Gara",

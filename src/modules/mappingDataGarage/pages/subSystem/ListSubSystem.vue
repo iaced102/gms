@@ -48,8 +48,9 @@
                 </div>
             </template>
             <template #action class="mt-4 flex justify-around">
-                <div class="mt-4 flex justify-around">
+                <div class="mt-4 flex justify-end">
                     <button
+                        class="mr-2"
                         v-for="a in dialogConfig.actions"
                         :class="a.class"
                         @click="a.action"
@@ -283,7 +284,16 @@ export default defineComponent({
                         dynamicComponent: dynamicComponent,
                         actions: [
                             {
-                                class: "inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
+                                class: "block rounded-md px-3 py-2 text-center text-sm font-semibold shadow-sm border mr-4 flex justify-center items-center border-black",
+                                name: self.$t(
+                                    "module.generalManagerment.garage.dialog.cancel",
+                                ),
+                                action: () => {
+                                    self.dialogConfig.show = false;
+                                },
+                            },
+                            {
+                                class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600",
                                 name: self.$t(
                                     "module.mappingDataGarage.subSystem.dialog.create",
                                 ),
@@ -382,6 +392,149 @@ export default defineComponent({
                                 false,
                             );
                         }
+                    },
+                },
+                {
+                    icon: "ArchiveBoxIcon",
+                    name: self.$t(
+                        "module.mappingDataGarage.subSystem.contextActions.detail",
+                    ),
+                    action: async (params: any) => {
+                        let data = (await store.getDetailSubSystem(
+                            params.id,
+                        )) as any;
+                        let subSystemConfigTemplate = {
+                            ...this.subSystemConfigTemplate,
+                        } as any;
+                        let dynamicComponent = [] as any[];
+                        Object.keys(subSystemConfigTemplate).map((a: any) => {
+                            if (subSystemConfigTemplate[a].props) {
+                                subSystemConfigTemplate[a].instanceKey =
+                                    Date.now() +
+                                    subSystemConfigTemplate[a].field;
+                            }
+                            if (subSystemConfigTemplate[a].setup) {
+                                subSystemConfigTemplate[a].setup(
+                                    subSystemConfigTemplate[a].instanceKey,
+                                );
+                            }
+                            if (data.data.hasOwnProperty(a)) {
+                                subSystemConfigTemplate[a].props.modelValue =
+                                    data.data[a];
+                            }
+                            subSystemConfigTemplate[a].props.disabled = true;
+                            dynamicComponent.push(subSystemConfigTemplate[a]);
+                        });
+                        self.dialogConfig = {
+                            show: true,
+                            title: self.$t(
+                                "module.mappingDataGarage.subSystem.dialog.detail",
+                            ),
+                            dynamicComponent: dynamicComponent,
+                            actions: [
+                                {
+                                    class: "block rounded-md px-3 py-2 text-center text-sm font-semibold shadow-sm border mr-4 flex justify-center items-center border-black",
+                                    name: self.$t(
+                                        "module.generalManagerment.garage.dialog.cancel",
+                                    ),
+                                    action: () => {
+                                        self.dialogConfig.show = false;
+                                    },
+                                },
+                            ],
+                        };
+                    },
+                },
+                {
+                    icon: "ArchiveBoxIcon",
+                    name: self.$t(
+                        "module.mappingDataGarage.subSystem.contextActions.update",
+                    ),
+                    action: async (params: any) => {
+                        let data = (await store.getDetailSubSystem(
+                            params.id,
+                        )) as any;
+                        let subSystemConfigTemplate = {
+                            ...this.subSystemConfigTemplate,
+                        } as any;
+                        let dynamicComponent = [] as any[];
+                        Object.keys(subSystemConfigTemplate).map((a: any) => {
+                            if (subSystemConfigTemplate[a].props) {
+                                subSystemConfigTemplate[a].instanceKey =
+                                    Date.now() +
+                                    subSystemConfigTemplate[a].field;
+                            }
+                            if (subSystemConfigTemplate[a].setup) {
+                                subSystemConfigTemplate[a].setup(
+                                    subSystemConfigTemplate[a].instanceKey,
+                                );
+                            }
+                            if (data.data.hasOwnProperty(a)) {
+                                subSystemConfigTemplate[a].props.modelValue =
+                                    data.data[a];
+                            }
+                            subSystemConfigTemplate[a].props.disabled = false;
+                            dynamicComponent.push(subSystemConfigTemplate[a]);
+                        });
+                        self.dialogConfig = {
+                            show: true,
+                            title: self.$t(
+                                "module.mappingDataGarage.subSystem.dialog.update",
+                            ),
+                            dynamicComponent: dynamicComponent,
+                            actions: [
+                                {
+                                    class: "block rounded-md px-3 py-2 text-center text-sm font-semibold shadow-sm border mr-4 flex justify-center items-center border-black",
+                                    name: self.$t(
+                                        "module.generalManagerment.garage.dialog.cancel",
+                                    ),
+                                    action: () => {
+                                        self.dialogConfig.show = false;
+                                    },
+                                },
+                                {
+                                    class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600",
+                                    name: self.$t(
+                                        "module.mappingDataGarage.subSystem.dialog.update",
+                                    ),
+                                    action: async () => {
+                                        let data = {} as any;
+                                        self.dialogConfig.dynamicComponent.map(
+                                            (a: any) => {
+                                                if (a.static) {
+                                                    data[a.field] = a.value;
+                                                } else {
+                                                    data[a.field] =
+                                                        a.props.modelValue;
+                                                }
+                                            },
+                                        );
+
+                                        let res = (await store.updateSubSystem(
+                                            data,
+                                            params.id,
+                                        )) as any;
+                                        if (res.code == 1) {
+                                            self.$toast(
+                                                self.$t(
+                                                    "module.mappingDataGarage.subSystem.toast.updateSubSystemSuccess",
+                                                ),
+                                                true,
+                                            );
+                                            self.getDataForTable();
+                                        } else {
+                                            self.$toast(
+                                                self.$t(
+                                                    "module.mappingDataGarage.subSystem.toast.updateSubSystemFailse",
+                                                ),
+                                                false,
+                                            );
+                                        }
+                                        self.dialogConfig.show = false;
+                                    },
+                                },
+                            ],
+                        };
                     },
                 },
             ],

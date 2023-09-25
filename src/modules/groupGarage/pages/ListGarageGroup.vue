@@ -66,8 +66,9 @@
                 </div>
             </template>
             <template #action class="mt-4 flex justify-around">
-                <div class="mt-4 flex justify-around">
+                <div class="mt-4 flex justify-end">
                     <button
+                        class="mr-2"
                         v-for="a in dialogConfig.actions"
                         :class="a.class"
                         @click="a.action"
@@ -349,21 +350,6 @@ export default defineComponent({
                     })();
                     let dynamicComponent = [] as any[];
                     Object.keys(garageDataConfigCreateClone).map((a) => {
-                        // if (
-                        //     garageDataConfigCreateClone[a].group ==
-                        //         "parentInfo" &&
-                        //     garageDataConfigCreateClone[a].field !=
-                        //         "parentGarageId"
-                        // ) {
-                        //     garageDataConfigCreateClone[a].props.disabled =
-                        //         true;
-                        //     garageDataConfigCreateClone[a].props.modelValue =
-                        //         "";
-                        // } else {
-                        // if (
-                        //     garageDataConfigCreateClone[a].group ==
-                        //     "garageInfor"
-                        // ) {
                         garageDataConfigCreateClone[a].instanceKey =
                             Date.now() + garageDataConfigCreateClone[a].field;
                         if (garageDataConfigCreateClone[a].props) {
@@ -372,8 +358,6 @@ export default defineComponent({
                             garageDataConfigCreateClone[a].props.modelValue =
                                 "";
                         }
-                        // }
-                        // }
                         dynamicComponent.push(garageDataConfigCreateClone[a]);
                     });
                     self.dialogConfig = {
@@ -384,9 +368,18 @@ export default defineComponent({
                         dynamicComponent: dynamicComponent,
                         actions: [
                             {
-                                class: "inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
+                                class: "block rounded-md px-3 py-2 text-center text-sm font-semibold shadow-sm border mr-4 flex justify-center items-center border-black",
                                 name: self.$t(
-                                    "module.groupGarage.groupGarage.dialog.createGarage",
+                                    "module.generalManagerment.garage.dialog.cancel",
+                                ),
+                                action: () => {
+                                    self.dialogConfig.show = false;
+                                },
+                            },
+                            {
+                                class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600",
+                                name: self.$t(
+                                    "module.groupGarage.groupGarage.dialog.create",
                                 ),
                                 action: async () => {
                                     let isValidate = true;
@@ -519,19 +512,6 @@ export default defineComponent({
                         });
                         let dynamicComponent = [] as any[];
                         Object.keys(garageDataConfigEditClone).map((a) => {
-                            // if (
-                            //     garageDataConfigEditClone[a].group ==
-                            //         "parentInfo" &&
-                            //     garageDataConfigEditClone[a].field !=
-                            //         "parentGarageId"
-                            // ) {
-                            //     garageDataConfigEditClone[a].props.disabled =
-                            //         true;
-                            // } else {
-                            // if (
-                            //     garageDataConfigEditClone[a].group ==
-                            //     "garageInfor"
-                            // ) {
                             if (garageDataConfigEditClone[a].props) {
                                 garageDataConfigEditClone[a].instanceKey =
                                     Date.now() +
@@ -540,8 +520,6 @@ export default defineComponent({
                             if (garageDataConfigEditClone[a].props) {
                                 garageDataConfigEditClone[a].props.disabled =
                                     false;
-                                // }
-                                // }
                                 dynamicComponent.push(
                                     garageDataConfigEditClone[a],
                                 );
@@ -559,7 +537,16 @@ export default defineComponent({
                             dynamicComponent: dynamicComponent,
                             actions: [
                                 {
-                                    class: "inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
+                                    class: "block rounded-md px-3 py-2 text-center text-sm font-semibold shadow-sm border mr-4 flex justify-center items-center border-black",
+                                    name: self.$t(
+                                        "module.groupGarage.groupGarage.dialog.cancel",
+                                    ),
+                                    action: () => {
+                                        self.dialogConfig.show = false;
+                                    },
+                                },
+                                {
+                                    class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600",
                                     name: self.$t(
                                         "module.groupGarage.groupGarage.dialog.save",
                                     ),
@@ -610,140 +597,10 @@ export default defineComponent({
                                                 false,
                                             );
                                         }
-                                        // self.dialogConfig = false;
-                                    },
-                                },
-                                {
-                                    class: "inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
-                                    name: self.$t(
-                                        "module.groupGarage.groupGarage.dialog.reject",
-                                    ),
-                                    action: async () => {
-                                        let id = self.originData.id;
-                                        let res = await store.rejectGarage([
-                                            id,
-                                        ]);
-                                        if (res.code == 1) {
-                                            self.$toast(
-                                                self.$t(
-                                                    "module.groupGarage.groupGarage.toast.rejectSuccess",
-                                                ),
-                                                true,
-                                            );
-                                            self.getDataForTable();
-                                        } else {
-                                            self.$toast(
-                                                self.$t(
-                                                    "module.groupGarage.groupGarage.toast.rejectFailse",
-                                                ),
-                                                false,
-                                            );
-                                        }
-                                        self.dialogConfig.show = false;
-                                    },
-                                },
-                                {
-                                    class: "inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
-                                    name: self.$t(
-                                        "module.groupGarage.groupGarage.contextActions.accept",
-                                    ),
-                                    action: async () => {
-                                        let id = self.originData.id;
-                                        let res = await store.acceptGarage([
-                                            id,
-                                        ]);
-                                        if (res.code == 1) {
-                                            self.$toast(
-                                                self.$t(
-                                                    "module.groupGarage.groupGarage.toast.acceptSuccess",
-                                                ),
-                                                true,
-                                            );
-                                            self.getDataForTable();
-                                        } else {
-                                            self.$toast(
-                                                self.$t(
-                                                    "module.groupGarage.groupGarage.toast.acceptFailse",
-                                                ),
-                                                false,
-                                            );
-                                        }
-                                        self.dialogConfig.show = false;
-                                    },
-                                },
-                                {
-                                    class: "inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
-                                    name: self.$t(
-                                        "module.groupGarage.groupGarage.dialog.cancel",
-                                    ),
-                                    action: () => {
-                                        self.dialogConfig.show = false;
-                                    },
-                                },
-                                {
-                                    class: "inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
-                                    name: self.$t(
-                                        "module.groupGarage.groupGarage.dialog.deleteConfirm",
-                                    ),
-                                    action: () => {
-                                        self.dialogConfig = {
-                                            show: true,
-                                            title:
-                                                self.$t(
-                                                    "module.groupGarage.groupGarage.dialog.detailGarageTitle",
-                                                ) +
-                                                " " +
-                                                params.name,
-
-                                            dynamicComponent: dynamicComponent,
-                                            actions: [
-                                                {
-                                                    class: "inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
-                                                    name: self.$t(
-                                                        "module.groupGarage.groupGarage.dialog.deleteConfirm",
-                                                    ),
-                                                    action: async () => {
-                                                        let res: any =
-                                                            await store.deleteGarage(
-                                                                self.originData
-                                                                    .id,
-                                                            );
-                                                        if (res.code == 1) {
-                                                            self.getDataForTable();
-                                                            self.$toast(
-                                                                self.$t(
-                                                                    "module.groupGarage.groupGarage.toast.deleteGarageSuccess",
-                                                                ),
-                                                                true,
-                                                            );
-                                                            self.dialogConfig =
-                                                                false;
-                                                        } else {
-                                                            self.$toast(
-                                                                self.$t(
-                                                                    "module.groupGarage.groupGarage.toast.deleteGarageFailse",
-                                                                ),
-                                                            );
-                                                        }
-                                                    },
-                                                },
-                                                {
-                                                    class: "inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
-                                                    name: self.$t(
-                                                        "module.groupGarage.groupGarage.dialog.cancel",
-                                                    ),
-                                                    action: () => {
-                                                        self.dialogConfig =
-                                                            false;
-                                                    },
-                                                },
-                                            ],
-                                        };
                                     },
                                 },
                             ],
                         };
-                        // self.calculateAdressOption();
                     },
                 },
                 {
@@ -827,6 +684,17 @@ export default defineComponent({
                             );
                         });
                         self.dialogConfig = {
+                            actions: [
+                                {
+                                    class: "block rounded-md px-3 py-2 text-center text-sm font-semibold shadow-sm border mr-4 flex justify-center items-center border-black",
+                                    name: self.$t(
+                                        "module.generalManagerment.garage.dialog.cancel",
+                                    ),
+                                    action: () => {
+                                        self.dialogConfig.show = false;
+                                    },
+                                },
+                            ],
                             show: true,
                             title:
                                 self.$t(
@@ -854,7 +722,17 @@ export default defineComponent({
                             ),
                             actions: [
                                 {
-                                    class: "inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
+                                    class: "block rounded-md px-3 py-2 text-center text-sm font-semibold shadow-sm border mr-4 flex justify-center items-center border-black",
+                                    name: self.$t(
+                                        "module.groupGarage.groupGarage.dialog.cancel",
+                                    ),
+                                    action: () => {
+                                        self.dialogConfig = false;
+                                    },
+                                },
+                                {
+                                    class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600",
+
                                     name: self.$t(
                                         "module.groupGarage.groupGarage.dialog.deleteConfirm",
                                     ),
@@ -878,15 +756,6 @@ export default defineComponent({
                                                 ),
                                             );
                                         }
-                                    },
-                                },
-                                {
-                                    class: "inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
-                                    name: self.$t(
-                                        "module.groupGarage.groupGarage.dialog.cancel",
-                                    ),
-                                    action: () => {
-                                        self.dialogConfig = false;
                                     },
                                 },
                             ],

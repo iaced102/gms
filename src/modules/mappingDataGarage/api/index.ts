@@ -48,6 +48,21 @@ export function createRescues(data: any) {
     });
 }
 
+export function getDetailRescues(id: string) {
+    return garageService({
+        url: "rescues/" + id,
+        method: "get",
+    });
+}
+
+export function updateRescues(data: any, id: string) {
+    return garageService({
+        url: "rescues/" + id,
+        method: "patch",
+        data: data,
+    });
+}
+
 export function getSubSystem() {
     return garageService({
         url: "rescues",
@@ -83,6 +98,74 @@ export function createSubSystem(data: any) {
     return garageService({
         url: "car-sub-systems",
         method: "post",
+        data: data,
+    });
+}
+export function getDetailSubSystem(id: string) {
+    return garageService({
+        url: "car-sub-systems/" + id,
+        method: "get",
+    });
+}
+
+export function updateSubSystem(data: any, id: string) {
+    return garageService({
+        url: "car-sub-systems/" + id,
+        method: "patch",
+        data: data,
+    });
+}
+
+export function getInsurances() {
+    return garageService({
+        url: "insurances",
+        method: "get",
+    });
+}
+
+export function getAllInsurances(data: any) {
+    return garageService({
+        url: "insurances",
+        method: "get",
+        params: data,
+    });
+}
+
+export function acceptInsurances(data: any) {
+    return garageService({
+        url: "insurances/accept",
+        method: "post",
+        data: data,
+    });
+}
+
+export function rejectInsurances(data: any) {
+    return garageService({
+        url: "insurances/reject",
+        method: "post",
+        data: data,
+    });
+}
+
+export function createInsurances(data: any) {
+    return garageService({
+        url: "insurances",
+        method: "post",
+        data: data,
+    });
+}
+
+export function getDetailInsurances(id: string) {
+    return garageService({
+        url: "insurances/" + id,
+        method: "get",
+    });
+}
+
+export function updateInsurances(data: any, id: string) {
+    return garageService({
+        url: "insurances/" + id,
+        method: "patch",
         data: data,
     });
 }

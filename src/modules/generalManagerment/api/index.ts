@@ -8,6 +8,13 @@ export function getAllGarage(data: any) {
         params: data,
     });
 }
+export function getAllInsurance(data: any) {
+    return garageService({
+        url: "garages",
+        method: "get",
+        params: data,
+    });
+}
 export function getGarageInforById(id: string) {
     return garageService({
         url: "garages/" + id,

@@ -10,8 +10,7 @@ import {
     getListSubSystem,
     updateGarage,
     createGarage,
-    // getRescues,
-    // createGarageOwner,
+    getAllInsurance,
     acceptGarages,
     rejectGarage,
 } from "@/modules/generalManagerment/api/index";
@@ -25,6 +24,7 @@ export const generalManagermentStore = defineStore("g", {
             },
             listSubSystem: [],
             listRescues: [],
+            listInsurance: [],
         };
     },
     getters: {
@@ -68,6 +68,26 @@ export const generalManagermentStore = defineStore("g", {
             )) as any;
             if (filtered.code == 1) {
                 this.listRescues = filtered.data;
+            }
+            console.log(filtered);
+        },
+        async getAllInsurance() {
+            let data = {
+                pageSize: 10000,
+                pageNumber: 1,
+                status: 1,
+            };
+            const res = await getAllInsurance(data);
+
+            let filtered = (await this.filterResponse(
+                res,
+                (data: any) => {
+                    this.overviewData = data;
+                },
+                () => {},
+            )) as any;
+            if (filtered.code == 1) {
+                this.listInsurance = filtered.data;
             }
             console.log(filtered);
         },
