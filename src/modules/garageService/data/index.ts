@@ -37,32 +37,32 @@ export const tagsConfigTemplate = {
 };
 
 export const garageServiceConfigTemplate = {
-    garageId: {
-        field: "garageId",
-        type: "CDComboBox",
-        group: "parentInfor",
-        showForDetail: true,
-        validator: (val: string) => {
-            if (val == "") {
-                return $t(
-                    "module.garageService.garageService.validator.parentGarageIdCannotBeEmpty",
-                );
-            }
-        },
-        props: {
-            isRequired: true,
-            labelClass: "w-1/3",
-            contentClass: "w-2/3",
-            label: $t(
-                "module.garageService.garageService.dialog.dialogColumnTable.garageId",
-            ),
-            modelValue: "",
-            placeholder: $t(
-                "module.garageService.garageService.dialog.dialogColumnTable.garageId",
-            ),
-            options: [],
-        },
-    },
+    // garageId: {
+    //     field: "garageId",
+    //     type: "CDComboBox",
+    //     group: "parentInfor",
+    //     showForDetail: true,
+    //     validator: (val: string) => {
+    //         if (val == "") {
+    //             return $t(
+    //                 "module.garageService.garageService.validator.parentGarageIdCannotBeEmpty",
+    //             );
+    //         }
+    //     },
+    //     props: {
+    //         isRequired: true,
+    //         labelClass: "w-1/3",
+    //         contentClass: "w-2/3",
+    //         label: $t(
+    //             "module.garageService.garageService.dialog.dialogColumnTable.garageId",
+    //         ),
+    //         modelValue: "",
+    //         placeholder: $t(
+    //             "module.garageService.garageService.dialog.dialogColumnTable.garageId",
+    //         ),
+    //         options: [],
+    //     },
+    // },
     name: {
         type: "CDInput",
         field: "name",

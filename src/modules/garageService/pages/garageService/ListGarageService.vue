@@ -395,7 +395,7 @@ export default defineComponent({
                                 garageServiceConfigTemplate[a].instanceKey,
                             );
                         }
-                        garageServiceConfigTemplate[a].props.modelValue = "";
+                        // garageServiceConfigTemplate[a].props.modelValue = "";
                         dynamicComponent.push(garageServiceConfigTemplate[a]);
                     });
                     self.dialogConfig = {
@@ -428,6 +428,16 @@ export default defineComponent({
                                             } else {
                                                 data[a.field] =
                                                     a.props.modelValue;
+                                                if (a.type == "CDMultiselect") {
+                                                    data[a.field] =
+                                                        a.props.modelValue.map(
+                                                            (b) => {
+                                                                return {
+                                                                    id: b,
+                                                                };
+                                                            },
+                                                        );
+                                                }
                                             }
                                         },
                                     );
@@ -542,10 +552,20 @@ export default defineComponent({
                                             .instanceKey,
                                     );
                                 }
-                                if (data.data.hasOwnProperty(a)) {
+                                if (data.hasOwnProperty(a)) {
                                     garageServiceConfigTemplate[
                                         a
-                                    ].props.modelValue = data.data[a];
+                                    ].props.modelValue = data[a];
+                                    if (
+                                        garageServiceConfigTemplate[a].type ==
+                                        "CDMultiselect"
+                                    ) {
+                                        garageServiceConfigTemplate[
+                                            a
+                                        ].props.modelValue = data[a].map(
+                                            (f) => f.id,
+                                        );
+                                    }
                                 }
                                 garageServiceConfigTemplate[a].props.disabled =
                                     true;
@@ -600,10 +620,20 @@ export default defineComponent({
                                             .instanceKey,
                                     );
                                 }
-                                if (data.data.hasOwnProperty(a)) {
+                                if (data.hasOwnProperty(a)) {
                                     garageServiceConfigTemplate[
                                         a
-                                    ].props.modelValue = data.data[a];
+                                    ].props.modelValue = data[a];
+                                    if (
+                                        garageServiceConfigTemplate[a].type ==
+                                        "CDMultiselect"
+                                    ) {
+                                        garageServiceConfigTemplate[
+                                            a
+                                        ].props.modelValue = data[a].map(
+                                            (f) => f.id,
+                                        );
+                                    }
                                 }
                                 garageServiceConfigTemplate[a].props.disabled =
                                     false;
@@ -642,6 +672,19 @@ export default defineComponent({
                                                 } else {
                                                     data[a.field] =
                                                         a.props.modelValue;
+                                                    if (
+                                                        a.type ==
+                                                        "CDMultiselect"
+                                                    ) {
+                                                        data[a.field] =
+                                                            a.props.modelValue.map(
+                                                                (b) => {
+                                                                    return {
+                                                                        id: b,
+                                                                    };
+                                                                },
+                                                            );
+                                                    }
                                                 }
                                             },
                                         );
