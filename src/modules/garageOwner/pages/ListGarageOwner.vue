@@ -3,7 +3,7 @@
         <CDTable
             ref="table"
             v-if="rowData.length > 0"
-            :tableName="$t('module.contracts.contracts.tableName')"
+            :tableName="$t('module.garageOwner.garageOwner.tableName')"
             :rowData="rowData"
             :columns="columns"
             :actions="tableActions"
@@ -37,14 +37,7 @@
                 "
                 #content
             >
-                <div class="mt-7">
-                    <h1 class="text-lg ml-2 mt-4">
-                        {{
-                            $t(
-                                "module.contracts.contracts.dialog.contractInfor",
-                            )
-                        }}
-                    </h1>
+                <div class="mt-2">
                     <CDMultipleRenderDynamicComponent
                         perItemClass="px-3 py-6 border-b"
                         commonClass="flex align-center"
@@ -71,67 +64,39 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import { contractStore } from "../store/index";
-const store = contractStore();
+import { garageOwnerStore } from "../store/index";
+const store = garageOwnerStore();
 const displayCol = [
-    "contractNumber",
-    "garageId",
-    "garageName",
-    "contractFromDate",
-    "contractToDate",
-
+    "name",
+    "userName",
+    "phone",
+    "email",
+    "gender",
+    "birthday",
     "status",
 ];
 import _cloneDeep from "lodash/cloneDeep";
-import { contractDataConfigCreate } from "../data/index";
+import { garageOwnerDataConfigCreate } from "../data/index";
 import { generalManagermentStore } from "@/modules/generalManagerment/store";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 // var customParseFormat = require('dayjs/plugin/customParseFormat')
 dayjs.extend(customParseFormat);
 const garageStore = generalManagermentStore();
-const cloneContractConfigCreate = _cloneDeep(contractDataConfigCreate);
+const cloneGarageOwnerConfigCreate = _cloneDeep(garageOwnerDataConfigCreate);
 export default defineComponent({
     async created() {
         this.getDataForTable();
-        this.contractDataConfigCreate.garageId.setup = (
+        this.garageOwnerDataConfigCreate.garages.setup = (
             instanceKey: string,
         ) => {
             this.getListGarage("", instanceKey);
         };
-        this.contractDataConfigCreate.garageId.onSearch = (
+        this.garageOwnerDataConfigCreate.garages.onSearch = (
             instanceKey: string,
             val: string,
         ) => {
             this.getListGarage(val, instanceKey);
-        };
-        this.contractDataConfigCreate.contractFromDate.onUpdate = (
-            val: string,
-            instanceKey: string,
-        ) => {
-            let date = dayjs(val, "YYYY-MM-DD").toDate();
-            const contractToDate = this.dialogConfig.dynamicComponent.find(
-                (field) => {
-                    if (field.field == "contractToDate") {
-                        return true;
-                    }
-                },
-            );
-            contractToDate.props.min = date;
-        };
-        this.contractDataConfigCreate.contractToDate.onUpdate = (
-            val: string,
-            instanceKey: string,
-        ) => {
-            let date = dayjs(val, "YYYY-MM-DD").toDate();
-            const contractFromDate = this.dialogConfig.dynamicComponent.find(
-                (field) => {
-                    if (field.field == "contractFromDate") {
-                        return true;
-                    }
-                },
-            );
-            contractFromDate.props.max = date;
         };
     },
     methods: {
@@ -139,6 +104,7 @@ export default defineComponent({
             let field = this.dialogConfig.dynamicComponent.find(
                 (a: any) => a.instanceKey == instanceKey,
             );
+            console.log(val, instanceKey);
             if (field.onUpdate) {
                 field.onUpdate(val, instanceKey);
             }
@@ -146,9 +112,8 @@ export default defineComponent({
         async getListGarage(val: string, instanceKey: any) {
             if (val == "") {
                 let res = await garageStore.getAllGarage({
-                    pageSize: 10,
+                    pageSize: 10000,
                     pageNumber: 1,
-                    status: 1,
                 });
                 let field = this.dialogConfig.dynamicComponent.find(
                     (a: any) => a.instanceKey == instanceKey,
@@ -156,7 +121,7 @@ export default defineComponent({
                 field.props.options = res.data.map((a: any) => {
                     return {
                         id: a.id,
-                        value: a.id,
+                        value: a.name,
                         text: a.name,
                     };
                 });
@@ -164,7 +129,6 @@ export default defineComponent({
                 let res = await garageStore.getAllGarage({
                     pageSize: 10,
                     pageNumber: 1,
-                    status: 1,
                     name: val,
                 });
                 let field = this.dialogConfig.dynamicComponent.find(
@@ -200,7 +164,7 @@ export default defineComponent({
         async getDataForTable() {
             let self = this;
             this.rowData = [];
-            let res = await store.getAllContract({
+            let res = await store.getAllGarageOwner({
                 pageSize: this.pagination.perPage,
                 pageNumber: this.pagination.currentPage,
             });
@@ -210,7 +174,7 @@ export default defineComponent({
                 a.status = {
                     status: a.status,
                     content: self.$t(
-                        "module.contracts.contracts.status." + a.status,
+                        "module.garageOwner.garageOwner.status." + a.status,
                     ),
                 };
                 return a;
@@ -219,23 +183,17 @@ export default defineComponent({
                 return {
                     field: a,
                     headerName: this.$t(
-                        "module.contracts.contracts.columnTable." + a,
+                        "module.garageOwner.garageOwner.columnTable." + a,
                     ),
                 };
             });
-            // this.columns.push({
-            //     field: "action",
-            //     headerName: self.$t(
-            //         "module.contracts.contracts.columnTable.action",
-            //     ),
-            // });
             this.pagination.total = res.totalElement;
         },
     },
     data() {
         let self = this as any;
         return {
-            contractDataConfigCreate: cloneContractConfigCreate as any,
+            garageOwnerDataConfigCreate: cloneGarageOwnerConfigCreate as any,
             originData: {} as any,
             timeOut: {} as any,
             dialogConfig: {
@@ -252,28 +210,43 @@ export default defineComponent({
             },
             tableActions: {
                 action: () => {
-                    let garageDataConfigCreateClone = {
-                        ...this.contractDataConfigCreate,
+                    let garageOwnerDataConfigCreateClone = {
+                        ...this.garageOwnerDataConfigCreate,
                     } as any;
                     let dynamicComponent = [] as any[];
-                    Object.keys(garageDataConfigCreateClone).map((a: any) => {
-                        if (garageDataConfigCreateClone[a].props) {
-                            garageDataConfigCreateClone[a].instanceKey =
-                                Date.now() +
-                                garageDataConfigCreateClone[a].field;
-                        }
-                        if (garageDataConfigCreateClone[a].setup) {
-                            garageDataConfigCreateClone[a].setup(
-                                garageDataConfigCreateClone[a].instanceKey,
+                    Object.keys(garageOwnerDataConfigCreateClone).map(
+                        (a: any) => {
+                            if (garageOwnerDataConfigCreateClone[a].props) {
+                                garageOwnerDataConfigCreateClone[
+                                    a
+                                ].instanceKey =
+                                    Date.now() +
+                                    garageOwnerDataConfigCreateClone[a].field;
+                            }
+                            if (garageOwnerDataConfigCreateClone[a].setup) {
+                                garageOwnerDataConfigCreateClone[a].setup(
+                                    garageOwnerDataConfigCreateClone[a]
+                                        .instanceKey,
+                                );
+                            }
+                            if (
+                                garageOwnerDataConfigCreateClone[a].type ==
+                                "CDMultiselect"
+                            ) {
+                                garageOwnerDataConfigCreateClone[
+                                    a
+                                ].props.modelValue = [];
+                            }
+
+                            dynamicComponent.push(
+                                garageOwnerDataConfigCreateClone[a],
                             );
-                        }
-                        garageDataConfigCreateClone[a].props.modelValue = "";
-                        dynamicComponent.push(garageDataConfigCreateClone[a]);
-                    });
+                        },
+                    );
                     self.dialogConfig = {
                         show: true,
                         title: self.$t(
-                            "module.contracts.contracts.dialog.createContract",
+                            "module.garageOwner.garageOwner.dialog.createGarageOwner",
                         ),
                         dynamicComponent: dynamicComponent,
                         actions: [
@@ -289,7 +262,7 @@ export default defineComponent({
                             {
                                 class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600",
                                 name: self.$t(
-                                    "module.contracts.contracts.dialog.create",
+                                    "module.garageOwner.garageOwner.dialog.create",
                                 ),
                                 action: async () => {
                                     let data = {} as any;
@@ -303,22 +276,24 @@ export default defineComponent({
                                             }
                                         },
                                     );
-                                    console.log(data);
-                                    // data.contractFromDate =
-                                    //     store.convertDateFormat(
-                                    //         data.contractFromDate,
-                                    //     );
-                                    // data.contractToDate =
-                                    //     store.convertDateFormat(
-                                    //         data.contractToDate,
-                                    //     );
-                                    console.log(data);
-
-                                    let res = await store.createContract(data);
+                                    data.birthday = dayjs(data.birthday)
+                                        .toDate()
+                                        .toISOString();
+                                    data.garages = data.garages.map(
+                                        (a: any) => {
+                                            return {
+                                                id: a,
+                                            };
+                                        },
+                                    );
+                                    let res = await store.createGarageOwner(
+                                        data,
+                                    );
+                                    debugger;
                                     if (res.code == 1) {
                                         self.$toast(
                                             self.$t(
-                                                "module.contracts.contracts.toast.createContractSuccess",
+                                                "module.garageOwner.garageOwner.toast.createGarageOwnerSuccess",
                                             ),
                                             true,
                                         );
@@ -326,7 +301,7 @@ export default defineComponent({
                                     } else {
                                         self.$toast(
                                             self.$t(
-                                                "module.contracts.contracts.toast.createContractFailse",
+                                                "module.garageOwner.garageOwner.toast.createGarageOwnerFailse",
                                             ),
                                             false,
                                         );
@@ -336,9 +311,8 @@ export default defineComponent({
                             },
                         ],
                     };
-                    // self.calculateAdressOption();
                 },
-                name: this.$t("module.contracts.contracts.addNew"),
+                name: this.$t("module.garageOwner.garageOwner.addNew"),
             },
             rowData: [] as any[],
             columns: [] as any[],

@@ -11,7 +11,10 @@
         "vacationSchedule": "Lịch nghỉ",
         "rescues": "Cứu hộ",
         "insurances": "Bảo hiểm",
-        "subSystem": "Hệ thống phụ"
+        "subSystem": "Hệ thống phụ",
+        "listGarageOwner": "Danh sách chủ Gara",
+        "service": "Dịch vụ Gara",
+        "tags": "Thẻ"
     },
     "header": {},
     "functionSidebar": {}

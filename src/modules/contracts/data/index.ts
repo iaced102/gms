@@ -49,6 +49,7 @@ export const contractDataConfigCreate = {
         field: "contractFromDate",
         showForDetail: true,
         props: {
+            formatter: "YYYY-MM-DD",
             labelClass: "w-1/3",
             contentClass: "w-2/3",
             label: $t(
@@ -66,6 +67,7 @@ export const contractDataConfigCreate = {
         field: "contractToDate",
         showForDetail: true,
         props: {
+            formatter: "YYYY-MM-DD",
             labelClass: "w-1/3",
             contentClass: "w-2/3",
             label: $t(

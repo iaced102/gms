@@ -121,6 +121,7 @@ export const garageDataConfigDetail = {
         type: "CDInput",
         group: "parentInfor",
         props: {
+            type: "tel",
             labelClass: "w-1/3",
             contentClass: "w-2/3",
             label: $t("module.groupGarage.groupGarage.columnTable.phone"),
@@ -253,6 +254,7 @@ export const garageDataConfigDetail = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            type: "tel",
             labelClass: "w-1/3",
             contentClass: "w-2/3",
             label: $t(
@@ -621,6 +623,7 @@ export const garageConfigEdit = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            type: "tel",
             labelClass: "w-1/3",
             contentClass: "w-2/3",
             disabled: true,
@@ -659,17 +662,6 @@ export const garageConfigEdit = {
 };
 
 export const garageConfigCreate = {
-    // code: {
-    //     field: "code",
-    //     type: "CDInput",
-    //     group: "garageInfor",
-    //     showForDetail: true,
-    //     props: {
-    //         label: $t("module.groupGarage.groupGarage.columnTable.code"),
-    //         modelValue: "",
-    //         placeholder: $t("module.groupGarage.groupGarage.columnTable.code"),
-    //     },
-    // },
     name: {
         field: "name",
         type: "CDInput",
@@ -780,7 +772,7 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
-            type: "number",
+            type: "tel",
             labelClass: "w-1/3",
             contentClass: "w-2/3",
             disabled: true,
@@ -794,26 +786,37 @@ export const garageConfigCreate = {
         },
     },
     placeOfIssue: {
-        // field: "placeOfIssue",
-        // type: "CDInput",
-        // group: "garageInfor",
-        // showForDetail: true,
-        // props: {
-        //     label: $t(
-        //         "module.groupGarage.groupGarage.columnTable.placeOfIssue",
-        //     ),
-        //     modelValue: "",
-        //     placeholder: $t(
-        //         "module.groupGarage.groupGarage.columnTable.placeOfIssue",
-        //     ),
-        // },
-        static: true,
         field: "placeOfIssue",
-        value: "",
+        type: "CDInput",
+        group: "garageInfor",
+        showForDetail: true,
+        props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
+            disabled: true,
+            label: $t(
+                "module.groupGarage.groupGarage.columnTable.placeOfIssue",
+            ),
+            modelValue: "",
+            placeholder: $t(
+                "module.groupGarage.groupGarage.columnTable.placeOfIssue",
+            ),
+        },
     },
     dateOfIssue: {
-        field: "dateOfIssue",
-        static: true,
-        value: "2023-09-16T00:31:00.938Z",
+        field: "placeOfIssue",
+        type: "CDDatePicker",
+        group: "garageInfor",
+        showForDetail: true,
+        props: {
+            labelClass: "w-1/3",
+            contentClass: "w-2/3",
+            disabled: true,
+            label: $t("module.groupGarage.groupGarage.columnTable.dateOfIssue"),
+            modelValue: "",
+            placeholder: $t(
+                "module.groupGarage.groupGarage.columnTable.dateOfIssue",
+            ),
+        },
     },
 };

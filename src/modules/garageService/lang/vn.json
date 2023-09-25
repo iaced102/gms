@@ -1,0 +1,112 @@
+{
+    "tags": {
+        "tableName": "Danh sách thẻ",
+        "addNew": "Thêm mới",
+        "columnTable": {
+            "id": "id",
+            "name": "Tên",
+            "description": "Mô tả",
+            "status": "Trạng thái",
+            "action": "Hành động"
+        },
+        "dialog": {
+            "create": "Lưu",
+            "createTags": "Tạo mới thẻ",
+            "detail": "Chi tiết thẻ",
+            "update": "Cập nhật",
+            "updateTags": "Cập nhật thẻ",
+            "dialogColumnTable": {
+                "name": "Tên",
+                "description": "Mô tả"
+            }
+        },
+        "status": {
+            "1": "Đã duyệt",
+            "2": "Đã từ chối",
+            "3": "Chờ duyệt"
+        },
+        "contextActions": {
+            "update": "Cập nhật",
+            "detail": "Xem chi tiết",
+            "delete": "Xóa",
+            "accept": "Duyệt",
+            "reject": "Từ chối phê duyệt"
+        },
+        "toast": {
+            "updatetagsSuccess": "Cập nhật thẻ thành công",
+            "updatetagsFailse": "Cập nhật thẻ thất bại",
+            "acceptFailse": "Duyệt thẻ thất bại",
+            "acceptSuccess": "Duyệt thẻ thành công",
+            "rejectSuccess": "Hủy duyệt thẻ thành công",
+            "rejectFailse": "Hủy duyệt thẻ thất bại",
+            "createTagsSuccess": "Tạo mới thẻ thành công",
+            "createTagsFailse": "Tạo mới thẻ thất bại"
+        },
+        "multipleRowActions": {
+            "accept": "Duyệt nhanh",
+            "reject": "Hủy duyệt nhanh"
+        },
+        "filterColumn": {
+            "description": "Mô tả",
+            "name": "Tên",
+            "status": "Trạng thái"
+        }
+    },
+    "garageService": {
+        "tableName": "Danh sách dịch vụ Gara",
+        "addNew": "Thêm mới",
+        "columnTable": {
+            "id": "id",
+            "name": "Tên",
+            "description": "Mô tả",
+            "status": "Trạng thái",
+            "action": "Hành động"
+        },
+        "dialog": {
+            "create": "Lưu",
+            "createGarageService": "Tạo mới dịch vụ Gara",
+            "detail": "Chi tiết dịch vụ Gara",
+            "update": "Cập nhật",
+            "updateGarageService": "Cập nhật dịch vụ Gara",
+            "dialogColumnTable": {
+                "price": "Đơn giá",
+                "tags": "Thẻ",
+                "carSubSystems": "Hệ thống phụ",
+                "name": "Tên",
+                "garageId": "Chọn Gara",
+                "description": "Mô tả"
+            }
+        },
+        "status": {
+            "1": "Đã duyệt",
+            "2": "Đã từ chối",
+            "3": "Chờ duyệt"
+        },
+        "contextActions": {
+            "update": "Cập nhật",
+            "detail": "Xem chi tiết",
+            "delete": "Xóa",
+            "accept": "Duyệt",
+            "reject": "Từ chối phê duyệt"
+        },
+        "toast": {
+            "updateGarageServiceSuccess": "Cập nhật dịch vụ Gara thành công",
+            "updateGarageServiceFailse": "Cập nhật dịch vụ Gara thất bại",
+            "acceptFailse": "Duyệt dịch vụ Gara thất bại",
+            "acceptSuccess": "Duyệt dịch vụ Gara thành công",
+            "rejectSuccess": "Hủy duyệt dịch vụ Gara thành công",
+            "rejectFailse": "Hủy duyệt dịch vụ Gara thất bại",
+            "createGarageServiceSuccess": "Tạo mới dịch vụ Gara thành công",
+            "createGarageServiceFailse": "Tạo mới dịch vụ Gara thất bại"
+        },
+        "multipleRowActions": {
+            "accept": "Duyệt nhanh",
+            "reject": "Hủy duyệt nhanh"
+        },
+        "filterColumn": {
+            "description": "Mô tả",
+            "name": "Tên",
+            "status": "Trạng thái"
+        }
+    }
+}

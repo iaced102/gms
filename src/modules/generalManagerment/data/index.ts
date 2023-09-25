@@ -131,7 +131,7 @@ export const garageConfigCreate = {
         type: "CDInput",
         group: "parentInfor",
         props: {
-            type: "number",
+            type: "tel",
             labelClass: "w-1/3",
             contentClass: "w-2/3",
             label: $t(
@@ -162,30 +162,6 @@ export const garageConfigCreate = {
             ),
         },
     },
-    // status: {
-    //     field: "status",
-    //     type: "CDInput",
-    //     group: "parentInfor",
-    //     showForDetail: true,
-    //     formatterModelValue: (val: number): string => {
-    //         if (val == 1 || val == 2 || val == 3) {
-    //             return $t("module.generalManagerment.garage.status." + val);
-    //         }
-    //         return "";
-    //     },
-    //     props: {
-    //         labelClass: "w-1/3",
-    //         contentClass: "w-2/3",
-    //         label: $t(
-    //             "module.generalManagerment.garage.dialogColumnTable.status",
-    //         ),
-    //         modelValue: "",
-    //         disabled: true,
-    //         placeholder: $t(
-    //             "module.generalManagerment.garage.dialogColumnTable.status",
-    //         ),
-    //     },
-    // },
     name: {
         field: "name",
         type: "CDInput",
@@ -239,7 +215,7 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
-            type: "number",
+            type: "tel",
             labelClass: "w-1/3",
             contentClass: "w-2/3",
             label: $t(
@@ -405,19 +381,6 @@ export const garageConfigCreate = {
             ),
         },
     },
-    // longitude: {
-    //     type: "longitude",
-    //     field: "latitude",
-    //     group: "garageInfor",
-    //     showForDetail: true,
-    //     props: {
-    //         label: $t("module.generalManagerment.garage.dialogColumnTable.longitude"),
-    //         modelValue: "",
-    //         placeholder: $t(
-    //             "module.generalManagerment.garage.dialogColumnTable.longitude",
-    //         ),
-    //     },
-    // },
     isSupportAllTime: {
         type: "CDSelect",
         field: "isSupportAllTime",
@@ -592,7 +555,7 @@ export const garageConfigCreate = {
         },
     },
     insurances: {
-        field: "rescues",
+        field: "insurances",
         type: "CDMultiselect",
         group: "garageInfor",
         showForDetail: true,

@@ -10,7 +10,7 @@ export function getAllGarage(data: any) {
 }
 export function getAllInsurance(data: any) {
     return garageService({
-        url: "garages",
+        url: "insurances",
         method: "get",
         params: data,
     });

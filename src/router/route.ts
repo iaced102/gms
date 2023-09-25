@@ -67,6 +67,32 @@ const routes = [
                         "@/modules/mappingDataGarage/pages/insurances/ListInsurances.vue"
                     ),
             },
+            {
+                name: "listGarageOwner",
+                path: "garage-owners/list",
+                component: () =>
+                    import("@/modules/garageOwner/pages/ListGarageOwner.vue"),
+            },
+            {
+                name: "listGarageService",
+                path: "garage-service/list",
+                component: () =>
+                    import("@/modules/garageOwner/pages/ListGarageOwner.vue"),
+            },
+            {
+                name: "listTags",
+                path: "tags/list",
+                component: () =>
+                    import("@/modules/garageService/pages/tags/ListTags.vue"),
+            },
+            {
+                name: "listGarageService",
+                path: "garage-service/list",
+                component: () =>
+                    import(
+                        "@/modules/garageService/pages/garageService/ListGarageService.vue"
+                    ),
+            },
         ],
     },
     // {

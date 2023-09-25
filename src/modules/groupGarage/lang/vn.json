@@ -7,6 +7,8 @@
         "tableName": "Danh sách Gara tổng",
         "addNew": "Thêm mới",
         "columnTable": {
+            "dateOfIssue": "Ngày cấp",
+            "placeOfIssue": "Nơi cấp",
             "garageOwnerName": "Tên chủ Gara",
             "parentGarageId": "Mã Gara tổng",
             "parentGarageName": "Tên Gara tổng",

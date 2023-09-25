@@ -1,0 +1,72 @@
+{
+    "garageOwner": {
+        "tableName": "Danh sách chủ Gara",
+        "addNew": "Thêm mới",
+        "columnTable": {
+            "name": "Tên",
+            "userName": "Tên đăng nhập",
+            "phone": "Số điện thoại",
+            "gender": "Giới tính",
+            "birthday": "Ngày sinh",
+            "status": "Trạng thái",
+            "email": "Email",
+            "password": "Mật khẩu"
+        },
+        "dialogColumnTable": {
+            "birthday": "Ngày sinh",
+            "garages": "Chọn Gara",
+            "contractFromDate": "Hiệu lực từ ngày",
+            "contractToDate": "Hiệu lực đến ngày",
+            "status": "Trạng thái",
+            "action": "Hành động"
+        },
+        "contractStatus": {
+            "1": "Hiệu lưc",
+            "0": "Không còn hiệu lực"
+        },
+        "recueStatus": {
+            "1": "Có hỗ trợ",
+            "0": "Không hỗ trợ"
+        },
+        "status": {
+            "1": "Đã duyệt",
+            "2": "Đã từ chối",
+            "3": "Chờ duyệt"
+        },
+        "contextActions": {
+            "update": "Cập nhật",
+            "detail": "xem chi tiết",
+            "delete": "xóa",
+            "accept": "Duyệt",
+            "reject": "Từ chối phê duyệt"
+        },
+        "gender": {
+            "male": "Nam",
+            "feMale": "Nữ",
+            "other": "Khác"
+        },
+        "toast": {
+            "createGarageOwnerSuccess": "Tạo mới thông tin chủ Gara thành công",
+            "createGarageOwnerFailse": "Tạo mới thông tin chủ Gara thất bại"
+        },
+        "dialog": {
+            "contractInfor": "Thông tin về hợp đồng",
+            "parentInfor": "Thông tin gara tổng",
+            "contractInfo": "Thông tin hợp đồng",
+            "deleteGarageTitle": "Xóa garage?",
+            "deleteGarageContent": "Xác nhận xóa garage",
+            "deleteConfirm": "Xác nhận xóa",
+            "cancel": "Hủy",
+            "accept": "Duyệt",
+            "reject": "Hủy duyệt",
+            "save": "Lưu",
+            "garaInfor": "Thông tin gara",
+            "detailGarageTitle": "Chi tiết gara",
+            "createGarageOwner": "Tạo mới thông tin chủ Gara",
+            "create": "Lưu"
+        },
+        "validator": {
+            "garagesCannotBeEmpty": "Gara không thể để trốn"
+        }
+    }
+}

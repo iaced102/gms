@@ -666,6 +666,13 @@ export default defineComponent({
                             href: "/app/contract/list",
                             icon: "fa-solid fa-file-contract",
                         },
+                        {
+                            name: this.$t(
+                                "module.sharedModules.sidebar.listGarageOwner",
+                            ),
+                            href: "/app/garage-owners/list",
+                            icon: "fa-solid fa-file-contract",
+                        },
                     ],
                 },
                 {
@@ -700,6 +707,20 @@ export default defineComponent({
                                         "module.sharedModules.sidebar.insurances",
                                     ),
                                     href: "/app/insurances/list",
+                                    icon: "fa-solid fa-file-contract",
+                                },
+                                {
+                                    name: this.$t(
+                                        "module.sharedModules.sidebar.tags",
+                                    ),
+                                    href: "/app/tags/list",
+                                    icon: "fa-solid fa-file-contract",
+                                },
+                                {
+                                    name: this.$t(
+                                        "module.sharedModules.sidebar.service",
+                                    ),
+                                    href: "/app/garage-service/list",
                                     icon: "fa-solid fa-file-contract",
                                 },
                             ],

@@ -147,7 +147,7 @@ export default defineComponent({
             this.onUpdateParentGarageId(val, instanceKey);
         };
         this.garageConfigCreate.insurances.setup = (instanceKey: string) => {
-            // debugger;
+            debugger;
             setTimeout(() => {
                 let options = store.listInsurance.map((a: any) => {
                     return {
@@ -162,7 +162,7 @@ export default defineComponent({
             }, 200);
         };
         this.garageConfigCreate.carSubSystems.setup = (instanceKey: string) => {
-            // debugger;
+            debugger;
             setTimeout(() => {
                 let options = store.listSubSystem.map((a: any) => {
                     return {
@@ -177,6 +177,7 @@ export default defineComponent({
             }, 200);
         };
         this.garageConfigCreate.rescues.setup = (instanceKey: string) => {
+            debugger;
             setTimeout(() => {
                 let options = store.listRescues.map((a: any) => {
                     return {
@@ -188,7 +189,7 @@ export default defineComponent({
                     (a: any) => a.instanceKey == instanceKey,
                 );
                 field.props.options = options;
-            }, 100);
+            }, 200);
         };
     },
     methods: {
@@ -599,21 +600,30 @@ export default defineComponent({
                                 garageDataConfigCreateClone[a].instanceKey,
                             );
                         }
+                        if (garageDataConfigCreateClone[a].props) {
+                            garageDataConfigCreateClone[a].props.disabled =
+                                false;
+                        }
                         if (
                             garageDataConfigCreateClone[a].group ==
-                                "parentInfo" &&
+                                "parentInfor" &&
                             garageDataConfigCreateClone[a].field !=
                                 "parentGarageId"
                         ) {
-                            garageDataConfigCreateClone[a].props.disabled =
-                                true;
+                            if (garageDataConfigCreateClone[a].props) {
+                                garageDataConfigCreateClone[a].props.disabled =
+                                    true;
+                            }
                         } else {
                             if (
                                 garageDataConfigCreateClone[a].group ==
                                 "garageInfor"
                             ) {
-                                garageDataConfigCreateClone[a].props.disabled =
-                                    false;
+                                if (garageDataConfigCreateClone[a].props) {
+                                    garageDataConfigCreateClone[
+                                        a
+                                    ].props.disabled = false;
+                                }
                             }
                         }
                         dynamicComponent.push(garageDataConfigCreateClone[a]);
@@ -840,12 +850,15 @@ export default defineComponent({
                             }
                             if (
                                 garageDataConfigEditClone[a].group ==
-                                "parentInfo"
+                                "parentInfor"
                                 // && garageDataConfigEditClone[a].field !=
                                 //     "parentGarageId"
                             ) {
-                                garageDataConfigEditClone[a].props.disabled =
-                                    true;
+                                if (garageDataConfigEditClone[a].props) {
+                                    garageDataConfigEditClone[
+                                        a
+                                    ].props.disabled = true;
+                                }
                             } else {
                                 if (
                                     garageDataConfigEditClone[a].group ==
