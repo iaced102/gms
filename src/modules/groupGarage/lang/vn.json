@@ -88,14 +88,14 @@
             "create": "Lưu",
             "parentInfor": "Thông tin Gara tổng",
             "deleteGarageTitle": "Xóa Gara?",
-            "deleteGarageContent": "Xác nhận xóa Gara",
+            "deleteGarageContent": "Xác nhận xóa Gara tổng",
             "deleteConfirm": "Xác nhận xóa",
             "cancel": "Hủy",
             "accept": "Duyệt",
             "reject": "Hủy duyệt",
             "save": "Lưu",
-            "garaInfor": "Thông tin Gara",
-            "detailGarageTitle": "Chi tiết Gara"
+            "garaInfor": "Thông tin Gara tổng",
+            "detailGarageTitle": "Chi tiết Gara tổng"
         },
         "multipleRowActions": {
             "accept": "Duyệt nhanh",

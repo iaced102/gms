@@ -692,17 +692,19 @@ export default defineComponent({
                                             }
                                         },
                                     );
-                                    if (data.contractFromDate) {
-                                        data.contractFromDate = dayjs(
-                                            data.contractFromDate,
-                                            "YYYY/MM/DD",
-                                        )
-                                            .toDate()
-                                            .toISOString();
+                                    console.log(data);
+                                    if (data.contractDate) {
+                                        // data.contractDate = dayjs(
+                                        //     data.contractDate,
+                                        //     "YYYY/MM/DD",
+                                        // )
+                                        //     .toDate()
+                                        //     .toISOString();
+                                        data.contractDate = data.contractDate.split("/").reverse().join("-");
                                     } else {
-                                        data.contractFromDate = "";
+                                        data.contractDate = "";
                                     }
-                                    data.contractToDate = "";
+                                    console.log(data);
                                     let res = await store.createGarage(data);
                                     if (res.code == 1) {
                                         self.$toast(
@@ -738,8 +740,11 @@ export default defineComponent({
                         "module.generalManagerment.garage.contextActions.update",
                     ),
                     action: async (params: any) => {
-                        let garageDataConfigEditClone = this
-                            .garageConfigCreate as any;
+                        // let garageDataConfigEditClone = this
+                        //     .garageConfigCreate as any;
+                        let garageDataConfigEditClone = {
+                            ..._cloneDeep(self.garageConfigCreate),
+                        } as any;    
                         let originData = await store.getGarageInforById(
                             params.id,
                         );
@@ -788,6 +793,7 @@ export default defineComponent({
                         Object.keys(originData.data).map((a: string) => {
                             if (!garageDataConfigEditClone.hasOwnProperty(a)) {
                             } else {
+                                console.log(garageDataConfigEditClone[a].type);
                                 if (garageDataConfigEditClone[a].static) {
                                     garageDataConfigEditClone[a].value =
                                         originData.data[a];
@@ -920,10 +926,32 @@ export default defineComponent({
                                                                 null;
                                                         }
                                                     }
+                                                    if (a.type == "CDMultiselect") {
+                                                        config[a.field] =
+                                                            a.props.modelValue.map(
+                                                                (a: any) => {
+                                                                    return {
+                                                                        id: a.id,
+                                                                    };
+                                                                },
+                                                            );
+                                                    }
                                                 }
                                                 // }
                                             },
                                         );
+                                        console.log(config);
+                                        if (config.contractDate) {
+                                            // config.contractDate = dayjs(
+                                            //     config.contractDate,
+                                            //     "YYYY/MM/DD",
+                                            // )
+                                            //     .toDate()
+                                            //     .toISOString();
+                                            config.contractDate = config.contractDate.split("/").reverse().join("-");
+                                        } else {
+                                            config.contractDate = "";
+                                        }
                                         let res = await store.updateGarage(
                                             config,
                                             self.originData.id,

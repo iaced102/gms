@@ -64,7 +64,7 @@
             "provinceId": "Tỉnh/TP",
             "districtId": "Quận/Huyện",
             "wardId": "Phường/Xã",
-            "contractFromDate": "Ngày hợp đồng",
+            "contractDate": "Ngày hợp đồng",
             "rescue": "Hỗ trợ cứu hộ",
             "isSupportAllTime": "Phục vụ 24/7",
             "isVerified": "Xác thực Gara",

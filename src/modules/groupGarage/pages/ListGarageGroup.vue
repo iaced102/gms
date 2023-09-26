@@ -93,6 +93,7 @@ const displayCol = [
     "status",
 ];
 import { garageConfigEdit, garageConfigCreate } from "../data/index";
+import dayjs from "dayjs";
 export default defineComponent({
     async created() {
         this.getDataForTable();
@@ -414,8 +415,19 @@ export default defineComponent({
                                             }
                                         },
                                     );
-                                    data.contractFromDate = "";
-                                    data.contractToDate = "";
+                                    console.log(data);
+                                    if (data.dateOfIssue) {
+                                        // data.dateOfIssue = dayjs(
+                                        //     data.dateOfIssue,
+                                        //     "YYYY-MM-DD",
+                                        // )
+                                        //     .toDate()
+                                        //     .toISOString();
+                                        // dayjs(data.dateOfIssue).format("yyyy-mm-dd");
+                                        data.dateOfIssue = data.dateOfIssue.split("/").reverse().join("-");
+                                    } else {
+                                        data.dateOfIssue = "";
+                                    }
                                     let res = await store.createGarage(data);
                                     if (res.code == 1) {
                                         self.$toast(

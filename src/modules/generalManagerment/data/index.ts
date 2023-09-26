@@ -338,9 +338,9 @@ export const garageConfigCreate = {
         static: true,
         value: 0,
     },
-    contractFromDate: {
+    contractDate: {
         type: "CDDatePicker",
-        field: "contractFromDate",
+        field: "contractDate",
         group: "garageInfor",
         showForDetail: true,
         props: {
@@ -348,19 +348,14 @@ export const garageConfigCreate = {
             contentClass: "w-2/3",
             options: [],
             label: $t(
-                "module.generalManagerment.garage.dialogColumnTable.contractFromDate",
+                "module.generalManagerment.garage.dialogColumnTable.contractDate",
             ),
             modelValue: "",
             disabled: true,
             placeholder: $t(
-                "module.generalManagerment.garage.dialogColumnTable.contractFromDate",
+                "module.generalManagerment.garage.dialogColumnTable.contractDate",
             ),
         },
-    },
-    contractToDate: {
-        field: "contractToDate",
-        static: true,
-        value: "",
     },
     contractStatus: {
         type: "CDSelect",

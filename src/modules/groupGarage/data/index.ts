@@ -804,7 +804,7 @@ export const garageConfigCreate = {
         },
     },
     dateOfIssue: {
-        field: "placeOfIssue",
+        field: "dateOfIssue",
         type: "CDDatePicker",
         group: "garageInfor",
         showForDetail: true,
