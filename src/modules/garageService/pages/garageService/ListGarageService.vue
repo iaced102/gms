@@ -85,19 +85,19 @@ export default defineComponent({
         store.getAllTagsForStore();
         store.getListSubSystem();
 
-        this.garageServiceConfigTemplate.garageId.setup = (
-            instanceKey: string,
-        ) => {
-            setTimeout(() => {
-                this.getGarages("", instanceKey);
-            }, 100);
-        };
-        this.garageServiceConfigTemplate.garageId.onSearch = (
-            instanceKey: string,
-            val: string,
-        ) => {
-            this.getGarages(val, instanceKey);
-        };
+        // this.garageServiceConfigTemplate.garageId.setup = (
+        //     instanceKey: string,
+        // ) => {
+        //     setTimeout(() => {
+        //         this.getGarages("", instanceKey);
+        //     }, 100);
+        // };
+        // this.garageServiceConfigTemplate.garageId.onSearch = (
+        //     instanceKey: string,
+        //     val: string,
+        // ) => {
+        //     this.getGarages(val, instanceKey);
+        // };
         // this.garageServiceConfigTemplate.garageId.onUpdate = (
         //     val: string,
         //     instanceKey: string,
@@ -431,7 +431,7 @@ export default defineComponent({
                                                 if (a.type == "CDMultiselect") {
                                                     data[a.field] =
                                                         a.props.modelValue.map(
-                                                            (b) => {
+                                                            (b: any) => {
                                                                 return {
                                                                     id: b,
                                                                 };
@@ -563,7 +563,7 @@ export default defineComponent({
                                         garageServiceConfigTemplate[
                                             a
                                         ].props.modelValue = data[a].map(
-                                            (f) => f.id,
+                                            (f: any) => f.id,
                                         );
                                     }
                                 }
@@ -631,7 +631,7 @@ export default defineComponent({
                                         garageServiceConfigTemplate[
                                             a
                                         ].props.modelValue = data[a].map(
-                                            (f) => f.id,
+                                            (f: any) => f.id,
                                         );
                                     }
                                 }
@@ -678,7 +678,7 @@ export default defineComponent({
                                                     ) {
                                                         data[a.field] =
                                                             a.props.modelValue.map(
-                                                                (b) => {
+                                                                (b: any) => {
                                                                     return {
                                                                         id: b,
                                                                     };
