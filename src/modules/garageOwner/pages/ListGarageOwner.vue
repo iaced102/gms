@@ -68,7 +68,7 @@ import { garageOwnerStore } from "../store/index";
 const store = garageOwnerStore();
 const displayCol = [
     "name",
-    "userName",
+    "username",
     "phone",
     "email",
     "gender",
@@ -177,6 +177,19 @@ export default defineComponent({
                         "module.garageOwner.garageOwner.status." + a.status,
                     ),
                 };
+                if (a.gender == 0) {
+                    a.gender = self.$t(
+                        "module.garageOwner.garageOwner.gender.male",
+                    );
+                } else if (a.gender == 1) {
+                    a.gender = self.$t(
+                        "module.garageOwner.garageOwner.gender.feMale",
+                    );
+                } else {
+                    a.gender = self.$t(
+                        "module.garageOwner.garageOwner.gender.other",
+                    );
+                }
                 return a;
             });
             this.columns = displayCol.map((a) => {

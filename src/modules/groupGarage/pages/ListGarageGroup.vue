@@ -424,7 +424,10 @@ export default defineComponent({
                                         //     .toDate()
                                         //     .toISOString();
                                         // dayjs(data.dateOfIssue).format("yyyy-mm-dd");
-                                        data.dateOfIssue = data.dateOfIssue.split("/").reverse().join("-");
+                                        data.dateOfIssue = data.dateOfIssue
+                                            .split("/")
+                                            .reverse()
+                                            .join("-");
                                     } else {
                                         data.dateOfIssue = "";
                                     }

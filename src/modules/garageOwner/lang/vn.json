@@ -5,6 +5,7 @@
         "columnTable": {
             "name": "Tên",
             "userName": "Tên đăng nhập",
+            "username": "Tên đăng nhập",
             "phone": "Số điện thoại",
             "gender": "Giới tính",
             "birthday": "Ngày sinh",
