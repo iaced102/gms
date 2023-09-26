@@ -809,6 +809,7 @@ export const garageConfigCreate = {
         group: "garageInfor",
         showForDetail: true,
         props: {
+            formatter: "YYYY-MM-DD",
             labelClass: "w-1/3",
             contentClass: "w-2/3",
             disabled: true,
