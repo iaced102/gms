@@ -127,24 +127,25 @@ export default defineComponent({
         store.getAllRescues();
         store.getAllInsurance();
         this.getDataForTable();
+        let self = this;
         this.garageConfigCreate.parentGarageId.setup = (
             instanceKey: string,
         ) => {
             setTimeout(() => {
-                this.getGroupGarage("", instanceKey);
+                self.getGroupGarage("", instanceKey);
             }, 100);
         };
         this.garageConfigCreate.parentGarageId.onSearch = (
             instanceKey: string,
             val: string,
         ) => {
-            this.getGroupGarage(val, instanceKey);
+            self.getGroupGarage(val, instanceKey);
         };
         this.garageConfigCreate.parentGarageId.onUpdate = (
             val: string,
             instanceKey: string,
         ) => {
-            this.onUpdateParentGarageId(val, instanceKey);
+            self.onUpdateParentGarageId(val, instanceKey);
         };
         this.garageConfigCreate.insurances.setup = (instanceKey: string) => {
             debugger;
@@ -155,7 +156,7 @@ export default defineComponent({
                         value: a.name,
                     };
                 });
-                let field = this.dialogConfig.dynamicComponent.find(
+                let field = self.dialogConfig.dynamicComponent.find(
                     (a: any) => a.instanceKey == instanceKey,
                 );
                 field.props.options = options;
@@ -170,7 +171,7 @@ export default defineComponent({
                         value: a.name,
                     };
                 });
-                let field = this.dialogConfig.dynamicComponent.find(
+                let field = self.dialogConfig.dynamicComponent.find(
                     (a: any) => a.instanceKey == instanceKey,
                 );
                 field.props.options = options;
@@ -185,7 +186,7 @@ export default defineComponent({
                         value: a.name,
                     };
                 });
-                let field = this.dialogConfig.dynamicComponent.find(
+                let field = self.dialogConfig.dynamicComponent.find(
                     (a: any) => a.instanceKey == instanceKey,
                 );
                 field.props.options = options;
@@ -700,7 +701,10 @@ export default defineComponent({
                                         // )
                                         //     .toDate()
                                         //     .toISOString();
-                                        data.contractDate = data.contractDate.split("/").reverse().join("-");
+                                        data.contractDate = data.contractDate
+                                            .split("/")
+                                            .reverse()
+                                            .join("-");
                                     } else {
                                         data.contractDate = "";
                                     }
@@ -744,7 +748,7 @@ export default defineComponent({
                         //     .garageConfigCreate as any;
                         let garageDataConfigEditClone = {
                             ..._cloneDeep(self.garageConfigCreate),
-                        } as any;    
+                        } as any;
                         let originData = await store.getGarageInforById(
                             params.id,
                         );
@@ -926,7 +930,10 @@ export default defineComponent({
                                                                 null;
                                                         }
                                                     }
-                                                    if (a.type == "CDMultiselect") {
+                                                    if (
+                                                        a.type ==
+                                                        "CDMultiselect"
+                                                    ) {
                                                         config[a.field] =
                                                             a.props.modelValue.map(
                                                                 (a: any) => {
@@ -948,7 +955,11 @@ export default defineComponent({
                                             // )
                                             //     .toDate()
                                             //     .toISOString();
-                                            config.contractDate = config.contractDate.split("/").reverse().join("-");
+                                            config.contractDate =
+                                                config.contractDate
+                                                    .split("/")
+                                                    .reverse()
+                                                    .join("-");
                                         } else {
                                             config.contractDate = "";
                                         }
