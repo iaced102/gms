@@ -2,7 +2,6 @@
     <div>
         <CDTable
             ref="table"
-            v-if="rowData.length > 0"
             :tableName="$t('module.contracts.contracts.tableName')"
             :rowData="rowData"
             :columns="columns"

@@ -97,7 +97,7 @@ export const garageOwnerDataConfigCreate = {
         showForDetail: true,
 
         props: {
-            type: "number",
+            type: "tel",
             labelClass: "w-1/3",
             contentClass: "w-2/3",
             label: $t("module.garageOwner.garageOwner.columnTable.phone"),
@@ -123,6 +123,7 @@ export const garageOwnerDataConfigCreate = {
         field: "birthday",
         showForDetail: true,
         props: {
+            formatter: "YYYY-MM-DD",
             labelClass: "w-1/3",
             contentClass: "w-2/3",
             label: $t(

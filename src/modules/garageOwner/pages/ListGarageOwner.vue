@@ -276,9 +276,7 @@ export default defineComponent({
                                             }
                                         },
                                     );
-                                    data.birthday = dayjs(data.birthday)
-                                        .toDate()
-                                        .toISOString();
+                                    data.birthday = data.birthday;
                                     data.garages = data.garages.map(
                                         (a: any) => {
                                             return {
@@ -289,7 +287,6 @@ export default defineComponent({
                                     let res = await store.createGarageOwner(
                                         data,
                                     );
-                                    debugger;
                                     if (res.code == 1) {
                                         self.$toast(
                                             self.$t(
