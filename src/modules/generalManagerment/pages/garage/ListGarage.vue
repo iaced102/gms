@@ -703,7 +703,6 @@ export default defineComponent({
                                         //     .toISOString();
                                         data.contractDate = data.contractDate
                                             .split("/")
-                                            .reverse()
                                             .join("-");
                                     } else {
                                         data.contractDate = "";
@@ -938,7 +937,7 @@ export default defineComponent({
                                                             a.props.modelValue.map(
                                                                 (a: any) => {
                                                                     return {
-                                                                        id: a.id,
+                                                                        id: a,
                                                                     };
                                                                 },
                                                             );
@@ -958,7 +957,6 @@ export default defineComponent({
                                             config.contractDate =
                                                 config.contractDate
                                                     .split("/")
-                                                    .reverse()
                                                     .join("-");
                                         } else {
                                             config.contractDate = "";
