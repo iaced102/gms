@@ -38,9 +38,9 @@ Object.keys(MyComponents).forEach((componentName) => {
 if (localStorage.users === undefined) {
     let users = [
         {
-            name: "dashcode",
-            email: "dashcode@gmail.com",
-            password: "dashcode",
+            name: "cardoctor",
+            email: "cardoctor@gmail.com",
+            password: "cardoctor",
         },
     ];
     localStorage.setItem("users", JSON.stringify(users));

@@ -87,7 +87,7 @@
                     </div>
                 </form>
 
-                <div>
+                <!-- <div>
                     <div class="relative mt-10">
                         <div
                             class="absolute inset-0 flex items-center"
@@ -145,7 +145,7 @@
                             >
                         </a>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -161,8 +161,8 @@ export default defineComponent({
     created() {
         console.log(this);
         this.formValues = {
-            email: "dashcode@gmail.com",
-            password: "dashcode",
+            email: "cardoctor@gmail.com",
+            password: "cardoctor",
         };
     },
     data() {
