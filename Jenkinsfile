@@ -18,7 +18,7 @@ pipeline{
         }
         stage("build"){
             steps{
-                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
+                withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
                     sh 'docker build -t gms-v1 .'
                     sh 'docker push gms-v1 .'
                 }
