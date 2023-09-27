@@ -39,7 +39,7 @@ pipeline{
         always{
             emailext body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: \nCheck console output at $BUILD_URL to view the results.',
             subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!',
-            to: 'hoangnd@symper.vn'
+            to: 'phucvu@aggregatoricapaci.com'
         }
         success{
             echo "========pipeline executed successfully ========"
