@@ -16,6 +16,24 @@ pipeline{
         
             }
         }
+        stage("build"){
+            steps{
+                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
+                    sh 'docker build -t gms-v1 .'
+                    sh 'docker push gms-v1 .'
+                }
+
+            }
+            post{
+                success{
+                    echo "build docker frontend code successful"
+                }
+                failure{
+                    echo "build docker frontend code fail"
+                }
+        
+            }
+        }
     }
     post{
         always{
