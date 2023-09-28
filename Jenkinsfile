@@ -16,6 +16,24 @@ pipeline{
         
             }
         }
+        stage("Build npm"){
+            steps{
+                sh 'node -v'
+                sh 'npm -v'
+                sh 'sudo npm i @vue/cli -g'
+                sh 'npm install'
+                sh 'npm run dev'
+            }
+            post{
+                success{
+                    echo "Build frontend code successful"
+                }
+                failure{
+                    echo "Build frontend code fail"
+                }
+        
+            }
+        }
         stage("build"){
             steps{
                 withDockerRegistry(credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/') {
